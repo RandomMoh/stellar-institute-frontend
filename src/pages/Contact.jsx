@@ -128,7 +128,7 @@ export default function Contact() {
 
                 <div className="contact-map">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3400.123456789!2d74.3587!3d31.5204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDMxJzEzLjQiTiA3NMKwMjEnMzEuMyJF!5e0!3m2!1sen!2s!4v1234567890"
+                    src="https://maps.google.com/maps?q=31.563333,74.3266952&z=17&output=embed"
                     title="Stellar Institute Location"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
