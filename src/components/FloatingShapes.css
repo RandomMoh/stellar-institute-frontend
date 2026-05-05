@@ -1,9 +1,9 @@
 .shapes-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
@@ -20,23 +20,65 @@
   left: 5%;
 }
 
+.shape-circle-2 {
+  width: 80px;
+  height: 80px;
+  bottom: 25%;
+  right: 15%;
+}
+
 .shape-dot {
   width: 60px;
   height: 60px;
   top: 60%;
-  right: 10%;
+  right: 8%;
+}
+
+.shape-dot-2 {
+  width: 40px;
+  height: 40px;
+  top: 20%;
+  left: 30%;
 }
 
 .shape-zigzag {
   width: 100px;
   height: 100px;
   top: 30%;
-  right: 5%;
+  right: 25%;
+}
+
+.shape-zigzag-2 {
+  width: 120px;
+  height: 120px;
+  bottom: 10%;
+  left: 20%;
 }
 
 .shape-plus {
   width: 80px;
   height: 80px;
-  bottom: 20%;
-  left: 10%;
+  bottom: 40%;
+  left: 8%;
+}
+
+.shape-plus-2 {
+  width: 50px;
+  height: 50px;
+  top: 10%;
+  right: 35%;
+}
+
+.shape-triangle {
+  width: 90px;
+  height: 90px;
+  top: 75%;
+  left: 45%;
+}
+
+.shape-squiggle {
+  width: 150px;
+  height: 150px;
+  top: 5%;
+  left: 60%;
 }

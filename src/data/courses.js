@@ -148,7 +148,7 @@ export const academyPrograms = [
     title: 'Middle School',
     grades: 'Grades 5th to 8th',
     description: 'A comprehensive foundational program focusing on core subjects and character building.',
-    subjects: ['Mathematics', 'Science', 'English', 'Urdu', 'Computer Science'],
+    subjects: ['Mathematics', 'Science', 'English', 'Urdu', 'Computer Science', 'Islamiyat'],
     highlights: ['Interactive Learning', 'Monthly Assessments', 'Activity Based']
   },
   {
@@ -156,7 +156,7 @@ export const academyPrograms = [
     title: 'Matriculation',
     grades: 'Grades 9th & 10th',
     description: 'Rigorous preparation for board examinations with specialized focus on pure sciences and arts.',
-    subjects: ['Physics', 'Chemistry', 'Biology/Computer', 'Mathematics', 'General Arts'],
+    subjects: ['Physics', 'Chemistry', 'Biology/Computer', 'Mathematics', 'General Arts', 'Islamiyat'],
     highlights: ['Board Pattern', 'Past Paper Practice', 'Regular Testing']
   },
   {
@@ -246,7 +246,7 @@ export const schoolPrograms = [
     title: 'Middle School',
     grades: 'Grades 5th to 8th',
     description: 'A comprehensive foundational program focusing on core subjects and character building.',
-    subjects: ['Mathematics', 'Science', 'English', 'Urdu', 'Computer Science'],
+    subjects: ['Mathematics', 'Science', 'English', 'Urdu', 'Computer Science', 'Islamiyat'],
     highlights: ['Interactive Learning', 'Monthly Assessments', 'Activity Based']
   },
   {
@@ -254,7 +254,7 @@ export const schoolPrograms = [
     title: 'Matriculation',
     grades: 'Grades 9th & 10th',
     description: 'Rigorous preparation for board examinations with specialized focus on pure sciences.',
-    subjects: ['Physics', 'Chemistry', 'Biology/Computer', 'Mathematics'],
+    subjects: ['Physics', 'Chemistry', 'Biology/Computer', 'Mathematics', 'Islamiyat'],
     highlights: ['Board Pattern', 'Past Paper Practice', 'Regular Testing']
   }
 ];

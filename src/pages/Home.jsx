@@ -40,8 +40,8 @@ export default function Home() {
             <h1>We Develop Your Inspiring Career with Standard</h1>
             <p>Choose the Course that fits your goals! You can access 20+ different courses with lifetime access for all.</p>
             <div className="hero-buttons">
-              <Link to="/courses" className="btn btn-primary pulse-hover">Explore Courses</Link>
-              <a href="https://stellarinstitute.pk/registration" target="_blank" rel="noreferrer" className="btn btn-secondary bounce-hover">Register Now</a>
+              <Link to="/skilled-institute" className="btn btn-primary pulse-hover">Explore Courses</Link>
+              <Link to="/contact" className="btn btn-secondary bounce-hover">Register Now</Link>
             </div>
           </motion.div>
         </div>
@@ -58,7 +58,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <h2>Admissions are open</h2>
-            <a href="https://stellarinstitute.pk/registration" target="_blank" rel="noreferrer" className="btn btn-primary pulse-hover">Register Now</a>
+            <Link to="/contact" className="btn btn-primary pulse-hover">Register Now</Link>
           </motion.div>
         </div>
       </section>
@@ -178,7 +178,7 @@ export default function Home() {
             transition={{ type: "spring", stiffness: 120 }}
           >
             <h2>Best Instructors From Around The World</h2>
-            <a href="https://stellarinstitute.pk/registration" target="_blank" rel="noreferrer" className="btn btn-primary pulse-hover">Register Now</a>
+            <Link to="/contact" className="btn btn-primary pulse-hover">Register Now</Link>
           </motion.div>
         </div>
       </section>
