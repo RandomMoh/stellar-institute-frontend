@@ -1,0 +1,42 @@
+.shapes-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shape {
+  position: absolute;
+}
+
+.shape-circle {
+  width: 120px;
+  height: 120px;
+  top: 15%;
+  left: 5%;
+}
+
+.shape-dot {
+  width: 60px;
+  height: 60px;
+  top: 60%;
+  right: 10%;
+}
+
+.shape-zigzag {
+  width: 100px;
+  height: 100px;
+  top: 30%;
+  right: 5%;
+}
+
+.shape-plus {
+  width: 80px;
+  height: 80px;
+  bottom: 20%;
+  left: 10%;
+}

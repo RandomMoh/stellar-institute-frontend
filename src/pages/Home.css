@@ -1,0 +1,272 @@
+/* Home Page Styles - Eduvalt Immersive Design */
+
+.lms-home {
+  background: var(--bg-gradient);
+}
+
+.relative {
+  position: relative;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+/* Eduvalt Button Styles */
+.pulse-hover {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.pulse-hover:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 20px -10px var(--primary);
+}
+
+.bounce-hover {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.bounce-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px -10px rgba(0,0,0,0.2);
+}
+
+/* Hero Section */
+.lms-hero {
+  padding: 100px 0;
+  text-align: center;
+  background-color: transparent;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.lms-hero h1 {
+  font-size: 48px;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.lms-hero p {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Admissions Banner */
+.lms-admissions-banner {
+  padding: 40px 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admissions-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admissions-flex h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #1a1a1a;
+}
+
+/* Sections General */
+.section {
+  padding: 80px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 32px;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* 3D Pop-Up Cards (Eduvalt Style) */
+.popup-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.popup-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.2), 0 10px 20px -10px rgba(0, 0, 0, 0.08);
+  border-color: rgba(14, 165, 233, 0.2);
+}
+
+/* Courses Grid */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.lms-course-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-image-placeholder {
+  height: 200px;
+  background-color: #f1f5f9;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 15px;
+}
+
+.course-category {
+  background-color: var(--primary);
+  color: white;
+  padding: 4px 12px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.course-content {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-content h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.course-meta {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.course-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.course-price {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 18px;
+}
+
+.course-enroll {
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.course-enroll:hover {
+  color: var(--primary);
+}
+
+/* Testimonials */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.lms-testimonial-card {
+  padding: 30px;
+  position: relative;
+}
+
+.quote-icon {
+  font-size: 60px;
+  color: var(--primary-light);
+  font-family: Georgia, serif;
+  line-height: 1;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.lms-testimonial-card p {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  line-height: 1.6;
+}
+
+.student-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.student-info span {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* Instructors Banner */
+.lms-instructors-banner {
+  background-color: var(--primary);
+  color: white;
+  padding: 60px 0;
+}
+
+.instructors-content h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.mt-4 {
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .admissions-flex {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  .lms-hero h1 {
+    font-size: 36px;
+  }
+  .hero-buttons {
+    flex-direction: column;
+  }
+}

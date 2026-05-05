@@ -1,0 +1,133 @@
+.lms-footer {
+  background-color: #222222;
+  color: #cccccc;
+  padding-top: 80px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.footer-widget .footer-logo {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: var(--font-display);
+}
+
+.footer-widget .footer-logo span {
+  color: var(--primary);
+}
+
+.footer-desc {
+  margin-bottom: 20px;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.widget-title {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.widget-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: #cccccc;
+  font-size: 14px;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.footer-links a::before {
+  content: '›';
+  margin-right: 8px;
+  color: var(--primary);
+  font-size: 18px;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 14px;
+}
+
+.footer-contact-info li {
+  line-height: 1.6;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  background-color: #333333;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.footer-socials a:hover {
+  background-color: var(--primary);
+}
+
+.footer-bottom {
+  background-color: #1a1a1a;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 13px;
+  color: #999999;
+}
+
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-logo-img {
+  max-height: 120px;
+  width: auto;
+  margin-bottom: 20px;
+  filter: brightness(0) invert(1);
+}

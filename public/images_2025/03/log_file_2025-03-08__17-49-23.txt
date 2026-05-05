@@ -1,0 +1,60 @@
+
+---Downloaded files---
+The import files for: Home Default were successfully downloaded!
+Initial max execution time = 180000
+Files info:
+Site URL = https://portal.benchmarkstudio.biz/stellar
+Data file = /home/portalbenchmarks/public_html/stellar/wp-content/themes/eduvalt/sample-data/contents-demo.xml
+Widget file = /home/portalbenchmarks/public_html/stellar/wp-content/themes/eduvalt/sample-data/widget-settings.json
+Customizer file = /home/portalbenchmarks/public_html/stellar/wp-content/themes/eduvalt/sample-data/customizer-data.dat
+Redux files:
+not defined!
+
+------
+New AJAX call!
+
+
+---Importing widgets---
+Blog Sidebar : 
+
+Search - No Title - Imported
+Categories - Categories - Imported
+A::1 - Recent Posts Widget - Recent Posts - Imported
+Tag Cloud - Popular Tags - Imported
+Block - No Title - Widget already exists
+
+Footer widget no. 1 : 
+
+Custom HTML - No Title - Imported
+
+Footer widget no. 2 : 
+
+Navigation Menu - Resources - Imported
+
+Footer widget no. 3 : 
+
+Navigation Menu - Courses - Imported
+
+Footer widget no. 4 : 
+
+Custom HTML - Working Hours - Imported
+
+Product Sidebar : 
+
+Product Search - No Title - Imported
+Filter Products by Price - Filter by price - Imported
+Product Categories - Product categories - Imported
+Products list - Products - Imported
+Product Tag Cloud - Product tags - Imported
+
+Event Sidebar : 
+
+Gallery - Sponsors - Imported
+
+
+
+---Importing customizer settings---
+Customizer settings import finished!
+
+---ocdi/after_import---
+
