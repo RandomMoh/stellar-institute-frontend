@@ -265,8 +265,8 @@ export const contactInfo = {
   email: "info@stellarinstitute.pk",
   workingHours: "Monday - Saturday: 9:00 AM - 6:00 PM\\nSunday: Closed",
   socials: {
-    youtube: "https://youtube.com",
-    instagram: "https://instagram.com",
-    facebook: "https://facebook.com"
+    youtube: "https://www.youtube.com/channel/UCrb7MNCc3EtFHU4uzPBXWgg",
+    instagram: "https://www.instagram.com/stellarinstitutepk/",
+    facebook: "https://web.facebook.com/stellarinstitutepk/"
   }
 };
