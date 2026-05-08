@@ -41,7 +41,6 @@ export default function Home() {
             <p>Choose the Course that fits your goals! You can access 20+ different courses with lifetime access for all.</p>
             <div className="hero-buttons">
               <Link to="/skilled-institute" className="btn btn-primary pulse-hover">Explore Courses</Link>
-              <Link to="/contact" className="btn btn-secondary bounce-hover">Register Now</Link>
             </div>
           </motion.div>
         </div>

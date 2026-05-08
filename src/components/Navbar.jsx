@@ -18,7 +18,7 @@ export default function Navbar() {
             <span>+92-300-0652124</span>
           </div>
           <div className="topbar-right">
-            <Link to="/coming-soon">Sign Up</Link>
+            <Link to="/contact">Sign Up</Link>
             <Link to="/coming-soon">Login</Link>
           </div>
         </div>
@@ -70,12 +70,12 @@ export default function Navbar() {
             <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             
             <div className="nav-mobile-btn">
-              <Link to="/coming-soon" className="btn btn-primary" onClick={() => setMobileMenuOpen(false)}>Register Now</Link>
+              <Link to="/contact" className="btn btn-primary" onClick={() => setMobileMenuOpen(false)}>Register Now</Link>
             </div>
           </div>
 
           <div className="nav-actions">
-            <Link to="/coming-soon" className="btn btn-primary nav-desktop-btn">Register Now</Link>
+            <Link to="/contact" className="btn btn-primary nav-desktop-btn">Register Now</Link>
             <button className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? '✕' : '☰'}
             </button>
