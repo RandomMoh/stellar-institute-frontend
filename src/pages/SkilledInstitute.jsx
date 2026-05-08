@@ -97,15 +97,19 @@ export default function SkilledInstitute() {
                     className="lms-course-card popup-card" 
                     style={{ height: '100%' }}
                   >
-                    <div 
-                      className="course-image-placeholder"
-                      style={{
-                        backgroundImage: `url(${course.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        minHeight: '200px'
-                      }}
-                    >
+                    <div className="course-image-placeholder">
+                      <img 
+                        src={course.image} 
+                        alt={course.title}
+                        loading="lazy"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                          display: 'block'
+                        }}
+                      />
                       <span className="course-category">
                         {course.category === 'it' ? 'IT Courses' : 'Female Beauty Courses'}
                       </span>

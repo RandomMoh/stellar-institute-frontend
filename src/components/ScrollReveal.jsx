@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function ScrollReveal({ children, direction = 'up', delay = 0, className = '' }) {
+const ScrollReveal = React.memo(function ScrollReveal({ children, direction = 'up', delay = 0, className = '' }) {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -40,4 +40,6 @@ export default function ScrollReveal({ children, direction = 'up', delay = 0, cl
       {children}
     </motion.div>
   );
-}
+});
+
+export default ScrollReveal;

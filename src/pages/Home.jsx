@@ -94,14 +94,19 @@ export default function Home() {
           >
             {featuredCourses.map((course, i) => (
               <motion.div key={i} variants={itemVariants} className="lms-course-card popup-card">
-                <div 
-                  className="course-image-placeholder"
-                  style={{
-                    backgroundImage: `url(${course.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-                  }}
-                >
+                <div className="course-image-placeholder">
+                  <img 
+                    src={course.image} 
+                    alt={course.title}
+                    loading="lazy"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      display: 'block'
+                    }}
+                  />
                   <span className="course-category">
                     {i < 4 ? 'IT Courses' : 'Female Beauty Courses'}
                   </span>

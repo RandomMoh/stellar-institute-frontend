@@ -10,16 +10,41 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '', subject: '', message: ''
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setStatus('sending');
+    setErrorMsg('');
+
+    try {
+      const res = await fetch('/api/contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setErrorMsg(data.error || 'Something went wrong. Please try again.');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch (err) {
+      setStatus('error');
+      setErrorMsg('Network error. Please check your connection and try again.');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
   };
 
   return (
@@ -42,7 +67,7 @@ export default function Contact() {
               <form className="contact-form" onSubmit={handleSubmit}>
                 <h2>Send Us a Message</h2>
 
-                {submitted && (
+                {status === 'success' && (
                   <div style={{
                     background: 'var(--primary-50)',
                     border: '1px solid var(--primary-200)',
@@ -53,7 +78,22 @@ export default function Contact() {
                     fontWeight: 600,
                     fontSize: '0.9rem'
                   }}>
-                    ✅ Thank you! Your message has been sent successfully.
+                    ✅ Thank you! Your message has been sent successfully. We'll get back to you soon.
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div style={{
+                    background: '#fef2f2',
+                    border: '1px solid #fecaca',
+                    borderRadius: 'var(--radius-md)',
+                    padding: '14px 20px',
+                    marginBottom: 20,
+                    color: '#dc2626',
+                    fontWeight: 600,
+                    fontSize: '0.9rem'
+                  }}>
+                    ❌ {errorMsg}
                   </div>
                 )}
 
@@ -90,8 +130,13 @@ export default function Contact() {
                   <textarea id="message" name="message" placeholder="How can we help you?" value={formData.message} onChange={handleChange} required />
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-lg" style={{ width: '100%' }}>
-                  Send Message →
+                <button 
+                  type="submit" 
+                  className="btn btn-primary btn-lg" 
+                  style={{ width: '100%', opacity: status === 'sending' ? 0.7 : 1 }}
+                  disabled={status === 'sending'}
+                >
+                  {status === 'sending' ? 'Sending...' : 'Send Message →'}
                 </button>
               </form>
             </ScrollReveal>

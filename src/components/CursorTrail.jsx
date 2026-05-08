@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { motion, useSpring } from 'framer-motion';
 
-export default function CursorTrail() {
+const CursorTrail = React.memo(function CursorTrail() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
@@ -10,27 +10,27 @@ export default function CursorTrail() {
   const cursorX = useSpring(0, springConfig);
   const cursorY = useSpring(0, springConfig);
 
+  const updateMousePosition = useCallback((e) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+    cursorX.set(e.clientX - 10);
+    cursorY.set(e.clientY - 10);
+  }, [cursorX, cursorY]);
+
+  const handleMouseOver = useCallback((e) => {
+    if (
+      e.target.tagName.toLowerCase() === 'a' ||
+      e.target.tagName.toLowerCase() === 'button' ||
+      e.target.closest('a') ||
+      e.target.closest('button') ||
+      e.target.closest('.popup-card')
+    ) {
+      setIsHovering(true);
+    } else {
+      setIsHovering(false);
+    }
+  }, []);
+
   useEffect(() => {
-    const updateMousePosition = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      cursorX.set(e.clientX - 10); // Center the dot
-      cursorY.set(e.clientY - 10);
-    };
-
-    const handleMouseOver = (e) => {
-      if (
-        e.target.tagName.toLowerCase() === 'a' ||
-        e.target.tagName.toLowerCase() === 'button' ||
-        e.target.closest('a') ||
-        e.target.closest('button') ||
-        e.target.closest('.popup-card')
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
-    };
-
     window.addEventListener('mousemove', updateMousePosition);
     window.addEventListener('mouseover', handleMouseOver);
 
@@ -38,7 +38,7 @@ export default function CursorTrail() {
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [cursorX, cursorY]);
+  }, [updateMousePosition, handleMouseOver]);
 
   return (
     <>
@@ -81,4 +81,6 @@ export default function CursorTrail() {
       />
     </>
   );
-}
+});
+
+export default CursorTrail;

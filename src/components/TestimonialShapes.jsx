@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function TestimonialShapes() {
+const TestimonialShapes = React.memo(function TestimonialShapes() {
   return (
     <div className="shapes-container">
       {/* Hollow Square */}
@@ -58,4 +58,6 @@ export default function TestimonialShapes() {
       </motion.svg>
     </div>
   );
-}
+});
+
+export default TestimonialShapes;

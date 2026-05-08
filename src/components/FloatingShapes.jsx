@@ -2,10 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './FloatingShapes.css';
 
-export default function FloatingShapes() {
+const FloatingShapes = React.memo(function FloatingShapes() {
   return (
     <div className="shapes-container">
-      {/* Hollow Circle */}
       <motion.svg
         className="shape shape-circle"
         viewBox="0 0 100 100"
@@ -97,4 +96,6 @@ export default function FloatingShapes() {
       </motion.svg>
     </div>
   );
-}
+});
+
+export default FloatingShapes;
