@@ -12,14 +12,16 @@ export default function AnnouncementPopup() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Don't show if already dismissed this session
-    if (sessionStorage.getItem('stellar-popup-dismissed')) return;
-
     fetch('/api/announcements')
       .then(r => r.json())
       .then(data => {
         const popup = data.find(a => a.type === 'popup' || a.type === 'both');
         if (popup) {
+          // If the user already dismissed THIS SPECIFIC announcement, don't show it.
+          // But if it's a new announcement, it will pop up!
+          const dismissedId = sessionStorage.getItem('stellar-popup-dismissed-id');
+          if (dismissedId === String(popup.id)) return;
+
           setAnnouncement(popup);
           // Small delay for smooth entrance
           setTimeout(() => setVisible(true), 800);
@@ -30,7 +32,9 @@ export default function AnnouncementPopup() {
 
   const dismiss = () => {
     setVisible(false);
-    sessionStorage.setItem('stellar-popup-dismissed', 'true');
+    if (announcement) {
+      sessionStorage.setItem('stellar-popup-dismissed-id', String(announcement.id));
+    }
     setTimeout(() => setAnnouncement(null), 300);
   };
 
