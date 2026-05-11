@@ -257,6 +257,93 @@
   margin-top: 40px;
 }
 
+/* Latest Notices */
+.lms-notices-section {
+  padding: 30px 0;
+}
+
+.notices-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.notices-header {
+  background: linear-gradient(135deg, #0c4a6e, #0369a1);
+  padding: 14px 20px;
+}
+
+.notices-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.notices-list {
+  padding: 0;
+}
+
+.notice-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.2s;
+}
+
+.notice-item:last-child {
+  border-bottom: none;
+}
+
+.notice-item:hover {
+  background: #f8fafc;
+}
+
+.notice-dot {
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.notice-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notice-date {
+  display: block;
+  font-size: 11px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.notice-title {
+  font-size: 14px;
+  color: #1a1a1a;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+a.notice-title {
+  color: #0369a1;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a.notice-title:hover {
+  color: #0ea5e9;
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .admissions-flex {
     flex-direction: column;

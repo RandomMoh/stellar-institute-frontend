@@ -10,7 +10,10 @@ import College from './pages/College';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import ComingSoon from './pages/ComingSoon';
+import StellarAdmin from './pages/StellarAdmin';
 import CursorTrail from './components/CursorTrail';
+import AnnouncementPopup from './components/AnnouncementPopup';
+import AnnouncementTicker from './components/AnnouncementTicker';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -20,12 +23,19 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+function AppLayout() {
+  const { pathname } = useLocation();
+  const isAdmin = pathname === '/stellar-admin';
+
+  if (isAdmin) {
+    return <StellarAdmin />;
+  }
+
   return (
-    <Router>
-      <CursorTrail />
-      <ScrollToTop />
+    <>
       <Navbar />
+      <AnnouncementTicker />
+      <AnnouncementPopup />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -39,6 +49,19 @@ function App() {
         </Routes>
       </main>
       <Footer />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <CursorTrail />
+      <ScrollToTop />
+      <Routes>
+        <Route path="/stellar-admin" element={<StellarAdmin />} />
+        <Route path="*" element={<AppLayout />} />
+      </Routes>
     </Router>
   );
 }

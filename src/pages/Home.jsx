@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { testimonials, itCourses, beautyCourses } from '../data/courses';
@@ -6,8 +6,18 @@ import FloatingShapes from '../components/FloatingShapes';
 import TestimonialShapes from '../components/TestimonialShapes';
 import './Home.css';
 
+const priorityDot = { urgent: '🔴', important: '🟡', normal: '🔵' };
+
 export default function Home() {
   const featuredCourses = [...itCourses.slice(0, 4), ...beautyCourses.slice(0, 4)];
+  const [notices, setNotices] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/announcements')
+      .then(r => r.json())
+      .then(data => setNotices(data.slice(0, 5)))
+      .catch(() => {});
+  }, []);
 
   // Framer motion variants for stagger
   const containerVariants = {
@@ -45,6 +55,34 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Latest Notices */}
+      {notices.length > 0 && (
+        <section className="lms-notices-section">
+          <div className="container">
+            <div className="notices-card">
+              <div className="notices-header">
+                <h3>📋 Latest Notices</h3>
+              </div>
+              <div className="notices-list">
+                {notices.map(n => (
+                  <div key={n.id} className={`notice-item notice-${n.priority}`}>
+                    <span className="notice-dot">{priorityDot[n.priority] || '🔵'}</span>
+                    <div className="notice-content">
+                      <span className="notice-date">{new Date(n.created_at).toLocaleDateString('en-PK', { month: 'short', day: 'numeric' })}</span>
+                      {n.link_url ? (
+                        <a href={n.link_url} target="_blank" rel="noreferrer" className="notice-title">{n.title}</a>
+                      ) : (
+                        <span className="notice-title">{n.title}</span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Admissions Open Banner */}
       <section className="lms-admissions-banner bg-alt">

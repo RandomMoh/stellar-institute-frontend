@@ -1,0 +1,31 @@
+import { getDb, ensureTables } from './db.js';
+
+export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
+
+  try {
+    await ensureTables();
+    const db = getDb();
+
+    const rows = await db`
+      SELECT id, title, body, type, priority, link_url, link_text, start_date, end_date, created_at
+      FROM announcements
+      WHERE is_active = true
+        AND (start_date IS NULL OR start_date <= CURRENT_DATE)
+        AND (end_date IS NULL OR end_date >= CURRENT_DATE)
+      ORDER BY
+        CASE priority WHEN 'urgent' THEN 0 WHEN 'important' THEN 1 ELSE 2 END,
+        created_at DESC
+    `;
+
+    return res.status(200).json(rows);
+  } catch (err) {
+    console.error('Announcements error:', err);
+    return res.status(500).json({ error: 'Failed to fetch announcements' });
+  }
+}
