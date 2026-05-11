@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     const db = getDb();
 
     const rows = await db`
-      SELECT id, title, body, type, priority, link_url, link_text, start_date, end_date, created_at
+      SELECT id, title, body, type, priority, link_url, link_text, image_url, start_date, end_date, created_at
       FROM announcements
       WHERE is_active = true
         AND (start_date IS NULL OR start_date <= CURRENT_DATE)

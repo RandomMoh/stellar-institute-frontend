@@ -50,6 +50,12 @@ export default function AnnouncementPopup() {
           </span>
         </div>
 
+        {announcement.image_url && (
+          <div className="popup-image">
+            <img src={announcement.image_url} alt="Announcement" />
+          </div>
+        )}
+
         <div className="popup-body">
           <h2 className="popup-title">📢 {announcement.title}</h2>
           {announcement.body && <p className="popup-text">{announcement.body}</p>}

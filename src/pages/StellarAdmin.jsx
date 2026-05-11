@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './StellarAdmin.css';
 
 const API = '/api';
-const empty = { title:'',body:'',type:'both',priority:'normal',link_url:'',link_text:'',is_active:true,start_date:'',end_date:'' };
+const empty = { title:'',body:'',type:'both',priority:'normal',link_url:'',link_text:'',image_url:'',is_active:true,start_date:'',end_date:'' };
 
 export default function StellarAdmin() {
   const [token,setToken]=useState(sessionStorage.getItem('stellar-admin-token')||'');
@@ -47,7 +47,50 @@ export default function StellarAdmin() {
 
   const toggleActive=async(a)=>{try{await fetch(`${API}/admin-announcements`,{method:'PUT',headers:hdrs(),body:JSON.stringify({...a,is_active:!a.is_active})});fetchAnns();}catch{}};
 
-  const openEdit=(a)=>{setForm({title:a.title,body:a.body||'',type:a.type,priority:a.priority,link_url:a.link_url||'',link_text:a.link_text||'',is_active:a.is_active,start_date:a.start_date?a.start_date.split('T')[0]:'',end_date:a.end_date?a.end_date.split('T')[0]:''});setEditing(a);setShowForm(true);};
+  const openEdit=(a)=>{setForm({title:a.title,body:a.body||'',type:a.type,priority:a.priority,link_url:a.link_url||'',link_text:a.link_text||'',image_url:a.image_url||'',is_active:a.is_active,start_date:a.start_date?a.start_date.split('T')[0]:'',end_date:a.end_date?a.end_date.split('T')[0]:''});setEditing(a);setShowForm(true);};
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    // Check if it's over 10MB
+    if (file.size > 10 * 1024 * 1024) {
+      alert("File is too large. Maximum size is 10MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.onload = () => {
+        // Compress image using canvas
+        const canvas = document.createElement('canvas');
+        let width = img.width;
+        let height = img.height;
+        
+        // Max dimension 1200px
+        const MAX_SIZE = 1200;
+        if (width > height && width > MAX_SIZE) {
+          height *= MAX_SIZE / width;
+          width = MAX_SIZE;
+        } else if (height > MAX_SIZE) {
+          width *= MAX_SIZE / height;
+          height = MAX_SIZE;
+        }
+        
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        // Output as WebP or JPEG to save space (approx 100-300kb)
+        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
+        setForm({ ...form, image_url: compressedBase64 });
+      };
+      img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  };
 
   const tc=anns.length, ac=anns.filter(a=>a.is_active).length, uc=anns.filter(a=>a.priority==='urgent'&&a.is_active).length;
 
@@ -102,6 +145,16 @@ export default function StellarAdmin() {
           <div className="admin-field-row">
             <div className="admin-field"><label>Link URL</label><input type="url" value={form.link_url} onChange={e=>setForm({...form,link_url:e.target.value})} placeholder="https://..."/></div>
             <div className="admin-field"><label>Link Text</label><input type="text" value={form.link_text} onChange={e=>setForm({...form,link_text:e.target.value})} placeholder="Apply Now"/></div>
+          </div>
+          <div className="admin-field">
+            <label>Image (Optional, up to 10MB)</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            {form.image_url && (
+              <div style={{ marginTop: '10px', position: 'relative', display: 'inline-block' }}>
+                <img src={form.image_url} alt="Preview" style={{ height: '80px', borderRadius: '6px', border: '1px solid #ddd' }} />
+                <button type="button" onClick={() => setForm({...form, image_url: ''})} style={{ position: 'absolute', top: '-5px', right: '-5px', background: 'red', color: 'white', border: 'none', borderRadius: '50%', width: '20px', height: '20px', cursor: 'pointer', fontSize: '12px' }}>✕</button>
+              </div>
+            )}
           </div>
           <div className="admin-field-row">
             <div className="admin-field"><label>Start Date</label><input type="date" value={form.start_date} onChange={e=>setForm({...form,start_date:e.target.value})}/></div>

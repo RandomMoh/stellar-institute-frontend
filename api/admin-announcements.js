@@ -35,12 +35,12 @@ export default async function handler(req, res) {
 
     // POST — create
     if (req.method === 'POST') {
-      const { title, body, type, priority, link_url, link_text, is_active, start_date, end_date } = req.body;
+      const { title, body, type, priority, link_url, link_text, image_url, is_active, start_date, end_date } = req.body;
 
       if (!title) return res.status(400).json({ error: 'Title is required' });
 
       const rows = await db`
-        INSERT INTO announcements (title, body, type, priority, link_url, link_text, is_active, start_date, end_date)
+        INSERT INTO announcements (title, body, type, priority, link_url, link_text, image_url, is_active, start_date, end_date)
         VALUES (
           ${title},
           ${body || null},
@@ -48,6 +48,7 @@ export default async function handler(req, res) {
           ${priority || 'normal'},
           ${link_url || null},
           ${link_text || null},
+          ${image_url || null},
           ${is_active !== false},
           ${start_date || null},
           ${end_date || null}
@@ -59,7 +60,7 @@ export default async function handler(req, res) {
 
     // PUT — update
     if (req.method === 'PUT') {
-      const { id, title, body, type, priority, link_url, link_text, is_active, start_date, end_date } = req.body;
+      const { id, title, body, type, priority, link_url, link_text, image_url, is_active, start_date, end_date } = req.body;
 
       if (!id) return res.status(400).json({ error: 'ID is required' });
 
@@ -71,6 +72,7 @@ export default async function handler(req, res) {
           priority = ${priority || 'normal'},
           link_url = ${link_url || null},
           link_text = ${link_text || null},
+          image_url = ${image_url || null},
           is_active = ${is_active !== false},
           start_date = ${start_date || null},
           end_date = ${end_date || null}
