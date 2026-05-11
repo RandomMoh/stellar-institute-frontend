@@ -21,7 +21,7 @@ export async function ensureTables() {
       priority VARCHAR(20) DEFAULT 'normal',
       link_url VARCHAR(500),
       link_text VARCHAR(100),
-      image_url VARCHAR(500),
+      image_url TEXT,
       is_active BOOLEAN DEFAULT true,
       start_date DATE,
       end_date DATE,

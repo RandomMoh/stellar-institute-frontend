@@ -39,8 +39,17 @@ export default function StellarAdmin() {
 
   const handleSave=async(e)=>{
     e.preventDefault();const m=editing?'PUT':'POST';const p=editing?{...form,id:editing.id}:form;
-    try{const r=await fetch(`${API}/admin-announcements`,{method:m,headers:hdrs(),body:JSON.stringify(p)});
-    if(r.ok){setShowForm(false);setEditing(null);setForm(empty);fetchAnns();}}catch{}
+    try{
+      const r=await fetch(`${API}/admin-announcements`,{method:m,headers:hdrs(),body:JSON.stringify(p)});
+      if(r.ok){
+        setShowForm(false);setEditing(null);setForm(empty);fetchAnns();
+      } else {
+        const d=await r.json();
+        alert('Failed to save announcement: ' + (d.error || 'Server error'));
+      }
+    }catch(err){
+      alert('Network error while saving announcement.');
+    }
   };
 
   const handleDelete=async(id)=>{try{await fetch(`${API}/admin-announcements`,{method:'DELETE',headers:hdrs(),body:JSON.stringify({id})});setDelC(null);fetchAnns();}catch{}};
