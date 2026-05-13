@@ -1,31 +1,4 @@
-# Stellar Academy 🎓
-
-The official website for **Stellar Institute, Lahore** — a growing educational institution offering everything from academic programs (5th to Intermediate) to professional IT and Beauty courses.
-
-This project started as a from-scratch rebuild. The old site was a clunky WordPress template that barely loaded on mobile and looked like it was designed in 2014. I rebuilt the entire thing in React with a modern design inspired by top-tier education portals — think smooth animations, a premium feel, and a UI that actually makes you want to explore the courses.
-
-## What's Inside
-
-### 🏠 Public Website
-- **Homepage** — Hero section with animated floating shapes, featured courses grid, live notices feed, testimonials slider, and call-to-action banners.
-- **Skilled Institute** — Full course catalog with search + category filtering. Covers 13 IT courses (Web Dev, Graphic Design, Video Editing, etc.) and 10 Beauty courses.
-- **Stellar Academy** — Academic programs breakdown for Middle, Matric, and Intermediate levels with subjects and highlights.
-- **About** — Mission statement, core values, and a milestone timeline.
-- **Contact** — Working contact form with email delivery via Nodemailer + a Google Maps embed pinned to the actual campus location.
-- **Coming Soon** — Placeholder for School and College pages that are still in development.
-
-### 📢 Announcement CMS
-This was the big feature request from the team. They wanted something like what NUST and COMSATS have — where admins can push announcements and students see them instantly.
-
-Built a full content management system from scratch:
-
-- **Popup Modal** — The highest-priority announcement automatically pops up when someone visits the site. Dismissing it stores the specific announcement ID, so new announcements will still pop up fresh.
-- **Scrolling Ticker** — A horizontal marquee strip under the navbar that cycles through all active notices.
-- **Latest Notices Section** — A clean feed on the homepage. Clicking any notice opens a detailed modal with the full text, attached image, and any external links.
-- **Admin Panel** (`/stellar-admin`) — Protected login with JWT auth. Dashboard with stats, a full CRUD table for announcements, priority levels (Normal / Important / Urgent), date scheduling, image uploads with automatic compression, and toggle switches for activation.
-
-### 🖼️ Image Support
-Admins can attach images up to 10MB to any announcement. The browser automatically compresses and resizes them before upload — this keeps the database lean and bypasses Vercel's payload limits without any external image hosting needed.
+# Stellar Academy
 
 ## Tech Stack
 
@@ -104,7 +77,3 @@ The frontend runs on `http://localhost:5173`. The API routes require Vercel CLI 
 ## Deployment
 
 Connected to GitHub — every push to `main` triggers an automatic deployment on Vercel. Currently live at the test URL for team review before moving to the production domain on cPanel.
-
----
-
-Built for Stellar Institute, Lahore 🇵🇰
