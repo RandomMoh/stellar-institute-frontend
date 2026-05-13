@@ -17,13 +17,10 @@ export default function AnnouncementPopup() {
       .then(data => {
         const popup = data.find(a => a.type === 'popup' || a.type === 'both');
         if (popup) {
-          // If the user already dismissed THIS SPECIFIC announcement, don't show it.
-          // But if it's a new announcement, it will pop up!
           const dismissedId = sessionStorage.getItem('stellar-popup-dismissed-id');
           if (dismissedId === String(popup.id)) return;
 
           setAnnouncement(popup);
-          // Small delay for smooth entrance
           setTimeout(() => setVisible(true), 800);
         }
       })

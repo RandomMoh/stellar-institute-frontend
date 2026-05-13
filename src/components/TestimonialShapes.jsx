@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 const TestimonialShapes = React.memo(function TestimonialShapes() {
   return (
     <div className="shapes-container">
-      {/* Hollow Square */}
       <motion.svg
         className="shape"
         style={{ width: 100, height: 100, top: '20%', right: '10%' }}
@@ -22,7 +21,6 @@ const TestimonialShapes = React.memo(function TestimonialShapes() {
         <rect x="10" y="10" width="80" height="80" stroke="#fca5a5" strokeWidth="6" fill="none" opacity="0.3" rx="10" />
       </motion.svg>
 
-      {/* Triangles */}
       <motion.svg
         className="shape"
         style={{ width: 80, height: 80, bottom: '15%', left: '10%' }}
@@ -40,7 +38,6 @@ const TestimonialShapes = React.memo(function TestimonialShapes() {
         <polygon points="50,10 90,90 10,90" fill="#a78bfa" opacity="0.3" />
       </motion.svg>
 
-      {/* Wavy Line */}
       <motion.svg
         className="shape"
         style={{ width: 150, height: 50, top: '40%', left: '5%' }}

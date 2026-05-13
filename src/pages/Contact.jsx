@@ -10,7 +10,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '', subject: '', message: ''
   });
-  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
   const handleChange = (e) => {

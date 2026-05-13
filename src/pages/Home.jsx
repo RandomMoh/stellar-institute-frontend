@@ -22,7 +22,6 @@ export default function Home() {
       .catch(() => {});
   }, []);
 
-  // Framer motion variants for stagger
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -42,7 +41,7 @@ export default function Home() {
     <div className="lms-home">
       <AnnouncementModal announcement={selectedNotice} onClose={() => setSelectedNotice(null)} />
       
-      {/* Hero Section */}
+
       <section className="lms-hero relative">
         <FloatingShapes />
         <div className="container relative z-10">
@@ -61,7 +60,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest Notices */}
+
       {notices.length > 0 && (
         <section className="lms-notices-section">
           <div className="container">
@@ -85,7 +84,7 @@ export default function Home() {
         </section>
       )}
 
-      {/* Admissions Open Banner */}
+
       <section className="lms-admissions-banner bg-alt">
         <div className="container">
           <motion.div 
@@ -101,7 +100,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Our Courses */}
+
       <section className="section lms-courses relative">
         <div className="container relative z-10">
           <div className="section-header">
@@ -174,7 +173,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
+
       <section className="section lms-testimonials bg-alt relative">
         <TestimonialShapes />
         <div className="container relative z-10">
@@ -210,7 +209,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Best Instructors Banner */}
+
       <section className="lms-instructors-banner">
         <div className="container">
           <motion.div 

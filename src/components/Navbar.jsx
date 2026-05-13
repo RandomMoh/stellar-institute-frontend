@@ -9,7 +9,6 @@ export default function Navbar() {
 
   return (
     <header className="lms-header">
-      {/* Top Bar */}
       <div className="lms-topbar">
         <div className="container">
           <div className="topbar-left">
@@ -24,7 +23,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Navbar */}
       <nav className="lms-navbar">
         <div className="container nav-container">
           <Link to="/" className="nav-brand">

@@ -22,7 +22,6 @@ export default function AnnouncementTicker() {
 
   if (announcements.length === 0) return null;
 
-  // Duplicate items for seamless loop
   const items = [...announcements, ...announcements];
 
   return (

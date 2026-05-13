@@ -9,7 +9,6 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  // Protect with seed secret
   const { secret, username, password, name } = req.body;
 
   if (secret !== (process.env.SEED_SECRET || 'stellar-seed-2026')) {
@@ -20,7 +19,6 @@ export default async function handler(req, res) {
     await ensureTables();
     const db = getDb();
 
-    // Check if user exists
     const existing = await db`SELECT id FROM admin_users WHERE username = ${username}`;
     if (existing.length > 0) {
       return res.status(409).json({ error: 'User already exists' });

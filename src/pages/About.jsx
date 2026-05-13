@@ -20,7 +20,6 @@ export default function About() {
 
       <section className="programs-section">
         <div className="container">
-          {/* Mission & Vision */}
           <div className="about-grid">
             <ScrollReveal direction="left">
               <div className="about-text">
@@ -56,7 +55,6 @@ export default function About() {
             </ScrollReveal>
           </div>
 
-          {/* Timeline */}
           <ScrollReveal>
             <div className="section-header">
               <div className="section-label">Our Journey</div>
@@ -82,7 +80,6 @@ export default function About() {
             ))}
           </div>
 
-          {/* CTA */}
           <div style={{ textAlign: 'center', marginTop: 80 }}>
             <ScrollReveal>
               <h2 className="section-title">Join the Stellar <span>Family</span></h2>

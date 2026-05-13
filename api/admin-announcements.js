@@ -25,7 +25,6 @@ export default async function handler(req, res) {
   const db = getDb();
 
   try {
-    // GET — list all announcements (including inactive)
     if (req.method === 'GET') {
       const rows = await db`
         SELECT * FROM announcements ORDER BY created_at DESC
@@ -33,7 +32,6 @@ export default async function handler(req, res) {
       return res.status(200).json(rows);
     }
 
-    // POST — create
     if (req.method === 'POST') {
       const { title, body, type, priority, link_url, link_text, image_url, is_active, start_date, end_date } = req.body;
 
@@ -58,7 +56,6 @@ export default async function handler(req, res) {
       return res.status(201).json(rows[0]);
     }
 
-    // PUT — update
     if (req.method === 'PUT') {
       const { id, title, body, type, priority, link_url, link_text, image_url, is_active, start_date, end_date } = req.body;
 
@@ -84,7 +81,6 @@ export default async function handler(req, res) {
       return res.status(200).json(rows[0]);
     }
 
-    // DELETE
     if (req.method === 'DELETE') {
       const { id } = req.body;
       if (!id) return res.status(400).json({ error: 'ID is required' });

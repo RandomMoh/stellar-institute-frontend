@@ -5,7 +5,6 @@ const CursorTrail = React.memo(function CursorTrail() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
-  // Use springs for smooth following effect
   const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
   const cursorX = useSpring(0, springConfig);
   const cursorY = useSpring(0, springConfig);
@@ -42,7 +41,6 @@ const CursorTrail = React.memo(function CursorTrail() {
 
   return (
     <>
-      {/* The trailing dot */}
       <motion.div
         className="cursor-dot"
         style={{
@@ -65,7 +63,6 @@ const CursorTrail = React.memo(function CursorTrail() {
         }}
         transition={{ duration: 0.15 }}
       />
-      {/* The exact mouse dot (no lag) */}
       <div 
         style={{
           position: 'fixed',

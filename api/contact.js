@@ -1,7 +1,6 @@
 import nodemailer from 'nodemailer';
 
 export default async function handler(req, res) {
-  // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -16,7 +15,6 @@ export default async function handler(req, res) {
 
   const { name, email, phone, subject, message } = req.body;
 
-  // Validate
   if (!name || !email || !subject || !message) {
     return res.status(400).json({ success: false, error: 'Missing required fields' });
   }
@@ -82,7 +80,6 @@ export default async function handler(req, res) {
   `;
 
   try {
-    // Create transporter using env variables
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: parseInt(process.env.SMTP_PORT || '587'),

@@ -37,7 +37,6 @@ export default function SkilledInstitute() {
       <section className="programs-section">
         <div className="container" style={{ display: 'flex', gap: '40px', alignItems: 'flex-start' }}>
           
-          {/* Left Sidebar Layout */}
           <aside className="skilled-sidebar">
             <div className="sidebar-widget">
               <h3 className="widget-title">Search Courses</h3>
@@ -80,7 +79,6 @@ export default function SkilledInstitute() {
             </div>
           </aside>
 
-          {/* Right Content Grid */}
           <div className="skilled-content" style={{ flex: 1 }}>
             <div className="content-header">
               <h2>Showing {filteredCourses.length} {filteredCourses.length === 1 ? 'Course' : 'Courses'}</h2>

@@ -62,7 +62,6 @@ export default function StellarAdmin() {
     const file = e.target.files[0];
     if (!file) return;
     
-    // Check if it's over 10MB
     if (file.size > 10 * 1024 * 1024) {
       alert("File is too large. Maximum size is 10MB.");
       return;
@@ -72,12 +71,10 @@ export default function StellarAdmin() {
     reader.onload = (event) => {
       const img = new Image();
       img.onload = () => {
-        // Compress image using canvas
         const canvas = document.createElement('canvas');
         let width = img.width;
         let height = img.height;
         
-        // Max dimension 1200px
         const MAX_SIZE = 1200;
         if (width > height && width > MAX_SIZE) {
           height *= MAX_SIZE / width;
@@ -92,7 +89,6 @@ export default function StellarAdmin() {
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, width, height);
         
-        // Output as WebP or JPEG to save space (approx 100-300kb)
         const compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
         setForm({ ...form, image_url: compressedBase64 });
       };
