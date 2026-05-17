@@ -106,6 +106,25 @@
   margin: 0 auto;
 }
 
+.section-provider {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+.provider-link {
+  color: #0ea5e9;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.provider-link:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
+
 /* 3D Pop-Up Cards (Eduvalt Style) */
 .popup-card {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -373,8 +392,20 @@ a.notice-title:hover {
 }
 
 .institute-icon {
-  font-size: 32px;
-  margin-bottom: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #0ea5e9;
+}
+
+.institute-card-featured .institute-icon {
+  background: #e0f2fe;
+  color: #0369a1;
 }
 
 .institute-card h3 {

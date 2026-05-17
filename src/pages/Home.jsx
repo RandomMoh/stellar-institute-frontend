@@ -114,7 +114,12 @@ export default function Home() {
             viewport={{ once: true, margin: "-50px" }}
           >
             <motion.div variants={itemVariants} className="institute-card">
-              <div className="institute-icon">🎓</div>
+              <div className="institute-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5" />
+                </svg>
+              </div>
               <h3>Stellar Academy</h3>
               <p>Academic programs from Middle School through Intermediate — board-pattern preparation with experienced faculty.</p>
               <ul className="institute-services">
@@ -126,7 +131,13 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="institute-card institute-card-featured">
-              <div className="institute-icon">💻</div>
+              <div className="institute-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <line x1="8" y1="21" x2="16" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+              </div>
               <h3>Stellar Skilled Institute</h3>
               <p>Professional IT and Beauty courses designed for immediate career growth with hands-on training.</p>
               <ul className="institute-services">
@@ -138,7 +149,15 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={itemVariants} className="institute-card">
-              <div className="institute-icon">🏫</div>
+              <div className="institute-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 21h18" />
+                  <path d="M5 21V7l7-4 7 4v14" />
+                  <path d="M9 21v-4h6v4" />
+                  <path d="M10 10h4" />
+                  <path d="M10 14h4" />
+                </svg>
+              </div>
               <h3>Stellar School & College</h3>
               <p>Full-spectrum education from Nursery to Intermediate — comprehensive curriculum with modern facilities.</p>
               <ul className="institute-services">
@@ -180,6 +199,15 @@ export default function Home() {
             >
               Our Courses
             </motion.h2>
+            <motion.div
+              className="section-provider"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.05 }}
+            >
+              Provided by <Link to="/skilled-institute" className="provider-link">Stellar Skilled Institute</Link>
+            </motion.div>
             <motion.p 
               className="section-subtitle"
               initial={{ opacity: 0, y: 20 }}
@@ -187,7 +215,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              Get unlimited access to 20+ of courses to develop your skills.
+              20+ professional IT and Beauty courses for career growth.
             </motion.p>
           </div>
 
