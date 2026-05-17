@@ -2,179 +2,376 @@ import React, { useState, useEffect, useCallback } from 'react';
 import './StellarAdmin.css';
 
 const API = '/api';
-const empty = { title:'',body:'',type:'both',priority:'normal',link_url:'',link_text:'',image_url:'',is_active:true,start_date:'',end_date:'' };
+const empty = {
+  title: '', body: '', type: 'both', priority: 'normal',
+  link_url: '', link_text: '', image_url: '',
+  is_active: true, start_date: '', end_date: ''
+};
 
 export default function StellarAdmin() {
-  const [token,setToken]=useState(sessionStorage.getItem('stellar-admin-token')||'');
-  const [user,setUser]=useState(null);
-  const [lf,setLf]=useState({username:'',password:''});
-  const [le,setLe]=useState('');
-  const [ll,setLl]=useState(false);
-  const [anns,setAnns]=useState([]);
-  const [loading,setLoading]=useState(false);
-  const [showForm,setShowForm]=useState(false);
-  const [editing,setEditing]=useState(null);
-  const [delC,setDelC]=useState(null);
-  const [form,setForm]=useState(empty);
+  const [token, setToken] = useState(sessionStorage.getItem('stellar-admin-token') || '');
+  const [user, setUser] = useState(null);
+  const [loginForm, setLoginForm] = useState({ username: '', password: '' });
+  const [loginError, setLoginError] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [anns, setAnns] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [editing, setEditing] = useState(null);
+  const [deleteTarget, setDeleteTarget] = useState(null);
+  const [form, setForm] = useState(empty);
 
-  const hdrs=useCallback(()=>({'Content-Type':'application/json','Authorization':`Bearer ${token}`}),[token]);
+  const headers = useCallback(() => ({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }), [token]);
 
-  const fetchAnns=useCallback(async()=>{
-    if(!token)return;setLoading(true);
-    try{const r=await fetch(`${API}/admin-announcements`,{headers:hdrs()});if(r.status===401){logout();return;}setAnns(await r.json());}catch{}
+  const fetchAnns = useCallback(async () => {
+    if (!token) return;
+    setLoading(true);
+    try {
+      const r = await fetch(`${API}/admin-announcements`, { headers: headers() });
+      if (r.status === 401) { logout(); return; }
+      setAnns(await r.json());
+    } catch {}
     setLoading(false);
-  },[token,hdrs]);
+  }, [token, headers]);
 
-  useEffect(()=>{if(token){const s=sessionStorage.getItem('stellar-admin-user');if(s)setUser(JSON.parse(s));fetchAnns();}},[token,fetchAnns]);
+  useEffect(() => {
+    if (token) {
+      const s = sessionStorage.getItem('stellar-admin-user');
+      if (s) setUser(JSON.parse(s));
+      fetchAnns();
+    }
+  }, [token, fetchAnns]);
 
-  const handleLogin=async(e)=>{
-    e.preventDefault();setLl(true);setLe('');
-    try{const r=await fetch(`${API}/admin-login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(lf)});
-    const d=await r.json();
-    if(d.success){setToken(d.token);setUser(d.user);sessionStorage.setItem('stellar-admin-token',d.token);sessionStorage.setItem('stellar-admin-user',JSON.stringify(d.user));}
-    else setLe(d.error||'Login failed');}catch{setLe('Network error');}setLl(false);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoginLoading(true);
+    setLoginError('');
+    try {
+      const r = await fetch(`${API}/admin-login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(loginForm)
+      });
+      const d = await r.json();
+      if (d.success) {
+        setToken(d.token);
+        setUser(d.user);
+        sessionStorage.setItem('stellar-admin-token', d.token);
+        sessionStorage.setItem('stellar-admin-user', JSON.stringify(d.user));
+      } else {
+        setLoginError(d.error || 'Login failed');
+      }
+    } catch {
+      setLoginError('Network error');
+    }
+    setLoginLoading(false);
   };
 
-  const logout=()=>{setToken('');setUser(null);sessionStorage.removeItem('stellar-admin-token');sessionStorage.removeItem('stellar-admin-user');};
+  const logout = () => {
+    setToken('');
+    setUser(null);
+    sessionStorage.removeItem('stellar-admin-token');
+    sessionStorage.removeItem('stellar-admin-user');
+  };
 
-  const handleSave=async(e)=>{
-    e.preventDefault();const m=editing?'PUT':'POST';const p=editing?{...form,id:editing.id}:form;
-    try{
-      const r=await fetch(`${API}/admin-announcements`,{method:m,headers:hdrs(),body:JSON.stringify(p)});
-      if(r.ok){
-        setShowForm(false);setEditing(null);setForm(empty);fetchAnns();
+  const handleSave = async (e) => {
+    e.preventDefault();
+    const method = editing ? 'PUT' : 'POST';
+    const payload = editing ? { ...form, id: editing.id } : form;
+    try {
+      const r = await fetch(`${API}/admin-announcements`, {
+        method,
+        headers: headers(),
+        body: JSON.stringify(payload)
+      });
+      if (r.ok) {
+        setShowForm(false);
+        setEditing(null);
+        setForm(empty);
+        fetchAnns();
       } else {
-        const d=await r.json();
-        alert('Failed to save announcement: ' + (d.error || 'Server error'));
+        const d = await r.json();
+        alert('Failed to save: ' + (d.error || 'Server error'));
       }
-    }catch(err){
-      alert('Network error while saving announcement.');
+    } catch {
+      alert('Network error.');
     }
   };
 
-  const handleDelete=async(id)=>{try{await fetch(`${API}/admin-announcements`,{method:'DELETE',headers:hdrs(),body:JSON.stringify({id})});setDelC(null);fetchAnns();}catch{}};
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`${API}/admin-announcements`, {
+        method: 'DELETE',
+        headers: headers(),
+        body: JSON.stringify({ id })
+      });
+      setDeleteTarget(null);
+      fetchAnns();
+    } catch {}
+  };
 
-  const toggleActive=async(a)=>{try{await fetch(`${API}/admin-announcements`,{method:'PUT',headers:hdrs(),body:JSON.stringify({...a,is_active:!a.is_active})});fetchAnns();}catch{}};
+  const toggleActive = async (a) => {
+    try {
+      await fetch(`${API}/admin-announcements`, {
+        method: 'PUT',
+        headers: headers(),
+        body: JSON.stringify({ ...a, is_active: !a.is_active })
+      });
+      fetchAnns();
+    } catch {}
+  };
 
-  const openEdit=(a)=>{setForm({title:a.title,body:a.body||'',type:a.type,priority:a.priority,link_url:a.link_url||'',link_text:a.link_text||'',image_url:a.image_url||'',is_active:a.is_active,start_date:a.start_date?a.start_date.split('T')[0]:'',end_date:a.end_date?a.end_date.split('T')[0]:''});setEditing(a);setShowForm(true);};
+  const openEdit = (a) => {
+    setForm({
+      title: a.title, body: a.body || '', type: a.type, priority: a.priority,
+      link_url: a.link_url || '', link_text: a.link_text || '',
+      image_url: a.image_url || '', is_active: a.is_active,
+      start_date: a.start_date ? a.start_date.split('T')[0] : '',
+      end_date: a.end_date ? a.end_date.split('T')[0] : ''
+    });
+    setEditing(a);
+    setShowForm(true);
+  };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    
     if (file.size > 10 * 1024 * 1024) {
-      alert("File is too large. Maximum size is 10MB.");
+      alert('File too large. Max 10MB.');
       return;
     }
-
     const reader = new FileReader();
     reader.onload = (event) => {
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        let width = img.width;
-        let height = img.height;
-        
-        const MAX_SIZE = 1200;
-        if (width > height && width > MAX_SIZE) {
-          height *= MAX_SIZE / width;
-          width = MAX_SIZE;
-        } else if (height > MAX_SIZE) {
-          width *= MAX_SIZE / height;
-          height = MAX_SIZE;
-        }
-        
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
-        
-        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
-        setForm({ ...form, image_url: compressedBase64 });
+        let w = img.width, h = img.height;
+        const MAX = 1200;
+        if (w > h && w > MAX) { h *= MAX / w; w = MAX; }
+        else if (h > MAX) { w *= MAX / h; h = MAX; }
+        canvas.width = w;
+        canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        setForm({ ...form, image_url: canvas.toDataURL('image/jpeg', 0.8) });
       };
       img.src = event.target.result;
     };
     reader.readAsDataURL(file);
   };
 
-  const tc=anns.length, ac=anns.filter(a=>a.is_active).length, uc=anns.filter(a=>a.priority==='urgent'&&a.is_active).length;
+  const total = anns.length;
+  const active = anns.filter(a => a.is_active).length;
+  const urgent = anns.filter(a => a.priority === 'urgent' && a.is_active).length;
 
-  if(!token)return(
+  if (!token) return (
     <div className="admin-login-wrapper">
       <div className="admin-login-card">
-        <div className="admin-login-header"><img src="/stellar_logo.png" alt="Stellar" className="admin-logo"/><h2>Admin Panel</h2><p>Sign in to manage announcements</p></div>
+        <div className="admin-login-header">
+          <img src="/stellar_logo.png" alt="Stellar" className="admin-logo" />
+          <h2>Admin Panel</h2>
+          <p>Sign in to manage announcements</p>
+        </div>
         <form onSubmit={handleLogin}>
-          {le&&<div className="admin-error">{le}</div>}
-          <div className="admin-field"><label>Username</label><input type="text" value={lf.username} onChange={e=>setLf({...lf,username:e.target.value})} required autoFocus/></div>
-          <div className="admin-field"><label>Password</label><input type="password" value={lf.password} onChange={e=>setLf({...lf,password:e.target.value})} required/></div>
-          <button type="submit" className="admin-login-btn" disabled={ll}>{ll?'Signing in...':'Sign In'}</button>
+          {loginError && <div className="admin-error">{loginError}</div>}
+          <div className="admin-field">
+            <label>Username</label>
+            <input type="text" value={loginForm.username} onChange={e => setLoginForm({ ...loginForm, username: e.target.value })} required autoFocus />
+          </div>
+          <div className="admin-field">
+            <label>Password</label>
+            <input type="password" value={loginForm.password} onChange={e => setLoginForm({ ...loginForm, password: e.target.value })} required />
+          </div>
+          <button type="submit" className="admin-login-btn" disabled={loginLoading}>
+            {loginLoading ? 'Signing in…' : 'Sign In'}
+          </button>
         </form>
       </div>
     </div>
   );
 
-  return(
+  return (
     <div className="admin-wrapper">
-      <div className="admin-topbar"><div className="admin-topbar-left"><img src="/stellar_logo.png" alt="Stellar" className="admin-topbar-logo"/><span className="admin-topbar-title">Announcement Manager</span></div><div className="admin-topbar-right"><span className="admin-user-name">👤 {user?.name||user?.username}</span><button onClick={logout} className="admin-logout-btn">Logout</button></div></div>
+      <div className="admin-topbar">
+        <div className="admin-topbar-left">
+          <img src="/stellar_logo.png" alt="Stellar" className="admin-topbar-logo" />
+          <span className="admin-topbar-title">Announcements</span>
+        </div>
+        <div className="admin-topbar-right">
+          <span className="admin-user-name">{user?.name || user?.username}</span>
+          <button onClick={logout} className="admin-logout-btn">Log out</button>
+        </div>
+      </div>
 
       <div className="admin-content">
-        <div className="admin-stats"><div className="stat-card"><div className="stat-number">{tc}</div><div className="stat-label">Total</div></div><div className="stat-card stat-active"><div className="stat-number">{ac}</div><div className="stat-label">Active</div></div><div className="stat-card stat-urgent"><div className="stat-number">{uc}</div><div className="stat-label">Urgent</div></div></div>
+        <div className="admin-stats">
+          <div className="stat-card">
+            <div className="stat-number">{total}</div>
+            <div className="stat-label">Total</div>
+          </div>
+          <div className="stat-card stat-active">
+            <div className="stat-number">{active}</div>
+            <div className="stat-label">Active</div>
+          </div>
+          <div className="stat-card stat-urgent">
+            <div className="stat-number">{urgent}</div>
+            <div className="stat-label">Urgent</div>
+          </div>
+        </div>
 
-        <div className="admin-actions-bar"><h2>Announcements</h2><button onClick={()=>{setForm(empty);setEditing(null);setShowForm(true);}} className="admin-add-btn">+ New Announcement</button></div>
+        <div className="admin-actions-bar">
+          <h2>All Announcements</h2>
+          <button onClick={() => { setForm(empty); setEditing(null); setShowForm(true); }} className="admin-add-btn">
+            New
+          </button>
+        </div>
 
-        {loading?<div className="admin-loading">Loading...</div>:anns.length===0?<div className="admin-empty"><p>No announcements yet. Create your first one!</p></div>:(
-          <div className="admin-table-wrapper"><table className="admin-table"><thead><tr><th>Title</th><th>Type</th><th>Priority</th><th>Date Range</th><th>Active</th><th>Actions</th></tr></thead><tbody>
-            {anns.map(a=>(
-              <tr key={a.id} className={!a.is_active?'row-inactive':''}>
-                <td className="td-title"><strong>{a.title}</strong>{a.body&&<span className="td-body-preview">{a.body.substring(0,60)}...</span>}</td>
-                <td><span className={`badge badge-type-${a.type}`}>{a.type}</span></td>
-                <td><span className={`badge badge-priority-${a.priority}`}>{a.priority}</span></td>
-                <td className="td-date">{a.start_date?new Date(a.start_date).toLocaleDateString('en-PK'):'—'}{' → '}{a.end_date?new Date(a.end_date).toLocaleDateString('en-PK'):'∞'}</td>
-                <td><button className={`toggle-btn ${a.is_active?'toggle-on':'toggle-off'}`} onClick={()=>toggleActive(a)}><span className="toggle-thumb"/></button></td>
-                <td className="td-actions"><button onClick={()=>openEdit(a)} className="action-btn action-edit" title="Edit">✏️</button><button onClick={()=>setDelC(a)} className="action-btn action-delete" title="Delete">🗑️</button></td>
-              </tr>
-            ))}
-          </tbody></table></div>
+        {loading ? (
+          <div className="admin-loading">Loading…</div>
+        ) : anns.length === 0 ? (
+          <div className="admin-empty">No announcements yet.</div>
+        ) : (
+          <div className="admin-table-wrapper">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Type</th>
+                  <th>Priority</th>
+                  <th>Schedule</th>
+                  <th>Active</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {anns.map(a => (
+                  <tr key={a.id} className={!a.is_active ? 'row-inactive' : ''}>
+                    <td className="td-title">
+                      <strong>{a.title}</strong>
+                      {a.body && <span className="td-body-preview">{a.body.substring(0, 60)}…</span>}
+                    </td>
+                    <td><span className={`badge badge-type-${a.type}`}>{a.type}</span></td>
+                    <td><span className={`badge badge-priority-${a.priority}`}>{a.priority}</span></td>
+                    <td className="td-date">
+                      {a.start_date ? new Date(a.start_date).toLocaleDateString('en-PK') : '—'}
+                      {' → '}
+                      {a.end_date ? new Date(a.end_date).toLocaleDateString('en-PK') : '∞'}
+                    </td>
+                    <td>
+                      <button className={`toggle-btn ${a.is_active ? 'toggle-on' : 'toggle-off'}`} onClick={() => toggleActive(a)}>
+                        <span className="toggle-thumb" />
+                      </button>
+                    </td>
+                    <td className="td-actions">
+                      <button onClick={() => openEdit(a)} className="action-btn action-edit" title="Edit">✏️</button>
+                      <button onClick={() => setDeleteTarget(a)} className="action-btn action-delete" title="Delete">🗑️</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 
-      {showForm&&(<div className="admin-modal-overlay" onClick={()=>setShowForm(false)}><div className="admin-modal" onClick={e=>e.stopPropagation()}>
-        <div className="admin-modal-header"><h3>{editing?'Edit Announcement':'New Announcement'}</h3><button onClick={()=>setShowForm(false)} className="admin-modal-close">✕</button></div>
-        <form onSubmit={handleSave} className="admin-modal-form">
-          <div className="admin-field"><label>Title *</label><input type="text" value={form.title} onChange={e=>setForm({...form,title:e.target.value})} required/></div>
-          <div className="admin-field"><label>Body</label><textarea value={form.body} onChange={e=>setForm({...form,body:e.target.value})} rows={3}/></div>
-          <div className="admin-field-row">
-            <div className="admin-field"><label>Type</label><select value={form.type} onChange={e=>setForm({...form,type:e.target.value})}><option value="both">Both</option><option value="popup">Popup Only</option><option value="ticker">Ticker Only</option></select></div>
-            <div className="admin-field"><label>Priority</label><select value={form.priority} onChange={e=>setForm({...form,priority:e.target.value})}><option value="normal">🔵 Normal</option><option value="important">🟡 Important</option><option value="urgent">🔴 Urgent</option></select></div>
-          </div>
-          <div className="admin-field-row">
-            <div className="admin-field"><label>Link URL</label><input type="url" value={form.link_url} onChange={e=>setForm({...form,link_url:e.target.value})} placeholder="https://..."/></div>
-            <div className="admin-field"><label>Link Text</label><input type="text" value={form.link_text} onChange={e=>setForm({...form,link_text:e.target.value})} placeholder="Apply Now"/></div>
-          </div>
-          <div className="admin-field">
-            <label>Image (Optional, up to 10MB)</label>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
-            {form.image_url && (
-              <div style={{ marginTop: '10px', position: 'relative', display: 'inline-block' }}>
-                <img src={form.image_url} alt="Preview" style={{ height: '80px', borderRadius: '6px', border: '1px solid #ddd' }} />
-                <button type="button" onClick={() => setForm({...form, image_url: ''})} style={{ position: 'absolute', top: '-5px', right: '-5px', background: 'red', color: 'white', border: 'none', borderRadius: '50%', width: '20px', height: '20px', cursor: 'pointer', fontSize: '12px' }}>✕</button>
+      {showForm && (
+        <div className="admin-modal-overlay" onClick={() => setShowForm(false)}>
+          <div className="admin-modal" onClick={e => e.stopPropagation()}>
+            <div className="admin-modal-header">
+              <h3>{editing ? 'Edit' : 'New Announcement'}</h3>
+              <button onClick={() => setShowForm(false)} className="admin-modal-close">✕</button>
+            </div>
+            <form onSubmit={handleSave} className="admin-modal-form">
+              <div className="admin-field">
+                <label>Title *</label>
+                <input type="text" value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} required />
               </div>
-            )}
+              <div className="admin-field">
+                <label>Body</label>
+                <textarea value={form.body} onChange={e => setForm({ ...form, body: e.target.value })} rows={3} />
+              </div>
+              <div className="admin-field-row">
+                <div className="admin-field">
+                  <label>Type</label>
+                  <select value={form.type} onChange={e => setForm({ ...form, type: e.target.value })}>
+                    <option value="both">Both</option>
+                    <option value="popup">Popup Only</option>
+                    <option value="ticker">Ticker Only</option>
+                  </select>
+                </div>
+                <div className="admin-field">
+                  <label>Priority</label>
+                  <select value={form.priority} onChange={e => setForm({ ...form, priority: e.target.value })}>
+                    <option value="normal">Normal</option>
+                    <option value="important">Important</option>
+                    <option value="urgent">Urgent</option>
+                  </select>
+                </div>
+              </div>
+              <div className="admin-field-row">
+                <div className="admin-field">
+                  <label>Link URL</label>
+                  <input type="url" value={form.link_url} onChange={e => setForm({ ...form, link_url: e.target.value })} placeholder="https://..." />
+                </div>
+                <div className="admin-field">
+                  <label>Link Text</label>
+                  <input type="text" value={form.link_text} onChange={e => setForm({ ...form, link_text: e.target.value })} placeholder="Apply Now" />
+                </div>
+              </div>
+              <div className="admin-field">
+                <label>Image (up to 10MB)</label>
+                <input type="file" accept="image/*" onChange={handleImageUpload} />
+                {form.image_url && (
+                  <div style={{ marginTop: 8, position: 'relative', display: 'inline-block' }}>
+                    <img src={form.image_url} alt="Preview" style={{ height: 64, borderRadius: 4, border: '1px solid var(--admin-border)' }} />
+                    <button type="button" onClick={() => setForm({ ...form, image_url: '' })} style={{ position: 'absolute', top: -6, right: -6, background: '#171717', color: '#fff', border: 'none', borderRadius: '50%', width: 18, height: 18, cursor: 'pointer', fontSize: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
+                  </div>
+                )}
+              </div>
+              <div className="admin-field-row">
+                <div className="admin-field">
+                  <label>Start Date</label>
+                  <input type="date" value={form.start_date} onChange={e => setForm({ ...form, start_date: e.target.value })} />
+                </div>
+                <div className="admin-field">
+                  <label>End Date</label>
+                  <input type="date" value={form.end_date} onChange={e => setForm({ ...form, end_date: e.target.value })} />
+                </div>
+              </div>
+              <div className="admin-field">
+                <label className="admin-checkbox-label">
+                  <input type="checkbox" checked={form.is_active} onChange={e => setForm({ ...form, is_active: e.target.checked })} />
+                  Active
+                </label>
+              </div>
+              <div className="admin-modal-actions">
+                <button type="button" onClick={() => setShowForm(false)} className="btn btn-secondary">Cancel</button>
+                <button type="submit" className="btn btn-primary">{editing ? 'Save' : 'Create'}</button>
+              </div>
+            </form>
           </div>
-          <div className="admin-field-row">
-            <div className="admin-field"><label>Start Date</label><input type="date" value={form.start_date} onChange={e=>setForm({...form,start_date:e.target.value})}/></div>
-            <div className="admin-field"><label>End Date</label><input type="date" value={form.end_date} onChange={e=>setForm({...form,end_date:e.target.value})}/></div>
-          </div>
-          <div className="admin-field"><label className="admin-checkbox-label"><input type="checkbox" checked={form.is_active} onChange={e=>setForm({...form,is_active:e.target.checked})}/>Active (visible to public)</label></div>
-          <div className="admin-modal-actions"><button type="button" onClick={()=>setShowForm(false)} className="btn btn-secondary">Cancel</button><button type="submit" className="btn btn-primary">{editing?'Save Changes':'Create'}</button></div>
-        </form>
-      </div></div>)}
+        </div>
+      )}
 
-      {delC&&(<div className="admin-modal-overlay" onClick={()=>setDelC(null)}><div className="admin-modal admin-modal-sm" onClick={e=>e.stopPropagation()}>
-        <div className="admin-modal-header"><h3>Delete Announcement</h3></div>
-        <div className="admin-modal-body"><p>Delete "<strong>{delC.title}</strong>"?</p><p style={{color:'#999',fontSize:'13px'}}>This cannot be undone.</p></div>
-        <div className="admin-modal-actions"><button onClick={()=>setDelC(null)} className="btn btn-secondary">Cancel</button><button onClick={()=>handleDelete(delC.id)} className="admin-delete-confirm-btn">Delete</button></div>
-      </div></div>)}
+      {deleteTarget && (
+        <div className="admin-modal-overlay" onClick={() => setDeleteTarget(null)}>
+          <div className="admin-modal admin-modal-sm" onClick={e => e.stopPropagation()}>
+            <div className="admin-modal-header">
+              <h3>Delete Announcement</h3>
+            </div>
+            <div className="admin-modal-body">
+              <p>Delete "<strong>{deleteTarget.title}</strong>"?</p>
+              <p style={{ color: 'var(--admin-muted)', fontSize: 13 }}>This cannot be undone.</p>
+            </div>
+            <div className="admin-modal-actions">
+              <button onClick={() => setDeleteTarget(null)} className="btn btn-secondary">Cancel</button>
+              <button onClick={() => handleDelete(deleteTarget.id)} className="admin-delete-confirm-btn">Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

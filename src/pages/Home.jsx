@@ -84,6 +84,74 @@ export default function Home() {
         </section>
       )}
 
+      <section className="section lms-institutes">
+        <div className="container">
+          <div className="section-header">
+            <motion.h2
+              className="section-title"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              Our Institutes
+            </motion.h2>
+            <motion.p
+              className="section-subtitle"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+            >
+              Stellar provides education across multiple branches — each focused on a specific domain.
+            </motion.p>
+          </div>
+
+          <motion.div
+            className="institutes-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <motion.div variants={itemVariants} className="institute-card">
+              <div className="institute-icon">🎓</div>
+              <h3>Stellar Academy</h3>
+              <p>Academic programs from Middle School through Intermediate — board-pattern preparation with experienced faculty.</p>
+              <ul className="institute-services">
+                <li>Middle School (5th–8th)</li>
+                <li>Matriculation (9th–10th)</li>
+                <li>FSc / ICS / I.Com / F.A</li>
+              </ul>
+              <Link to="/academy" className="institute-link">View Programs →</Link>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="institute-card institute-card-featured">
+              <div className="institute-icon">💻</div>
+              <h3>Stellar Skilled Institute</h3>
+              <p>Professional IT and Beauty courses designed for immediate career growth with hands-on training.</p>
+              <ul className="institute-services">
+                <li>13 IT Courses (Web Dev, Design, Marketing)</li>
+                <li>10 Beauty Courses (Cosmetology, Makeup)</li>
+                <li>Industry Certifications</li>
+              </ul>
+              <Link to="/skilled-institute" className="institute-link">View Courses →</Link>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="institute-card">
+              <div className="institute-icon">🏫</div>
+              <h3>Stellar School & College</h3>
+              <p>Full-spectrum education from Nursery to Intermediate — comprehensive curriculum with modern facilities.</p>
+              <ul className="institute-services">
+                <li>School (Nursery–10th)</li>
+                <li>College (Intermediate)</li>
+                <li>Multiple Streams</li>
+              </ul>
+              <Link to="/coming-soon" className="institute-link">Coming Soon →</Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
 
       <section className="lms-admissions-banner bg-alt">
         <div className="container">

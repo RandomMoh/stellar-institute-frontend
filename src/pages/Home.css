@@ -344,6 +344,93 @@ a.notice-title:hover {
   text-decoration: underline;
 }
 
+/* Institutes Section */
+.institutes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.institute-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.institute-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+.institute-card-featured {
+  border-color: var(--primary);
+  background: linear-gradient(180deg, #f0f9ff 0%, #fff 40%);
+}
+
+.institute-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.institute-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.institute-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.institute-services {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  flex-grow: 1;
+}
+
+.institute-services li {
+  padding: 6px 0;
+  font-size: 13px;
+  color: #444;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.institute-services li::before {
+  content: '→';
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.institute-services li:last-child {
+  border-bottom: none;
+}
+
+.institute-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.institute-link:hover {
+  color: #0369a1;
+}
+
 @media (max-width: 768px) {
   .admissions-flex {
     flex-direction: column;
@@ -355,5 +442,8 @@ a.notice-title:hover {
   }
   .hero-buttons {
     flex-direction: column;
+  }
+  .institutes-grid {
+    grid-template-columns: 1fr;
   }
 }
