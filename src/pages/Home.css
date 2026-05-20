@@ -345,10 +345,23 @@
 }
 
 .zigzag-icon {
-  font-size: 40px;
-  display: block;
-  margin-bottom: 16px;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.06), rgba(30, 58, 138, 0.12));
+  border-radius: 16px;
+  color: var(--primary);
+  transition: all 0.35s ease;
+}
+
+.zigzag-tile:hover .zigzag-icon {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(30, 58, 138, 0.25);
 }
 
 .zigzag-tile h4 {
@@ -456,6 +469,37 @@
 .courses-section {
   position: relative;
   overflow: hidden;
+}
+
+/* "Provided by" fancy attribution */
+.courses-provided-by {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 12px;
+}
+
+.provided-line {
+  display: block;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+}
+
+.provided-text {
+  font-family: var(--font-main);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.provided-text strong {
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .courses-deco-ring {
