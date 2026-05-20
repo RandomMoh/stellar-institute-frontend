@@ -4,16 +4,11 @@ import { motion } from 'framer-motion';
 import { testimonials, itCourses, beautyCourses } from '../data/courses';
 import FloatingShapes from '../components/FloatingShapes';
 import TestimonialShapes from '../components/TestimonialShapes';
-import AnnouncementModal from '../components/AnnouncementModal';
 import './Home.css';
-
-const priorityDot = { urgent: '🔴', important: '🟡', normal: '🔵' };
 
 export default function Home() {
   const featuredCourses = [...itCourses.slice(0, 4), ...beautyCourses.slice(0, 4)];
   const [notices, setNotices] = useState([]);
-
-  const [selectedNotice, setSelectedNotice] = useState(null);
 
   useEffect(() => {
     fetch('/api/announcements')
@@ -39,9 +34,6 @@ export default function Home() {
 
   return (
     <div className="lms-home">
-      <AnnouncementModal announcement={selectedNotice} onClose={() => setSelectedNotice(null)} />
-      
-
       <section className="lms-hero relative">
         <FloatingShapes />
         <div className="container relative z-10">
@@ -70,11 +62,15 @@ export default function Home() {
               </div>
               <div className="notices-list">
                 {notices.map(n => (
-                  <div key={n.id} className={`notice-item notice-${n.priority}`} onClick={() => setSelectedNotice(n)} style={{ cursor: 'pointer' }}>
-                    <span className="notice-dot">{priorityDot[n.priority] || '🔵'}</span>
+                  <div key={n.id} className={`notice-item notice-${n.priority}`}>
+                    <span className="notice-dot"></span>
                     <div className="notice-content">
                       <span className="notice-date">{new Date(n.created_at).toLocaleDateString('en-PK', { month: 'short', day: 'numeric' })}</span>
-                      <span className="notice-title" style={{ color: '#0369a1' }}>{n.title}</span>
+                      {n.link_url ? (
+                        <a href={n.link_url} target="_blank" rel="noreferrer" className="notice-title">{n.title}</a>
+                      ) : (
+                        <span className="notice-title" style={{ color: 'var(--primary-light)' }}>{n.title}</span>
+                      )}
                     </div>
                   </div>
                 ))}

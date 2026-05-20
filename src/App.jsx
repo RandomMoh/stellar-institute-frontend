@@ -12,7 +12,6 @@ import Contact from './pages/Contact';
 import ComingSoon from './pages/ComingSoon';
 import StellarAdmin from './pages/StellarAdmin';
 import CursorTrail from './components/CursorTrail';
-import AnnouncementPopup from './components/AnnouncementPopup';
 import AnnouncementTicker from './components/AnnouncementTicker';
 
 function ScrollToTop() {
@@ -35,7 +34,6 @@ function AppLayout() {
     <>
       <Navbar />
       <AnnouncementTicker />
-      <AnnouncementPopup />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />

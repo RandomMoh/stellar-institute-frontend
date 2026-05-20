@@ -125,19 +125,38 @@
   text-decoration: underline;
 }
 
-/* 3D Pop-Up Cards (Eduvalt Style) */
+/* 3D Offset Cards (Professional Style) */
 .popup-card {
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   background: #ffffff;
   border-radius: var(--radius-md);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--accent);
+  position: relative;
+  z-index: 1;
+}
+
+.popup-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 37, 64, 0.05); /* Lighter shadow of navy */
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  border-radius: var(--radius-md);
+  z-index: -1;
+  transition: all 0.3s ease;
 }
 
 .popup-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.2), 0 10px 20px -10px rgba(0, 0, 0, 0.08);
-  border-color: rgba(14, 165, 233, 0.2);
+  transform: translate(-4px, -4px);
+  border-color: var(--primary-light);
+}
+
+.popup-card:hover::before {
+  top: 12px;
+  left: 12px;
 }
 
 /* Courses Grid */
@@ -371,41 +390,66 @@ a.notice-title:hover {
 }
 
 .institute-card {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
   padding: 32px 28px;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.institute-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 37, 64, 0.05);
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  border-radius: var(--radius-md);
+  z-index: -1;
+  transition: all 0.3s ease;
 }
 
 .institute-card:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.08);
-  transform: translateY(-4px);
+  transform: translate(-4px, -4px);
+  border-color: var(--primary-light);
+}
+
+.institute-card:hover::before {
+  top: 12px;
+  left: 12px;
 }
 
 .institute-card-featured {
   border-color: var(--primary);
-  background: linear-gradient(180deg, #f0f9ff 0%, #fff 40%);
+  background: var(--bg-color);
+}
+
+.institute-card-featured::before {
+  background-color: rgba(10, 37, 64, 0.1);
 }
 
 .institute-icon {
   width: 48px;
   height: 48px;
-  border-radius: 10px;
-  background: #f1f5f9;
+  border-radius: 6px;
+  background: var(--bg-color-alt);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  color: #0ea5e9;
+  color: var(--primary);
+  border: 1px solid var(--accent);
 }
 
 .institute-card-featured .institute-icon {
-  background: #e0f2fe;
-  color: #0369a1;
+  background: var(--primary);
+  color: var(--text-light);
 }
 
 .institute-card h3 {

@@ -1,7 +1,8 @@
 .lms-footer {
-  background-color: #222222;
+  background-color: var(--primary-dark);
   color: #cccccc;
   padding-top: 80px;
+  border-top: 4px solid var(--primary-light);
 }
 
 .footer-grid {
@@ -106,7 +107,7 @@
 }
 
 .footer-bottom {
-  background-color: #1a1a1a;
+  background-color: rgba(0, 0, 0, 0.3);
   padding: 20px 0;
   text-align: center;
   font-size: 13px;

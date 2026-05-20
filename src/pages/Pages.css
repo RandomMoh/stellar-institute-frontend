@@ -45,18 +45,37 @@
 
 .program-card {
   background-color: #ffffff;
-  border: 1px solid #eeeeee;
+  border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   margin-bottom: 30px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.program-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 37, 64, 0.05);
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  border-radius: var(--radius-md);
+  z-index: -1;
+  transition: all 0.3s ease;
 }
 
 .program-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.2), 0 10px 20px -10px rgba(0, 0, 0, 0.08);
-  border-color: rgba(14, 165, 233, 0.2);
+  transform: translate(-4px, -4px);
+  border-color: var(--primary-light);
+}
+
+.program-card:hover::before {
+  top: 12px;
+  left: 12px;
 }
 
 .program-card-header {
@@ -155,17 +174,36 @@
 
 .school-card, .college-card {
   background-color: #ffffff;
-  border: 1px solid #eeeeee;
+  border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   padding: 30px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.school-card::before, .college-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 37, 64, 0.05);
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  border-radius: var(--radius-md);
+  z-index: -1;
+  transition: all 0.3s ease;
 }
 
 .school-card:hover, .college-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.2), 0 10px 20px -10px rgba(0, 0, 0, 0.08);
-  border-color: rgba(14, 165, 233, 0.2);
+  transform: translate(-4px, -4px);
+  border-color: var(--primary-light);
+}
+
+.school-card:hover::before, .college-card:hover::before {
+  top: 12px;
+  left: 12px;
 }
 
 .school-card h3, .college-card h3 {
@@ -193,10 +231,24 @@
 /* Forms */
 .contact-form {
   background-color: #ffffff;
-  border: 1px solid #eeeeee;
+  border: 1px solid var(--accent);
   padding: 40px;
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.contact-form::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 37, 64, 0.05);
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  border-radius: var(--radius-md);
+  z-index: -1;
 }
 
 .form-group {
@@ -242,10 +294,25 @@
 
 .about-visual {
   background-color: var(--bg-color-alt);
-  border: 1px solid #eeeeee;
+  border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   padding: 60px 40px;
   text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.about-visual::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 37, 64, 0.05);
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  border-radius: var(--radius-md);
+  z-index: -1;
 }
 
 .about-visual h3 {
@@ -267,11 +334,37 @@
 
 .about-value {
   background-color: #ffffff;
-  border: 1px solid #eeeeee;
+  border: 1px solid var(--accent);
   padding: 20px 10px;
   border-radius: var(--radius-sm);
   text-align: center;
-  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.about-value::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 37, 64, 0.05);
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  border-radius: var(--radius-sm);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.about-value:hover {
+  transform: translate(-2px, -2px);
+  border-color: var(--primary-light);
+}
+
+.about-value:hover::before {
+  top: 6px;
+  left: 6px;
 }
 
 .about-value h4 {
@@ -347,11 +440,25 @@
 
 .sidebar-widget {
   background: #ffffff;
-  border: 1px solid #eeeeee;
+  border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   padding: 25px;
   margin-bottom: 30px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-widget::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 37, 64, 0.05);
+  border: 1px solid rgba(10, 37, 64, 0.1);
+  border-radius: var(--radius-md);
+  z-index: -1;
 }
 
 .sidebar-widget .widget-title {
