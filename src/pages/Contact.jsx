@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import FloatingShapes from '../components/FloatingShapes';
 import ScrollReveal from '../components/ScrollReveal';
 import { contactInfo } from '../data/courses';
@@ -52,8 +51,7 @@ export default function Contact() {
       <section className="page-hero relative" style={{ overflow: 'hidden' }}>
         <FloatingShapes />
         <div className="page-hero-content container relative z-10">
-          <h1>Contact <span>Us</span></h1>
-          <p>Have questions about admissions, courses, or anything else? We'd love to hear from you.</p>
+          <h1>Contact Us</h1>
           <div className="breadcrumb">
             <Link to="/">Home</Link> <span>/</span> <span>Contact</span>
           </div>
@@ -68,31 +66,13 @@ export default function Contact() {
                 <h2>Send Us a Message</h2>
 
                 {status === 'success' && (
-                  <div style={{
-                    background: 'var(--primary-50)',
-                    border: '1px solid var(--primary-200)',
-                    borderRadius: 'var(--radius-md)',
-                    padding: '14px 20px',
-                    marginBottom: 20,
-                    color: 'var(--primary-dark)',
-                    fontWeight: 600,
-                    fontSize: '0.9rem'
-                  }}>
-                    ✅ Thank you! Your message has been sent successfully. We'll get back to you soon.
+                  <div className="form-alert form-alert-success">
+                    ✅ Message sent successfully.
                   </div>
                 )}
 
                 {status === 'error' && (
-                  <div style={{
-                    background: '#fef2f2',
-                    border: '1px solid #fecaca',
-                    borderRadius: 'var(--radius-md)',
-                    padding: '14px 20px',
-                    marginBottom: 20,
-                    color: '#dc2626',
-                    fontWeight: 600,
-                    fontSize: '0.9rem'
-                  }}>
+                  <div className="form-alert form-alert-error">
                     ❌ {errorMsg}
                   </div>
                 )}
@@ -144,31 +124,23 @@ export default function Contact() {
             <ScrollReveal direction="right">
               <div className="contact-info-side">
                 <div className="contact-info-card">
-                  <div>
-                    <h4>Our Address</h4>
-                    <p>{contactInfo.address}</p>
-                  </div>
+                  <h4>Our Address</h4>
+                  <p>{contactInfo.address}</p>
                 </div>
 
                 <div className="contact-info-card">
-                  <div>
-                    <h4>Phone Number</h4>
-                    <p>{contactInfo.phone}</p>
-                  </div>
+                  <h4>Phone</h4>
+                  <p>{contactInfo.phone}</p>
                 </div>
 
                 <div className="contact-info-card">
-                  <div>
-                    <h4>Email Address</h4>
-                    <p>{contactInfo.email}</p>
-                  </div>
+                  <h4>Email</h4>
+                  <p>{contactInfo.email}</p>
                 </div>
 
                 <div className="contact-info-card">
-                  <div>
-                    <h4>Working Hours</h4>
-                    <p>Monday – Saturday: 8:00 AM – 8:00 PM<br />Sunday: Closed</p>
-                  </div>
+                  <h4>Working Hours</h4>
+                  <p>Monday – Saturday: 8:00 AM – 8:00 PM</p>
                 </div>
 
                 <div className="contact-map">
