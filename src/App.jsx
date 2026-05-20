@@ -12,7 +12,7 @@ import Contact from './pages/Contact';
 import ComingSoon from './pages/ComingSoon';
 import StellarAdmin from './pages/StellarAdmin';
 import CursorTrail from './components/CursorTrail';
-import AnnouncementTicker from './components/AnnouncementTicker';
+import AnnouncementPopup from './components/AnnouncementPopup';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -33,7 +33,6 @@ function AppLayout() {
   return (
     <>
       <Navbar />
-      <AnnouncementTicker />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -47,6 +46,7 @@ function AppLayout() {
         </Routes>
       </main>
       <Footer />
+      <AnnouncementPopup />
     </>
   );
 }
