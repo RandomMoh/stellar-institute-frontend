@@ -13,6 +13,26 @@
   --admin-radius: 6px;
 }
 
+.admin-wrapper, .admin-login-wrapper {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.admin-wrapper h2, .admin-wrapper h3,
+.admin-login-header h2 {
+  font-family: 'Inter', sans-serif;
+}
+
+.admin-back-link {
+  font-size: 13px;
+  color: var(--admin-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.admin-back-link:hover {
+  color: var(--admin-text);
+}
+
 .admin-login-wrapper {
   min-height: 100vh;
   display: flex;

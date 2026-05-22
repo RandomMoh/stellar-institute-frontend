@@ -76,7 +76,7 @@ export default function AnnouncementPopup() {
             <div className="popup-text-card">
               {announcement.priority !== 'normal' && (
                 <span className="popup-badge">
-                  {announcement.priority === 'urgent' ? '🔴 Urgent' : '🟡 Important'}
+                  {announcement.priority === 'urgent' ? 'Urgent' : 'Important'}
                 </span>
               )}
               <h3>{announcement.title}</h3>

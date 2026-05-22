@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import './StellarAdmin.css';
 
 const API = '/api';
@@ -200,6 +201,7 @@ export default function StellarAdmin() {
           <span className="admin-topbar-title">Announcements</span>
         </div>
         <div className="admin-topbar-right">
+          <Link to="/" className="admin-back-link">← Back to Site</Link>
           <span className="admin-user-name">{user?.name || user?.username}</span>
           <button onClick={logout} className="admin-logout-btn">Log out</button>
         </div>
@@ -223,9 +225,14 @@ export default function StellarAdmin() {
 
         <div className="admin-actions-bar">
           <h2>All Announcements</h2>
-          <button onClick={() => { setForm(empty); setEditing(null); setShowForm(true); }} className="admin-add-btn">
-            New
-          </button>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button onClick={fetchAnns} className="admin-logout-btn" title="Refresh">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            </button>
+            <button onClick={() => { setForm(empty); setEditing(null); setShowForm(true); }} className="admin-add-btn">
+              + New Announcement
+            </button>
+          </div>
         </div>
 
         {loading ? (
@@ -250,7 +257,8 @@ export default function StellarAdmin() {
                   <tr key={a.id} className={!a.is_active ? 'row-inactive' : ''}>
                     <td className="td-title">
                       <strong>{a.title}</strong>
-                      {a.body && <span className="td-body-preview">{a.body.substring(0, 60)}…</span>}
+                      {a.body && a.body.length > 60 && <span className="td-body-preview">{a.body.substring(0, 60)}…</span>}
+                      {a.body && a.body.length <= 60 && <span className="td-body-preview">{a.body}</span>}
                     </td>
                     <td><span className={`badge badge-type-${a.type}`}>{a.type}</span></td>
                     <td><span className={`badge badge-priority-${a.priority}`}>{a.priority}</span></td>
@@ -265,8 +273,12 @@ export default function StellarAdmin() {
                       </button>
                     </td>
                     <td className="td-actions">
-                      <button onClick={() => openEdit(a)} className="action-btn action-edit" title="Edit">✏️</button>
-                      <button onClick={() => setDeleteTarget(a)} className="action-btn action-delete" title="Delete">🗑️</button>
+                      <button onClick={() => openEdit(a)} className="action-btn action-edit" title="Edit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                      </button>
+                      <button onClick={() => setDeleteTarget(a)} className="action-btn action-delete" title="Delete">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                      </button>
                     </td>
                   </tr>
                 ))}

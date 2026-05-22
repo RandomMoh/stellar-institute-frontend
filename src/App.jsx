@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -22,14 +22,19 @@ function ScrollToTop() {
   return null;
 }
 
+function NotFound() {
+  return (
+    <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '40px 20px' }}>
+      <div>
+        <h1 style={{ fontSize: '72px', marginBottom: '8px', fontFamily: 'var(--font-display)' }}>404</h1>
+        <p style={{ fontSize: '18px', color: 'var(--text-muted)', marginBottom: '32px' }}>The page you're looking for doesn't exist.</p>
+        <Link to="/" className="btn btn-primary">Return Home</Link>
+      </div>
+    </div>
+  );
+}
+
 function AppLayout() {
-  const { pathname } = useLocation();
-  const isAdmin = pathname === '/stellar-admin';
-
-  if (isAdmin) {
-    return <StellarAdmin />;
-  }
-
   return (
     <>
       <Navbar />
@@ -43,6 +48,7 @@ function AppLayout() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

@@ -67,13 +67,13 @@ export default function Contact() {
 
                 {status === 'success' && (
                   <div className="form-alert form-alert-success">
-                    ✅ Message sent successfully.
+                    Message sent successfully.
                   </div>
                 )}
 
                 {status === 'error' && (
                   <div className="form-alert form-alert-error">
-                    ❌ {errorMsg}
+                    {errorMsg}
                   </div>
                 )}
 

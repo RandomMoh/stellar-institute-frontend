@@ -19,10 +19,16 @@
   height: 100%;
 }
 
-/* Background image with Ken Burns */
+/* Background — placeholder gradient until real photos are added */
 .hero-slide-bg {
   position: absolute;
   inset: 0;
+}
+
+.hero-slide-bg-placeholder {
+  background: linear-gradient(135deg, #0a2540, #1e3a8a, #0f172a);
+  background-size: 200% 200%;
+  animation: heroGradient 12s ease-in-out infinite;
 }
 
 .hero-slide-bg img {
@@ -36,6 +42,11 @@
 @keyframes kenBurns {
   from { transform: scale(1.1); }
   to { transform: scale(1); }
+}
+
+@keyframes heroGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* Gradient overlay */

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { itCourses, beautyCourses } from '../data/courses';
 import FloatingShapes from '../components/FloatingShapes';
+import ImagePlaceholder from '../components/ImagePlaceholder';
 import './Pages.css';
 
 export default function SkilledInstitute() {
@@ -96,18 +97,22 @@ export default function SkilledInstitute() {
                     style={{ height: '100%' }}
                   >
                     <div className="course-image-placeholder">
-                      <img 
-                        src={course.image} 
-                        alt={course.title}
-                        loading="lazy"
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover',
-                          objectPosition: 'center',
-                          display: 'block'
-                        }}
-                      />
+                      {course.image ? (
+                        <img 
+                          src={course.image} 
+                          alt={course.title}
+                          loading="lazy"
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            objectPosition: 'center',
+                            display: 'block'
+                          }}
+                        />
+                      ) : (
+                        <ImagePlaceholder label="Course Image" />
+                      )}
                       <span className="course-category">
                         {course.category === 'it' ? 'IT Courses' : 'Female Beauty Courses'}
                       </span>

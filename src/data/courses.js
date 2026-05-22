@@ -3,79 +3,79 @@ export const itCourses = [
     id: 'it1',
     title: 'Full Stack Web Development',
     duration: '3 Months',
-    image: '/images_2025/04/Web-development-1-300x200.png'
+    image: null
   },
   {
     id: 'it2',
     title: 'Digital Marketing Mastery',
     duration: '2 Months',
-    image: '/images_2025/04/Digital-marketing-1-300x200.png'
+    image: null
   },
   {
     id: 'it3',
     title: 'E-Commerce & Dropshipping',
     duration: '2 Months',
-    image: '/images_2025/04/Digital-marketing-2-768x512.png'
+    image: null
   },
   {
     id: 'it4',
     title: 'Google SketchUp 3D & Rendering',
     duration: '2 Months',
-    image: '/images_2025/04/google-cketchup-3D-Rendering-650x433.png'
+    image: null
   },
   {
     id: 'it5',
     title: 'Autocad 2D & 3D Drafting',
     duration: '2 Months',
-    image: '/images_2025/04/Autocad-2D-3D-300x200.png'
+    image: null
   },
   {
     id: 'it6',
     title: 'Videography Skills',
     duration: '1 Month',
-    image: '/images_2025/04/Videography-300x200.png'
+    image: null
   },
   {
     id: 'it7',
     title: 'Professional Language & Communication',
     duration: '3 Months',
-    image: '/images_2025/04/Lnaguage-Course-300x200.png'
+    image: null
   },
   {
     id: 'it8',
     title: 'Account & Finance Skills',
     duration: '2 Months',
-    image: '/images_2025/04/Account-and-finance-650x433.png'
+    image: null
   },
   {
     id: 'it9',
     title: 'Business Management Skills',
     duration: '3 Months',
-    image: '/images_2025/04/Business-management-150x150.png'
+    image: null
   },
   {
     id: 'it10',
     title: 'Computer Office Skills',
     duration: '1 Month',
-    image: '/images_2025/04/office_skills.png'
+    image: null
   },
   {
     id: 'it11',
     title: 'Advanced Multimedia Skills',
     duration: '2 Months',
-    image: '/images_2025/04/Graphic-Design-1-150x150.png'
+    image: null
   },
   {
     id: 'it12',
     title: 'Art & Design Mastery',
     duration: '2 Months',
-    image: '/images_2025/04/Graphic-Design-1.png'
+    image: null
   },
   {
     id: 'it13',
     title: 'Photography Skills',
     duration: '1 Month',
-    image: '/images_2025/04/Photography-1024x682.png'
+    image: null
   }
 ];
 
@@ -84,61 +84,61 @@ export const beautyCourses = [
     id: 'b1',
     title: 'Advanced Beautician & Cosmetology',
     duration: '3 Months',
-    image: '/images_2025/04/saloon-m.jpg'
+    image: null
   },
   {
     id: 'b2',
     title: 'Hair Coloring & Treatment',
     duration: '1 Month',
-    image: '/images_2025/04/Hair-Color-Treatments-350x350.jpg'
+    image: null
   },
   {
     id: 'b3',
     title: 'Skin Care',
     duration: '1 Month',
-    image: '/images_2025/04/skin-1170x600.jpg'
+    image: null
   },
   {
     id: 'b4',
     title: 'Make-Up: Basic to Pro',
     duration: '2 Months',
-    image: '/images_2025/04/makeup_course.png'
+    image: null
   },
   {
     id: 'b5',
     title: 'Acrylic Nail Art',
     duration: '1 Month',
-    image: '/images_2025/04/nail_art.png'
+    image: null
   },
   {
     id: 'b6',
     title: 'Hair Cutting',
     duration: '1 Month',
-    image: '/images_2025/04/hair_cutting.png'
+    image: null
   },
   {
     id: 'b7',
     title: 'Salon Management & Client Dealing',
     duration: '1 Month',
-    image: '/images_2025/04/salon_management.png'
+    image: null
   },
   {
     id: 'b8',
     title: 'Eyelash Extension',
     duration: '1 Month',
-    image: '/images_2025/04/eyelash_course.png'
+    image: null
   },
   {
     id: 'b9',
     title: 'Beautician-Basic to Advance',
     duration: '2 Months',
-    image: '/images_2025/04/beautician_course.png'
+    image: null
   },
   {
     id: 'b10',
     title: 'Hair Styling',
     duration: '1 Month',
-    image: '/images_2025/04/hair_styling.png'
+    image: null
   }
 ];
 
@@ -211,12 +211,12 @@ export const testimonials = [
   {
     name: 'Ali Ahmad',
     role: 'Web Development Student',
-    quote: "Joining Stellar as a web development student was the best decision I made. The practical training and expert guidance helped me land a great job with a salary of 1 lakh. I’m incredibly grateful for the opportunities and skills I gained!"
+    quote: "Joining Stellar as a web development student was the best decision I made. The practical training and expert guidance helped me land a great job with a salary of 1 lakh. I'm incredibly grateful for the opportunities and skills I gained!"
   },
   {
     name: 'Zain Mushtaq',
     role: 'IT Student',
-    quote: "This site offers a fantastic range of courses with clear, practical content that’s easy to follow. The hands-on approach and excellent support make learning enjoyable and effective. Highly recommended for anyone looking to enhance their skills!"
+    quote: "This site offers a fantastic range of courses with clear, practical content that's easy to follow. The hands-on approach and excellent support make learning enjoyable and effective. Highly recommended for anyone looking to enhance their skills!"
   },
   {
     name: 'Muhammad Arham',
@@ -226,17 +226,17 @@ export const testimonials = [
   {
     name: 'Ahmad Bashir',
     role: 'AutoCAD Student',
-    quote: "The AutoCAD 2D & 3D course at Steller was outstanding! It offered a perfect balance of theory and practical applications, enabling me to confidently work on both 2D drafts and 3D models. The expert instructors and hands-on approach made complex concepts easy to understand."
+    quote: "The AutoCAD 2D & 3D course at Stellar was outstanding! It offered a perfect balance of theory and practical applications, enabling me to confidently work on both 2D drafts and 3D models. The expert instructors and hands-on approach made complex concepts easy to understand."
   },
   {
     name: 'Umal Banin',
     role: 'Videography Student',
-    quote: "Steller’s videography course taught me everything from composition to editing. I now confidently shoot and edit professional videos for clients—highly recommended!"
+    quote: "Stellar's videography course taught me everything from composition to editing. I now confidently shoot and edit professional videos for clients—highly recommended!"
   },
   {
     name: 'Amina Zahid',
     role: 'Language Student',
-    quote: "The language classes at Steller helped me improve my communication skills and opened doors to international opportunities. The teaching method was fun and effective!"
+    quote: "The language classes at Stellar helped me improve my communication skills and opened doors to international opportunities. The teaching method was fun and effective!"
   }
 ];
 

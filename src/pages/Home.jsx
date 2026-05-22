@@ -5,6 +5,7 @@ import { itCourses, beautyCourses, testimonials } from '../data/courses';
 import HeroSlider from '../components/HeroSlider';
 import StatsCounter from '../components/StatsCounter';
 import ScrollReveal from '../components/ScrollReveal';
+import ImagePlaceholder from '../components/ImagePlaceholder';
 import './Home.css';
 
 const institutes = [
@@ -14,7 +15,6 @@ const institutes = [
     services: ['Middle School (5th–8th)', 'Matriculation (9th–10th)', 'FSc / ICS / I.Com / F.A'],
     link: '/academy',
     linkText: 'View Programs',
-    image: '/images_2025/04/Lnaguage-Course-300x200.png'
   },
   {
     num: '02',
@@ -22,7 +22,6 @@ const institutes = [
     services: ['13 IT Courses', '10 Beauty Courses', 'Industry Certifications'],
     link: '/skilled-institute',
     linkText: 'View Courses',
-    image: '/images_2025/04/Web-development-1-300x200.png'
   },
   {
     num: '03',
@@ -30,7 +29,6 @@ const institutes = [
     services: ['School (Nursery–10th)', 'College (Intermediate)', 'Multiple Streams'],
     link: '/coming-soon',
     linkText: 'Coming Soon',
-    image: '/images_2025/04/Photography-1024x682.png'
   }
 ];
 
@@ -62,10 +60,10 @@ export default function Home() {
             <ScrollReveal direction="right">
               <div className="welcome-images">
                 <div className="welcome-img welcome-img-back">
-                  <img src="/images_2025/04/Digital-marketing-1-300x200.png" alt="Campus" loading="lazy" />
+                  <ImagePlaceholder label="Campus Photo" />
                 </div>
                 <div className="welcome-img welcome-img-front">
-                  <img src="/images_2025/04/Photography-1024x682.png" alt="Students" loading="lazy" />
+                  <ImagePlaceholder label="Students Photo" />
                 </div>
               </div>
             </ScrollReveal>
@@ -120,7 +118,7 @@ export default function Home() {
                   transition={{ duration: 0.35 }}
                 >
                   <div className="inst-content-image">
-                    <img src={institutes[activeInstitute].image} alt={institutes[activeInstitute].title} />
+                    <ImagePlaceholder label={`${institutes[activeInstitute].title} Photo`} />
                   </div>
                   <div className="inst-content-info">
                     <h3>{institutes[activeInstitute].title}</h3>
@@ -177,11 +175,9 @@ export default function Home() {
       </section>
 
 
-      {/* ===== STATS (Full-bleed image overlay) ===== */}
+      {/* ===== STATS (Full-bleed overlay) ===== */}
       <section className="stats-section">
-        <div className="stats-bg-image">
-          <img src="/images_2025/04/Graphic-Design-1.png" alt="" />
-        </div>
+        <div className="stats-bg-placeholder" />
         <div className="stats-overlay" />
         <div className="container stats-inner">
           <ScrollReveal direction="left">
@@ -232,7 +228,11 @@ export default function Home() {
                 <ScrollReveal key={course.id} delay={i * 0.06}>
                   <div className="course-card-v2">
                     <div className="course-card-img">
-                      <img src={course.image} alt={course.title} loading="lazy" />
+                      {course.image ? (
+                        <img src={course.image} alt={course.title} loading="lazy" />
+                      ) : (
+                        <ImagePlaceholder label="Course Image" />
+                      )}
                       <span className="course-badge">{i < 3 ? 'IT' : 'Beauty'}</span>
                     </div>
                     <div className="course-card-body">
@@ -296,7 +296,7 @@ export default function Home() {
         <div className="container partner-grid">
           <ScrollReveal direction="left">
             <div className="partner-image-wrap">
-              <img src="/images_2025/04/Digital-marketing-2-768x512.png" alt="Join Stellar" className="partner-image" />
+              <ImagePlaceholder label="Institute Photo" style={{ minHeight: '360px', borderRadius: '24px 100px 24px 24px', border: '4px solid rgba(255,255,255,0.15)' }} />
             </div>
           </ScrollReveal>
           <ScrollReveal direction="right">

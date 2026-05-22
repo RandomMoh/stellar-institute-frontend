@@ -5,21 +5,18 @@ import './HeroSlider.css';
 
 const slides = [
   {
-    image: '/images_2025/04/Web-development-1-300x200.png',
     tag: 'Welcome To Stellar Institute',
     heading: 'Crafting Careers\nThrough Education',
     cta: { text: 'Explore Programs', link: '/skilled-institute' },
     cta2: { text: 'Contact Us', link: '/contact' }
   },
   {
-    image: '/images_2025/04/Digital-marketing-2-768x512.png',
     tag: 'Stellar Academy',
     heading: 'From Foundation\nTo Excellence',
     cta: { text: 'View Programs', link: '/academy' },
     cta2: { text: 'Register Now', link: '/contact' }
   },
   {
-    image: '/images_2025/04/Photography-1024x682.png',
     tag: 'Stellar Skilled Institute',
     heading: '23+ Professional\nCourses',
     cta: { text: 'Browse Courses', link: '/skilled-institute' },
@@ -59,9 +56,8 @@ export default function HeroSlider() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="hero-slide-bg">
-            <img src={slide.image} alt="" />
-          </div>
+          {/* CSS-only gradient background — replace with real photos later */}
+          <div className="hero-slide-bg hero-slide-bg-placeholder" />
           <div className="hero-slide-overlay" />
           
           {/* Decorative shapes */}
