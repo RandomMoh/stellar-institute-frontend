@@ -24,8 +24,7 @@ export default function Navbar() {
             <span>+92-300-0652124</span>
           </div>
           <div className="topbar-right">
-            <Link to="/contact">Sign Up</Link>
-            <Link to="/coming-soon">Login</Link>
+            <Link to="/stellar-admin" onClick={() => sessionStorage.removeItem('stellar-admin-token')}>Login</Link>
           </div>
         </div>
       </div>

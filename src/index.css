@@ -3,12 +3,13 @@
 :root {
   /* Colors - Professional Educational Palette */
   --primary: #0a2540; /* Navy Blue */
-  --primary-light: #1e3a8a; /* Deep Indigo */
+  --primary-light: #2e3192; /* Deep Indigo - richer tone */
   --primary-dark: #0f172a; /* Darker shade */
   --primary-50: #eef4ff;
   --primary-200: #c7d7fe;
   --accent: #e2e8f0; /* Light border/shadow */
-  --accent-gold: #d4a853; /* Subtle gold for premium accents */
+  --accent-cyan: #00b4d8; /* Professional Cyan Blue */
+  --accent-gold: #00b4d8; /* Backward compatibility, now cyan */
   
   --bg-color: #ffffff;
   --bg-gradient: #ffffff;
@@ -110,15 +111,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent-cyan) 100%);
   color: var(--text-light);
   border: 2px solid transparent;
-  box-shadow: 0 4px 15px rgba(10, 37, 64, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 180, 216, 0.25);
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(10, 37, 64, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 180, 216, 0.4);
 }
 
 .btn-secondary {
@@ -151,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: var(--primary-light);
+  color: var(--accent-cyan);
   margin-bottom: 16px;
   position: relative;
   padding: 0 20px;
@@ -164,7 +165,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 50%;
   width: 30px;
   height: 1px;
-  background: var(--primary-light);
+  background: var(--accent-cyan);
 }
 
 .section-label::before { left: -20px; }
@@ -188,7 +189,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  background: linear-gradient(90deg, var(--primary-light), var(--accent-cyan));
   border-radius: 2px;
 }
 
