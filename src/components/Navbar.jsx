@@ -19,13 +19,12 @@ export default function Navbar() {
       <div className="lms-topbar">
         <div className="container">
           <div className="topbar-left">
-            <span>Stellar Institute, Upper Ground Floor 1-Montgomery Road, Lahore</span>
+            <span>Stellar Academy, Upper Ground Floor 1-Montgomery Road, Lahore</span>
             <span>|</span>
             <span>+92-300-0652124</span>
           </div>
           <div className="topbar-right">
-            <Link to="/contact">Sign Up</Link>
-            <Link to="/coming-soon">Login</Link>
+            <Link to="/stellar-admin" className="topbar-login">Login</Link>
           </div>
         </div>
       </div>
@@ -33,14 +32,14 @@ export default function Navbar() {
       <nav className="lms-navbar">
         <div className="container nav-container">
           <Link to="/" className="nav-brand">
-            <img src="/stellar_logo.png" alt="Stellar Institute Logo" className="brand-logo" />
+            <img src="/stellar_logo.png" alt="Stellar Academy Logo" className="brand-logo" />
           </Link>
 
           <div className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
             <Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Home</Link>
             
             <div className="nav-dropdown">
-              <span className={`nav-link ${location.pathname.match(/\/(academy|skilled-institute|school|college)/) ? 'active' : ''}`}>
+              <span className={`nav-link ${location.pathname.match(/\/(academy|skilled-institute|school|college|course)/) ? 'active' : ''}`}>
                 Institutes ▾
               </span>
               <div className="dropdown-menu">
@@ -52,7 +51,7 @@ export default function Navbar() {
                       <span className="nested-category">IT Courses ▾</span>
                       <div className="nested-dropdown-deep">
                         {itCourses.map(c => (
-                          <Link key={c.id} to="/contact" onClick={() => setMobileMenuOpen(false)}>{c.title}</Link>
+                          <Link key={c.id} to={`/course/${c.slug}`} onClick={() => setMobileMenuOpen(false)}>{c.title}</Link>
                         ))}
                       </div>
                     </div>
@@ -60,7 +59,7 @@ export default function Navbar() {
                       <span className="nested-category">Female Beauty Courses ▾</span>
                       <div className="nested-dropdown-deep">
                         {beautyCourses.map(c => (
-                          <Link key={c.id} to="/contact" onClick={() => setMobileMenuOpen(false)}>{c.title}</Link>
+                          <Link key={c.id} to={`/course/${c.slug}`} onClick={() => setMobileMenuOpen(false)}>{c.title}</Link>
                         ))}
                       </div>
                     </div>

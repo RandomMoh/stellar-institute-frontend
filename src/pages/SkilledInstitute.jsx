@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { itCourses, beautyCourses } from '../data/courses';
 import FloatingShapes from '../components/FloatingShapes';
+import ScrollReveal from '../components/ScrollReveal';
+import Tilt3D from '../components/Tilt3D';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import './Pages.css';
 
@@ -93,39 +95,36 @@ export default function SkilledInstitute() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
-                    className="lms-course-card popup-card" 
                     style={{ height: '100%' }}
                   >
-                    <div className="course-image-placeholder">
-                      {course.image ? (
-                        <img 
-                          src={course.image} 
-                          alt={course.title}
-                          loading="lazy"
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            objectPosition: 'center',
-                            display: 'block'
-                          }}
-                        />
-                      ) : (
-                        <ImagePlaceholder label="Course Image" />
-                      )}
-                      <span className="course-category">
-                        {course.category === 'it' ? 'IT Courses' : 'Female Beauty Courses'}
-                      </span>
-                    </div>
-                    <div className="course-content">
-                      <h3>{course.title}</h3>
-                      <div className="course-meta">
-                        <span className="course-duration">Duration: {course.duration}</span>
-                      </div>
-                      <div className="course-footer">
-                        <Link to="/contact" className="course-enroll">Enroll Now →</Link>
-                      </div>
-                    </div>
+                    <Tilt3D intensity={5} glare>
+                      <Link to={`/course/${course.slug}`} className="lms-course-card popup-card course-card-link-wrap" style={{ height: '100%' }}>
+                        <div className="course-image-placeholder">
+                          {course.image ? (
+                            <img 
+                              src={course.image} 
+                              alt={course.title}
+                              loading="lazy"
+                              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+                            />
+                          ) : (
+                            <ImagePlaceholder label="Course Image" />
+                          )}
+                          <span className="course-category">
+                            {course.category === 'it' ? 'IT Courses' : 'Female Beauty Courses'}
+                          </span>
+                        </div>
+                        <div className="course-content">
+                          <h3>{course.title}</h3>
+                          <div className="course-meta">
+                            <span className="course-duration">Duration: {course.duration}</span>
+                          </div>
+                          <div className="course-footer">
+                            <span className="course-enroll">View Details →</span>
+                          </div>
+                        </div>
+                      </Link>
+                    </Tilt3D>
                   </motion.div>
                 ))}
               </div>

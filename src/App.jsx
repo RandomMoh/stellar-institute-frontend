@@ -10,6 +10,7 @@ import College from './pages/College';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import ComingSoon from './pages/ComingSoon';
+import CoursePage from './pages/CoursePage';
 import StellarAdmin from './pages/StellarAdmin';
 import CursorTrail from './components/CursorTrail';
 import AnnouncementPopup from './components/AnnouncementPopup';
@@ -48,6 +49,7 @@ function AppLayout() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
+          <Route path="/course/:courseSlug" element={<CoursePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

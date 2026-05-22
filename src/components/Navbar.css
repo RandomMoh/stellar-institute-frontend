@@ -47,6 +47,23 @@
   opacity: 0.7;
 }
 
+.topbar-login {
+  padding: 2px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.topbar-login:hover {
+  background: rgba(43, 181, 212, 0.15);
+  border-color: rgba(43, 181, 212, 0.4);
+  opacity: 1;
+}
+
 .lms-navbar {
   padding: 12px 0;
   background-color: var(--bg-color);

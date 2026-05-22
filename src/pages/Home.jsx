@@ -5,6 +5,7 @@ import { itCourses, beautyCourses, testimonials } from '../data/courses';
 import HeroSlider from '../components/HeroSlider';
 import StatsCounter from '../components/StatsCounter';
 import ScrollReveal from '../components/ScrollReveal';
+import Tilt3D from '../components/Tilt3D';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import './Home.css';
 
@@ -52,19 +53,25 @@ export default function Home() {
             <ScrollReveal direction="left">
               <div className="welcome-text">
                 <span className="welcome-tag">Welcome To</span>
-                <h2 className="welcome-heading">Stellar Institute</h2>
-                <h3 className="welcome-motto">Crafting Careers Through Education</h3>
+                <h2 className="welcome-heading">Stellar Academy</h2>
+                <h3 className="welcome-motto">Learn | Shine | Excel</h3>
                 <Link to="/about" className="btn btn-primary">Read More</Link>
               </div>
             </ScrollReveal>
             <ScrollReveal direction="right">
               <div className="welcome-images">
-                <div className="welcome-img welcome-img-back">
-                  <ImagePlaceholder label="Campus Photo" />
-                </div>
-                <div className="welcome-img welcome-img-front">
-                  <ImagePlaceholder label="Students Photo" />
-                </div>
+                <Tilt3D intensity={5} glare>
+                  <div className="welcome-img welcome-img-back">
+                    <ImagePlaceholder label="Campus Photo" />
+                  </div>
+                </Tilt3D>
+                <Tilt3D intensity={7} glare>
+                  <div className="welcome-img-front-wrap">
+                    <div className="welcome-img welcome-img-front">
+                      <ImagePlaceholder label="Students Photo" />
+                    </div>
+                  </div>
+                </Tilt3D>
               </div>
             </ScrollReveal>
           </div>
@@ -83,12 +90,11 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Discover Stellar
+              Discover <span>Stellar</span>
             </motion.h2>
           </div>
 
           <div className="inst-tabs-layout">
-            {/* Left: Vertical Numbered Tabs */}
             <div className="inst-tabs-list">
               {institutes.map((inst, i) => (
                 <motion.button
@@ -106,20 +112,22 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Right: Content Panel */}
             <div className="inst-content-panel">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeInstitute}
                   className="inst-content-inner"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.35 }}
+                  initial={{ opacity: 0, rotateY: 5, x: 30 }}
+                  animate={{ opacity: 1, rotateY: 0, x: 0 }}
+                  exit={{ opacity: 0, rotateY: -5, x: -30 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.8, 0.25, 1] }}
+                  style={{ perspective: 1000 }}
                 >
-                  <div className="inst-content-image">
-                    <ImagePlaceholder label={`${institutes[activeInstitute].title} Photo`} />
-                  </div>
+                  <Tilt3D intensity={4} glare>
+                    <div className="inst-content-image">
+                      <ImagePlaceholder label={`${institutes[activeInstitute].title} Photo`} />
+                    </div>
+                  </Tilt3D>
                   <div className="inst-content-info">
                     <h3>{institutes[activeInstitute].title}</h3>
                     <ul>
@@ -150,7 +158,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              What Makes Us Stellar
+              What Makes Us <span>Stellar</span>
             </motion.h2>
           </div>
 
@@ -163,11 +171,13 @@ export default function Home() {
               { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, title: 'Career Support' },
               { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h4"/></svg>, title: '23+ Courses' }
             ].map((item, i) => (
-              <ScrollReveal key={i} delay={i * 0.08}>
-                <div className={`zigzag-tile ${i % 2 === 1 ? 'zigzag-tile-offset' : ''}`}>
-                  <span className="zigzag-icon">{item.icon}</span>
-                  <h4>{item.title}</h4>
-                </div>
+              <ScrollReveal key={i} delay={i * 0.08} direction={i % 2 === 0 ? 'up' : 'flip'}>
+                <Tilt3D intensity={8} glare>
+                  <div className={`zigzag-tile ${i % 2 === 1 ? 'zigzag-tile-offset' : ''}`}>
+                    <span className="zigzag-icon">{item.icon}</span>
+                    <h4>{item.title}</h4>
+                  </div>
+                </Tilt3D>
               </ScrollReveal>
             ))}
           </div>
@@ -186,10 +196,20 @@ export default function Home() {
             </div>
           </ScrollReveal>
           <div className="stats-grid">
-            <StatsCounter value={500} suffix="+" label="Students Enrolled" />
-            <StatsCounter value={23} suffix="+" label="Courses Offered" />
-            <StatsCounter value={50} suffix="+" label="Expert Faculty" />
-            <StatsCounter value={3} suffix="" label="Institutes" />
+            {[
+              { value: 500, suffix: '+', label: 'Students Enrolled' },
+              { value: 23, suffix: '+', label: 'Courses Offered' },
+              { value: 50, suffix: '+', label: 'Expert Faculty' },
+              { value: 3, suffix: '', label: 'Institutes' },
+            ].map((s, i) => (
+              <ScrollReveal key={i} delay={i * 0.1} direction="scale">
+                <Tilt3D intensity={5}>
+                  <div className="stat-card-3d">
+                    <StatsCounter value={s.value} suffix={s.suffix} label={s.label} />
+                  </div>
+                </Tilt3D>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
@@ -207,7 +227,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Professional Training
+              Professional <span>Training</span>
             </motion.h2>
             <motion.p 
               className="courses-provided-by"
@@ -225,22 +245,26 @@ export default function Home() {
           <div className="courses-scroll-wrap">
             <div className="courses-scroll">
               {featuredCourses.map((course, i) => (
-                <ScrollReveal key={course.id} delay={i * 0.06}>
-                  <div className="course-card-v2">
-                    <div className="course-card-img">
-                      {course.image ? (
-                        <img src={course.image} alt={course.title} loading="lazy" />
-                      ) : (
-                        <ImagePlaceholder label="Course Image" />
-                      )}
-                      <span className="course-badge">{i < 3 ? 'IT' : 'Beauty'}</span>
-                    </div>
-                    <div className="course-card-body">
-                      <h4>{course.title}</h4>
-                      <span className="course-dur">{course.duration}</span>
-                      <Link to="/contact" className="course-card-link">Enroll →</Link>
-                    </div>
-                  </div>
+                <ScrollReveal key={course.id} delay={i * 0.06} direction={i % 3 === 1 ? 'flip' : 'up'}>
+                  <Tilt3D intensity={6} glare>
+                    <Link to={`/course/${course.slug}`} className="course-card-v2-link">
+                      <div className="course-card-v2">
+                        <div className="course-card-img">
+                          {course.image ? (
+                            <img src={course.image} alt={course.title} loading="lazy" />
+                          ) : (
+                            <ImagePlaceholder label="Course Image" />
+                          )}
+                          <span className="course-badge">{i < 3 ? 'IT' : 'Beauty'}</span>
+                        </div>
+                        <div className="course-card-body">
+                          <h4>{course.title}</h4>
+                          <span className="course-dur">{course.duration}</span>
+                          <span className="course-card-link">View Details →</span>
+                        </div>
+                      </div>
+                    </Link>
+                  </Tilt3D>
                 </ScrollReveal>
               ))}
             </div>
@@ -264,21 +288,23 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Student Reviews
+              Student <span>Reviews</span>
             </motion.h2>
           </div>
 
           <div className="testimonials-stagger">
             {testimonials.slice(0, 3).map((t, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div className={`test-card ${i === 1 ? 'test-card-raised' : ''}`}>
-                  <div className="test-quote">"</div>
-                  <p>{t.quote}</p>
-                  <div className="test-author">
-                    <h5>{t.name}</h5>
-                    <span>{t.role}</span>
+              <ScrollReveal key={i} delay={i * 0.12} direction="rotateIn">
+                <Tilt3D intensity={4}>
+                  <div className={`test-card ${i === 1 ? 'test-card-raised' : ''}`}>
+                    <div className="test-quote">"</div>
+                    <p>{t.quote}</p>
+                    <div className="test-author">
+                      <h5>{t.name}</h5>
+                      <span>{t.role}</span>
+                    </div>
                   </div>
-                </div>
+                </Tilt3D>
               </ScrollReveal>
             ))}
           </div>
@@ -295,14 +321,16 @@ export default function Home() {
         </div>
         <div className="container partner-grid">
           <ScrollReveal direction="left">
-            <div className="partner-image-wrap">
-              <ImagePlaceholder label="Institute Photo" style={{ minHeight: '360px', borderRadius: '24px 100px 24px 24px', border: '4px solid rgba(255,255,255,0.15)' }} />
-            </div>
+            <Tilt3D intensity={4} glare>
+              <div className="partner-image-wrap">
+                <ImagePlaceholder label="Institute Photo" style={{ minHeight: '360px', borderRadius: '24px 100px 24px 24px', border: '4px solid rgba(255,255,255,0.15)' }} />
+              </div>
+            </Tilt3D>
           </ScrollReveal>
           <ScrollReveal direction="right">
             <div className="partner-content">
               <span className="welcome-tag">Join Us</span>
-              <h2>Become Part of<br />Stellar Institute</h2>
+              <h2>Become Part of<br />Stellar Academy</h2>
               <div className="partner-actions">
                 <Link to="/contact" className="btn btn-primary">Register Now</Link>
                 <Link to="/about" className="btn btn-secondary">Learn More</Link>

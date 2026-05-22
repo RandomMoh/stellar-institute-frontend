@@ -146,7 +146,7 @@ export default function Contact() {
                 <div className="contact-map">
                   <iframe
                     src="https://maps.google.com/maps?q=31.563333,74.3266952&z=17&output=embed"
-                    title="Stellar Institute Location"
+                    title="Stellar Academy Location"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
