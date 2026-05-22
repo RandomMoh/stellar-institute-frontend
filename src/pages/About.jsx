@@ -9,7 +9,7 @@ export default function About() {
       <section className="page-hero relative" style={{ overflow: 'hidden' }}>
         <FloatingShapes />
         <div className="page-hero-content container relative z-10">
-          <h1>About Stellar Academy</h1>
+          <h1>About Stellar Institute</h1>
           <div className="breadcrumb">
             <Link to="/">Home</Link> <span>/</span> <span>About Us</span>
           </div>
@@ -39,7 +39,7 @@ export default function About() {
             </ScrollReveal>
             <ScrollReveal direction="right">
               <div className="about-visual">
-                <h3>Stellar Academy</h3>
+                <h3>Stellar Institute</h3>
                 <p>Lahore, Pakistan · Est. 2023</p>
               </div>
             </ScrollReveal>
@@ -55,7 +55,7 @@ export default function About() {
 
             <div className="timeline">
               {[
-                { title: 'Founded Stellar Academy' },
+                { title: 'Founded Stellar Institute' },
                 { title: 'Launched Skilled Institute' },
                 { title: 'Stellar Academy Opens' },
                 { title: 'Stellar School & College' },

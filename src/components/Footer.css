@@ -2,18 +2,7 @@
   background-color: var(--primary-dark);
   color: rgba(255, 255, 255, 0.7);
   padding-top: 80px;
-  position: relative;
-  overflow: hidden;
-}
-
-.footer-mesh-overlay {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    radial-gradient(ellipse at 10% 90%, rgba(43, 181, 212, 0.08) 0%, transparent 40%),
-    radial-gradient(ellipse at 90% 10%, rgba(107, 63, 160, 0.08) 0%, transparent 40%);
-  pointer-events: none;
-  z-index: 0;
+  border-top: 3px solid var(--primary-light);
 }
 
 .footer-grid {
@@ -21,8 +10,6 @@
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 50px;
   margin-bottom: 60px;
-  position: relative;
-  z-index: 1;
 }
 
 .footer-logo-img {

@@ -3,7 +3,7 @@
    =========================== */
 
 .page-hero {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 40%, var(--accent-purple) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--primary-dark) 100%);
   padding: 80px 0;
   text-align: center;
   color: #ffffff;
@@ -73,8 +73,7 @@
 
 .program-card:hover {
   transform: translate(-4px, -4px);
-  border-color: var(--accent-blue);
-  box-shadow: 0 15px 35px rgba(43, 181, 212, 0.15);
+  border-color: var(--primary-light);
 }
 
 .program-card:hover::before {
@@ -199,8 +198,7 @@
 
 .school-card:hover, .college-card:hover {
   transform: translate(-4px, -4px);
-  border-color: var(--accent-blue);
-  box-shadow: 0 15px 35px rgba(43, 181, 212, 0.15);
+  border-color: var(--primary-light);
 }
 
 .school-card:hover::before, .college-card:hover::before {
@@ -350,8 +348,7 @@
 
 .contact-info-card:hover {
   transform: translate(-3px, -3px);
-  border-color: var(--accent-purple);
-  box-shadow: 0 10px 25px rgba(107, 63, 160, 0.15);
+  border-color: var(--primary-light);
 }
 
 .contact-info-card:hover::before {
@@ -463,8 +460,7 @@
 
 .about-value:hover {
   transform: translate(-2px, -2px);
-  border-color: var(--accent-blue);
-  box-shadow: 0 8px 20px rgba(43, 181, 212, 0.15);
+  border-color: var(--primary-light);
 }
 
 .about-value:hover::before {
@@ -643,17 +639,17 @@
 }
 
 .category-btn:hover {
-  border-color: var(--accent-blue);
-  background-color: rgba(43, 181, 212, 0.05);
+  border-color: var(--primary);
+  background-color: var(--bg-color-alt);
   color: var(--text-main);
   transform: translateX(4px);
 }
 
 .category-btn.active {
-  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
-  border-color: var(--accent-blue);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-color: var(--primary);
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(43, 181, 212, 0.25);
+  box-shadow: 0 4px 12px rgba(10, 37, 64, 0.2);
 }
 
 .cat-count {

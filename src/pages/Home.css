@@ -179,11 +179,11 @@
 }
 
 .inst-tab-active {
-  background: rgba(43, 181, 212, 0.04);
+  background: rgba(10, 37, 64, 0.05);
 }
 
 .inst-tab-active::after {
-  background: linear-gradient(to bottom, var(--accent-blue), var(--accent-purple));
+  background: var(--primary);
 }
 
 .inst-tab-num {
@@ -351,17 +351,17 @@
   width: 64px;
   height: 64px;
   margin: 0 auto 16px;
-  background: linear-gradient(135deg, rgba(43, 181, 212, 0.08), rgba(107, 63, 160, 0.08));
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.06), rgba(30, 58, 138, 0.12));
   border-radius: 16px;
   color: var(--primary);
   transition: all 0.35s ease;
 }
 
 .zigzag-tile:hover .zigzag-icon {
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
   color: #ffffff;
-  transform: scale(1.08) translateZ(20px);
-  box-shadow: 0 8px 24px rgba(43, 181, 212, 0.25);
+  transform: scale(1.08);
+  box-shadow: 0 8px 24px rgba(30, 58, 138, 0.25);
 }
 
 .zigzag-tile h4 {
@@ -424,20 +424,13 @@
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all var(--transition-3d);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
 }
 
 .stat-item:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateY(-6px);
-  border-color: rgba(43, 181, 212, 0.3);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-}
-
-.stat-card-3d {
-  transition: all var(--transition-3d);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
 }
 
 .stat-value {
@@ -596,7 +589,7 @@
   position: absolute;
   bottom: 12px;
   left: 12px;
-  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  background: var(--primary);
   color: #ffffff;
   padding: 4px 14px;
   border-radius: 20px;
@@ -605,12 +598,6 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   z-index: 2;
-}
-
-.course-card-v2-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
 }
 
 .course-card-body {
@@ -690,7 +677,7 @@
 
 .test-card:hover {
   transform: translate(-4px, -4px);
-  border-color: var(--accent-purple);
+  border-color: var(--primary-light);
 }
 
 .test-card:hover::before {
@@ -747,7 +734,7 @@
   padding: 120px 0;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 40%, var(--accent-purple) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 60%, var(--primary-dark) 100%);
 }
 
 /* Geometric decorative shapes */

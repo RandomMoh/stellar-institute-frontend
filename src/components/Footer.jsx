@@ -5,13 +5,12 @@ import './Footer.css';
 export default function Footer() {
   return (
     <footer className="lms-footer">
-      <div className="footer-mesh-overlay" />
       <div className="container">
         <div className="footer-grid">
           
           <div className="footer-widget">
             <Link to="/" className="footer-logo-link">
-              <img src="/stellar_logo.png" alt="Stellar Academy Logo" className="footer-logo-img" />
+              <img src="/stellar_logo.png" alt="Stellar Institute Logo" className="footer-logo-img" />
             </Link>
             <ul className="footer-contact-info">
               <li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{flexShrink:0,marginRight:6}}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> {contactInfo.address}</li>
@@ -66,7 +65,7 @@ export default function Footer() {
       
       <div className="footer-bottom">
         <div className="container">
-          <p>© {new Date().getFullYear()} Stellar Academy. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Stellar Institute. All rights reserved.</p>
         </div>
       </div>
     </footer>

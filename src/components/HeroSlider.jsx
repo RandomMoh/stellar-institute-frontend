@@ -5,7 +5,7 @@ import './HeroSlider.css';
 
 const slides = [
   {
-    tag: 'Welcome To Stellar Academy',
+    tag: 'Welcome To Stellar Institute',
     heading: 'Crafting Careers\nThrough Education',
     cta: { text: 'Explore Programs', link: '/skilled-institute' },
     cta2: { text: 'Contact Us', link: '/contact' }
@@ -27,7 +27,6 @@ const slides = [
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const goTo = useCallback((index) => {
     setDirection(index > current ? 1 : -1);
@@ -44,17 +43,10 @@ export default function HeroSlider() {
     return () => clearInterval(timer);
   }, [next]);
 
-  const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
-    const x = (clientX / window.innerWidth - 0.5) * 2;
-    const y = (clientY / window.innerHeight - 0.5) * 2;
-    setMousePos({ x, y });
-  };
-
   const slide = slides[current];
 
   return (
-    <section className="hero-slider" id="hero-slider" onMouseMove={handleMouseMove}>
+    <section className="hero-slider" id="hero-slider">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -64,42 +56,18 @@ export default function HeroSlider() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* CSS-only gradient background */}
+          {/* CSS-only gradient background — replace with real photos later */}
           <div className="hero-slide-bg hero-slide-bg-placeholder" />
           <div className="hero-slide-overlay" />
           
-          {/* Decorative shapes with 3D parallax */}
-          <div className="hero-deco" style={{ perspective: 1000 }}>
-            <motion.div 
-              className="hero-deco-ring hero-deco-ring-1" 
-              animate={{ x: mousePos.x * -40, y: mousePos.y * -40, rotateX: mousePos.y * 20, rotateY: mousePos.x * 20 }}
-              transition={{ type: 'spring', damping: 30, stiffness: 100 }}
-            />
-            <motion.div 
-              className="hero-deco-ring hero-deco-ring-2" 
-              animate={{ x: mousePos.x * 30, y: mousePos.y * 30, rotateX: mousePos.y * -15, rotateY: mousePos.x * -15 }}
-              transition={{ type: 'spring', damping: 30, stiffness: 100 }}
-            />
+          {/* Decorative shapes */}
+          <div className="hero-deco">
+            <div className="hero-deco-ring hero-deco-ring-1" />
+            <div className="hero-deco-ring hero-deco-ring-2" />
             <div className="hero-deco-line hero-deco-line-1" />
-            
-            {/* New 3D floating shapes */}
-            <motion.div 
-              className="hero-3d-shape shape-cube"
-              animate={{ x: mousePos.x * -60, y: mousePos.y * -60, rotate: mousePos.x * 45 }}
-              transition={{ type: 'spring', damping: 40, stiffness: 80 }}
-            />
-            <motion.div 
-              className="hero-3d-shape shape-sphere"
-              animate={{ x: mousePos.x * 50, y: mousePos.y * 50 }}
-              transition={{ type: 'spring', damping: 50, stiffness: 60 }}
-            />
           </div>
 
-          <motion.div 
-            className="container hero-slide-content"
-            animate={{ x: mousePos.x * 15, y: mousePos.y * 15 }}
-            transition={{ type: 'spring', damping: 40, stiffness: 120 }}
-          >
+          <div className="container hero-slide-content">
             <motion.span
               className="hero-tag"
               initial={{ opacity: 0, y: 20 }}
@@ -126,7 +94,7 @@ export default function HeroSlider() {
               <Link to={slide.cta.link} className="btn btn-hero-primary">{slide.cta.text}</Link>
               <Link to={slide.cta2.link} className="btn btn-hero-outline">{slide.cta2.text}</Link>
             </motion.div>
-          </motion.div>
+          </div>
         </motion.div>
       </AnimatePresence>
 
