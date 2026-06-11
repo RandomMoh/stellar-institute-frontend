@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Route /api/contact to /api/contact.php (for the contact form)
+  RewriteRule ^api/contact$ api/contact.php [L]
+
+  # React Router Catch-all (for SPA)
+  # If the requested file or directory does not exist, serve index.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>
