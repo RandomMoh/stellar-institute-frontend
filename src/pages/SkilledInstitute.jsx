@@ -27,8 +27,8 @@ export default function SkilledInstitute() {
       <section className="page-hero relative" style={{ overflow: 'hidden' }}>
         <FloatingShapes />
         <div className="page-hero-content container relative z-10">
-          <h1>Stellar <span>Skilled Institute</span></h1>
-          <p>Professional IT and Beauty courses designed for career growth with hands-on practical training and industry-recognized certifications.</p>
+          <h1>Learn Skills. Build a Career.<br/><span>Start earning.</span></h1>
+          <p>Master Graphic Design, Digital Marketing, Web Development, and more, and unlock real earning opportunities with international clients.</p>
           <div className="breadcrumb">
             <Link to="/">Home</Link> <span>/</span> <span>Skilled Institute</span>
           </div>

@@ -53,7 +53,9 @@ export default function Home() {
               <div className="welcome-text">
                 <span className="welcome-tag">Welcome To</span>
                 <h2 className="welcome-heading">Stellar Institute</h2>
-                <h3 className="welcome-motto">Crafting Careers Through Education</h3>
+                <p className="welcome-motto" style={{ fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-light)', marginBottom: '30px' }}>
+                  At Stellar Institute, we believe every student deserves the right environment to learn, grow, and succeed. From quality school education to professional skill-based courses, we provide a complete learning pathway, one that builds knowledge, character, and real-world readiness.
+                </p>
                 <Link to="/about" className="btn btn-primary">Read More</Link>
               </div>
             </ScrollReveal>
@@ -150,23 +152,26 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              What Makes Us Stellar
+              Why Choose Stellar Institute
             </motion.h2>
           </div>
 
-          <div className="zigzag-grid">
+          <div className="zigzag-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
             {[
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/></svg>, title: 'Expert Faculty' },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>, title: 'Modern Labs' },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>, title: 'Certifications' },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C6 4 6 2 12 2s6 2 7.5 2a2.5 2.5 0 0 1 0 5H18"/><path d="M18 9v1a6 6 0 0 1-12 0V9"/><path d="M12 16v6"/><path d="M8 22h8"/></svg>, title: 'Proven Results' },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, title: 'Career Support' },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h4"/></svg>, title: '23+ Courses' }
+              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/></svg>, title: 'Expert Faculty', desc: 'Learn from qualified, experienced teachers who are dedicated to your academic and professional growth.' },
+              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>, title: 'Modern Labs', desc: 'Hands-on learning with up-to-date technology and equipment built for practical, real-world skill development.' },
+              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>, title: 'Certifications', desc: 'Earn recognized certifications that strengthen your profile and open doors to better career opportunities.' },
+              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C6 4 6 2 12 2s6 2 7.5 2a2.5 2.5 0 0 1 0 5H18"/><path d="M18 9v1a6 6 0 0 1-12 0V9"/><path d="M12 16v6"/><path d="M8 22h8"/></svg>, title: 'Disciplined Environment', desc: 'A safe, structured, and focused atmosphere where students can learn with confidence and clarity.' },
+              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, title: 'Separate Classes', desc: 'A comfortable and respectful learning environment designed to maximize concentration and academic performance.' },
+              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M8 7h6"/><path d="M8 11h4"/></svg>, title: 'Regular Tests', desc: 'Consistent assessments and progress monitoring to keep every student on the path to success.' },
+              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/></svg>, title: 'Job Placement', desc: "We don't just train you, we connect you with real opportunities and help you step confidently into your career." },
+              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>, title: 'Affordable & Accessible', desc: 'Quality education and professional training made accessible for every student and family.' }
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.08}>
-                <div className={`zigzag-tile ${i % 2 === 1 ? 'zigzag-tile-offset' : ''}`}>
-                  <span className="zigzag-icon">{item.icon}</span>
-                  <h4>{item.title}</h4>
+                <div className={`zigzag-tile ${i % 2 === 1 ? 'zigzag-tile-offset' : ''}`} style={{ padding: '24px', textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                  <span className="zigzag-icon" style={{ marginBottom: '16px' }}>{item.icon}</span>
+                  <h4 style={{ margin: 0, fontSize: '1.2rem' }}>{item.title}</h4>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px', lineHeight: '1.5' }}>{item.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -182,7 +187,11 @@ export default function Home() {
         <div className="container stats-inner">
           <ScrollReveal direction="left">
             <div className="stats-heading">
-              <h2>Stellar<br />By The Numbers</h2>
+              <div className="section-label" style={{ color: 'var(--primary-color)' }}>Our Impact</div>
+              <h2>Stellar By The Numbers</h2>
+              <p style={{ marginTop: '15px', color: 'rgba(255,255,255,0.9)', fontSize: '1.1rem', maxWidth: '400px' }}>
+                A growing community of learners, achievers, and future leaders backed by dedicated faculty and a proven system.
+              </p>
             </div>
           </ScrollReveal>
           <div className="stats-grid">

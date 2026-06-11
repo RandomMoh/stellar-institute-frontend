@@ -6,19 +6,22 @@ import './HeroSlider.css';
 const slides = [
   {
     tag: 'Welcome To Stellar Institute',
-    heading: 'Crafting Careers\nThrough Education',
+    heading: 'One Institution.\nThree Paths to Success.',
+    subheading: 'From foundational education to professional skills, Stellar Institute shapes futures at every stage.',
     cta: { text: 'Explore Programs', link: '/skilled-institute' },
     cta2: { text: 'Contact Us', link: '/contact' }
   },
   {
     tag: 'Stellar Academy',
-    heading: 'From Foundation\nTo Excellence',
+    heading: 'Where Knowledge\nMeets Character',
+    subheading: 'Quality education from Nursery to FSc nurturing bright minds in a disciplined, future-focused environment.',
     cta: { text: 'View Programs', link: '/academy' },
     cta2: { text: 'Register Now', link: '/contact' }
   },
   {
     tag: 'Stellar Skilled Institute',
-    heading: '23+ Professional\nCourses',
+    heading: 'Learn Skills. Build a Career.\nStart earning.',
+    subheading: 'Master Graphic Design, Digital Marketing, Web Development, and more, and unlock real earning opportunities with international clients.',
     cta: { text: 'Browse Courses', link: '/skilled-institute' },
     cta2: { text: 'Enroll Now', link: '/contact' }
   }
@@ -85,6 +88,17 @@ export default function HeroSlider() {
                 <span key={i}>{line}<br /></span>
               ))}
             </motion.h1>
+            {slide.subheading && (
+              <motion.p
+                className="hero-subheading"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.7 }}
+                style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.9)', marginBottom: '30px', maxWidth: '600px', lineHeight: '1.6' }}
+              >
+                {slide.subheading}
+              </motion.p>
+            )}
             <motion.div
               className="hero-slide-actions"
               initial={{ opacity: 0, y: 20 }}
