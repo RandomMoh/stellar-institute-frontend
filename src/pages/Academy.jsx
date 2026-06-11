@@ -11,7 +11,7 @@ export default function Academy() {
       <section className="page-hero relative" style={{ overflow: 'hidden' }}>
         <FloatingShapes />
         <div className="page-hero-content container relative z-10">
-          <div className="section-label" style={{ color: 'var(--primary-color)', marginBottom: '15px' }}>Welcome to Stellar Academy</div>
+          <div className="section-label" style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '15px' }}>Welcome to Stellar Academy</div>
           <h1 style={{ marginBottom: '20px' }}>Learn Today.<br/><span>Lead Tomorrow.</span></h1>
           <p>A disciplined, future-focused academic environment where students from Grade 5 to Intermediate build knowledge, confidence, and character.</p>
           <div style={{ marginTop: '30px' }}>
@@ -20,13 +20,13 @@ export default function Academy() {
         </div>
       </section>
 
-      <section className="section" style={{ backgroundColor: 'var(--bg-light)', padding: '80px 0' }}>
+      <section className="section" style={{ backgroundColor: 'var(--bg-color-alt)', padding: '80px 0' }}>
         <div className="container">
           <ScrollReveal>
             <div className="section-header" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
               <div className="section-label">About Us</div>
               <h2 className="section-title" style={{ marginBottom: '20px' }}>Shaping Bright Minds Since Day One</h2>
-              <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-light)', marginBottom: '30px' }}>
+              <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '30px' }}>
                 At Stellar Academy, we believe education is more than textbooks and exams. We provide a structured, nurturing environment where every student receives individual attention, strong academic preparation, and the values needed to succeed in life. From Middle School to Intermediate, our programs are designed to build a solid foundation for every stage of your child's future.
               </p>
               <Link to="/about" className="btn btn-secondary">Learn More</Link>
@@ -102,8 +102,8 @@ export default function Academy() {
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
                 <div className="program-card" style={{ height: '100%', padding: '30px' }}>
-                  <h3 style={{ fontSize: '1.2rem', marginBottom: '15px', color: 'var(--primary-color)' }}>{item.title}</h3>
-                  <p style={{ color: 'var(--text-light)', lineHeight: '1.6' }}>{item.desc}</p>
+                  <h3 style={{ fontSize: '1.2rem', marginBottom: '15px', color: 'var(--primary)' }}>{item.title}</h3>
+                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>{item.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -111,7 +111,7 @@ export default function Academy() {
         </div>
       </section>
 
-      <section className="section" style={{ backgroundColor: 'var(--bg-light)', padding: '80px 0' }}>
+      <section className="section" style={{ backgroundColor: 'var(--bg-color-alt)', padding: '80px 0' }}>
         <div className="container">
           <div className="section-header">
             <div className="section-label">How to Enroll</div>
@@ -126,11 +126,11 @@ export default function Academy() {
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
                 <div style={{ padding: '30px', backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', textAlign: 'center', height: '100%' }}>
-                  <div style={{ width: '50px', height: '50px', backgroundColor: 'var(--primary-color)', color: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 'bold', margin: '0 auto 20px' }}>
+                  <div style={{ width: '50px', height: '50px', backgroundColor: 'var(--primary)', color: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 'bold', margin: '0 auto 20px' }}>
                     {i + 1}
                   </div>
                   <h4 style={{ marginBottom: '15px' }}>{item.step}</h4>
-                  <p style={{ color: 'var(--text-light)', fontSize: '0.95rem' }}>{item.desc}</p>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>{item.desc}</p>
                 </div>
               </ScrollReveal>
             ))}

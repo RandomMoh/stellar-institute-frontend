@@ -53,7 +53,7 @@ export default function Home() {
               <div className="welcome-text">
                 <span className="welcome-tag">Welcome To</span>
                 <h2 className="welcome-heading">Stellar Institute</h2>
-                <p className="welcome-motto" style={{ fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-light)', marginBottom: '30px' }}>
+                <p className="welcome-motto" style={{ fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '30px' }}>
                   At Stellar Institute, we believe every student deserves the right environment to learn, grow, and succeed. From quality school education to professional skill-based courses, we provide a complete learning pathway, one that builds knowledge, character, and real-world readiness.
                 </p>
                 <Link to="/about" className="btn btn-primary">Read More</Link>
@@ -156,7 +156,7 @@ export default function Home() {
             </motion.h2>
           </div>
 
-          <div className="zigzag-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+          <div className="zigzag-grid">
             {[
               { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/></svg>, title: 'Expert Faculty', desc: 'Learn from qualified, experienced teachers who are dedicated to your academic and professional growth.' },
               { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>, title: 'Modern Labs', desc: 'Hands-on learning with up-to-date technology and equipment built for practical, real-world skill development.' },
@@ -171,7 +171,7 @@ export default function Home() {
                 <div className={`zigzag-tile ${i % 2 === 1 ? 'zigzag-tile-offset' : ''}`} style={{ padding: '24px', textAlign: 'left', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                   <span className="zigzag-icon" style={{ marginBottom: '16px' }}>{item.icon}</span>
                   <h4 style={{ margin: 0, fontSize: '1.2rem' }}>{item.title}</h4>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-light)', marginTop: '10px', lineHeight: '1.5' }}>{item.desc}</p>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '10px', lineHeight: '1.5' }}>{item.desc}</p>
                 </div>
               </ScrollReveal>
             ))}
