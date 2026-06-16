@@ -4,6 +4,7 @@ const WebsiteImagesContext = createContext({});
 
 export function WebsiteImagesProvider({ children }) {
   const [images, setImages] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     fetch('/api/admin-images')
@@ -17,18 +18,19 @@ export function WebsiteImagesProvider({ children }) {
           setImages(imgMap);
         }
       })
-      .catch(err => console.error('Failed to load website images:', err));
+      .catch(err => console.error('Failed to load website images:', err))
+      .finally(() => setLoaded(true));
   }, []);
 
   return (
-    <WebsiteImagesContext.Provider value={images}>
+    <WebsiteImagesContext.Provider value={{ images, loaded }}>
       {children}
     </WebsiteImagesContext.Provider>
   );
 }
 
 export function useWebsiteImage(placeholderKey) {
-  const images = useContext(WebsiteImagesContext);
+  const { images } = useContext(WebsiteImagesContext);
   return images[placeholderKey] || null;
 }
 

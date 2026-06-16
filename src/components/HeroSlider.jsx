@@ -33,7 +33,7 @@ const slides = [
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
-  const images = useWebsiteImages(); // Subscribe to context updates
+  const { loaded } = useWebsiteImages();
 
   const goTo = useCallback((index) => {
     setDirection(index > current ? 1 : -1);
@@ -46,9 +46,10 @@ export default function HeroSlider() {
   }, []);
 
   useEffect(() => {
+    if (!loaded) return;
     const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
-  }, [next]);
+  }, [next, loaded]);
 
   const slide = slides[current];
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useWebsiteImage } from './WebsiteImagesProvider';
+import { useWebsiteImage, useWebsiteImages } from './WebsiteImagesProvider';
 import './ImagePlaceholder.css';
 
 /**
@@ -13,6 +13,9 @@ import './ImagePlaceholder.css';
  */
 export default function ImagePlaceholder({ label = 'Image Here', placeholderKey, className = '', style = {} }) {
   const customImage = useWebsiteImage(placeholderKey || label);
+  const { loaded } = useWebsiteImages();
+
+  if (!loaded) return null; // Wait for API to resolve before showing fallback
 
   if (customImage) {
     return (
