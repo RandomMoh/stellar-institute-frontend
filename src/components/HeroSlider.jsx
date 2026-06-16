@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThreeBackground from './ThreeBackground';
 import ImagePlaceholder from './ImagePlaceholder';
+import { useWebsiteImages } from './WebsiteImagesProvider';
 import './HeroSlider.css';
 
 const slides = [
@@ -32,6 +33,7 @@ const slides = [
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+  const images = useWebsiteImages(); // Subscribe to context updates
 
   const goTo = useCallback((index) => {
     setDirection(index > current ? 1 : -1);

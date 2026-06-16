@@ -31,3 +31,7 @@ export function useWebsiteImage(placeholderKey) {
   const images = useContext(WebsiteImagesContext);
   return images[placeholderKey] || null;
 }
+
+export function useWebsiteImages() {
+  return useContext(WebsiteImagesContext);
+}
