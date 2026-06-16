@@ -93,7 +93,7 @@ export default function SkilledInstitute() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.05 }}
-                    className="lms-course-card popup-card" 
+                    className="lms-course-card" 
                     style={{ height: '100%' }}
                   >
                     <div className="course-image-placeholder">
@@ -111,7 +111,7 @@ export default function SkilledInstitute() {
                           }}
                         />
                       ) : (
-                        <ImagePlaceholder label="Course Image" />
+                        <ImagePlaceholder label={course.title} />
                       )}
                       <span className="course-category">
                         {course.category === 'it' ? 'IT Courses' : 'Female Beauty Courses'}
