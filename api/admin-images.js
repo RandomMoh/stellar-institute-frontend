@@ -46,6 +46,17 @@ export default async function handler(req, res) {
       return res.status(200).json(rows[0]);
     }
 
+    if (req.method === 'DELETE') {
+      const user = verifyToken(req);
+      if (!user) return res.status(401).json({ error: 'Unauthorized' });
+
+      const { id } = req.body;
+      if (!id) return res.status(400).json({ error: 'ID required' });
+
+      await db`DELETE FROM website_images WHERE id = ${id}`;
+      return res.status(200).json({ success: true });
+    }
+
     return res.status(405).json({ error: 'Method not allowed' });
   } catch (err) {
     console.error('Admin images error:', err);

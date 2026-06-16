@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThreeBackground from './ThreeBackground';
+import ImagePlaceholder from './ImagePlaceholder';
 import './HeroSlider.css';
 
 const slides = [
@@ -61,8 +62,9 @@ export default function HeroSlider() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* CSS-only gradient background — replace with real photos later */}
-          <div className="hero-slide-bg hero-slide-bg-placeholder" />
+          <div className="hero-slide-bg" style={{ position: 'absolute', inset: 0, zIndex: -2, width: '100%', height: '100%' }}>
+            <ImagePlaceholder label={`Hero Slide ${current + 1}`} />
+          </div>
           <div className="hero-slide-overlay" />
           
           {/* Decorative shapes */}

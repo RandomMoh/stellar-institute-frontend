@@ -169,6 +169,16 @@ export default function StellarAdmin() {
     }
   };
 
+  const handleDeleteImg = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this image?')) return;
+    try {
+      const r = await fetch(`${API}/admin-images`, {
+        method: 'DELETE', headers: headers(), body: JSON.stringify({ id })
+      });
+      if (r.ok) fetchData();
+    } catch {}
+  };
+
   const openEditImg = (i) => {
     setImgForm({ placeholder_key: i.placeholder_key, image_url: i.image_url });
     setShowImgForm(true);
@@ -350,8 +360,11 @@ export default function StellarAdmin() {
                       <img src={img.image_url} alt={img.placeholder_key} />
                     </div>
                     <div className="image-card-info">
-                      <div className="image-card-key">{img.placeholder_key}</div>
-                      <button onClick={() => openEditImg(img)} className="btn btn-secondary" style={{ padding: '4px 8px', fontSize: '12px' }}>Replace</button>
+                      <div className="image-card-key" title={img.placeholder_key}>{img.placeholder_key}</div>
+                      <div style={{ display: 'flex', gap: '4px' }}>
+                        <button onClick={() => openEditImg(img)} className="btn btn-secondary" style={{ padding: '4px 8px', fontSize: '11px' }}>Replace</button>
+                        <button onClick={() => handleDeleteImg(img.id)} className="btn btn-secondary" style={{ padding: '4px 8px', fontSize: '11px', color: '#ff4d4f', borderColor: 'transparent' }}>Delete</button>
+                      </div>
                     </div>
                   </div>
                 ))
