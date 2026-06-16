@@ -1,3 +1,5 @@
+import React from 'react';
+import { useWebsiteImage } from './WebsiteImagesProvider';
 import './ImagePlaceholder.css';
 
 /**
@@ -9,15 +11,28 @@ import './ImagePlaceholder.css';
  *   - className: optional extra class
  *   - style: optional inline style overrides
  */
-export default function ImagePlaceholder({ label = 'Image Here', className = '', style = {} }) {
+export default function ImagePlaceholder({ label = 'Image Here', placeholderKey, className = '', style = {} }) {
+  const customImage = useWebsiteImage(placeholderKey || label);
+
+  if (customImage) {
+    return (
+      <img 
+        src={customImage} 
+        alt={label} 
+        className={className} 
+        style={{ width: '100%', height: '100%', objectFit: 'cover', ...style }} 
+      />
+    );
+  }
+
   return (
-    <div className={`img-placeholder ${className}`} style={style}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <div className={`img-placeholder ${className}`} style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--admin-hover, #f0f0f0)', color: 'var(--admin-muted, #888)', ...style }}>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '8px' }}>
         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
         <circle cx="8.5" cy="8.5" r="1.5"/>
         <polyline points="21 15 16 10 5 21"/>
       </svg>
-      <span>{label}</span>
+      <span style={{ fontSize: '13px', fontWeight: '500' }}>{label}</span>
     </div>
   );
 }

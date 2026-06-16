@@ -304,8 +304,9 @@
 }
 
 .zigzag-tile {
-  background: #ffffff;
-  border: 1px solid var(--accent);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 16px;
   padding: 40px 24px;
   text-align: center;
@@ -534,10 +535,11 @@
 .course-card-v2 {
   width: 300px;
   flex-shrink: 0;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid var(--accent);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   position: relative;
   z-index: 1;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -652,8 +654,9 @@
 }
 
 .test-card {
-  background: #ffffff;
-  border: 1px solid var(--accent);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 20px;
   padding: 36px;
   position: relative;
@@ -796,6 +799,104 @@
 
 .partner-content {
   color: #ffffff;
+}
+
+/* ===========================
+   MOBILE RESPONSIVENESS
+   =========================== */
+@media (max-width: 992px) {
+  .welcome-grid, 
+  .inst-tabs-layout, 
+  .stats-inner, 
+  .partner-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .welcome-text, .partner-content {
+    text-align: center;
+  }
+
+  .welcome-images {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .inst-tabs-list {
+    border-right: none;
+    border-bottom: 3px solid var(--accent);
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    padding-right: 0;
+  }
+
+  .inst-tab {
+    border-right: none;
+    border-bottom: 3px solid transparent;
+    margin-right: 0;
+    margin-bottom: -13px;
+    padding: 16px 20px;
+    white-space: nowrap;
+  }
+
+  .inst-tab::after {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 3px;
+  }
+
+  .inst-content-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-heading {
+    font-size: 32px;
+  }
+  
+  .welcome-motto {
+    font-size: 16px;
+  }
+
+  .zigzag-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .zigzag-tile-offset {
+    margin-top: 0;
+  }
+
+  .testimonials-stagger {
+    grid-template-columns: 1fr;
+  }
+
+  .test-card-raised {
+    margin-top: 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .welcome-img-back {
+    width: 200px;
+    height: 250px;
+  }
+  
+  .welcome-img-front {
+    width: 180px;
+    height: 200px;
+  }
 }
 
 .partner-content .welcome-tag {

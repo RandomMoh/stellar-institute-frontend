@@ -1,0 +1,33 @@
+import React, { createContext, useContext, useState, useEffect } from 'react';
+
+const WebsiteImagesContext = createContext({});
+
+export function WebsiteImagesProvider({ children }) {
+  const [images, setImages] = useState({});
+
+  useEffect(() => {
+    fetch('/api/admin-images')
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) {
+          const imgMap = {};
+          data.forEach(img => {
+            imgMap[img.placeholder_key] = img.image_url;
+          });
+          setImages(imgMap);
+        }
+      })
+      .catch(err => console.error('Failed to load website images:', err));
+  }, []);
+
+  return (
+    <WebsiteImagesContext.Provider value={images}>
+      {children}
+    </WebsiteImagesContext.Provider>
+  );
+}
+
+export function useWebsiteImage(placeholderKey) {
+  const images = useContext(WebsiteImagesContext);
+  return images[placeholderKey] || null;
+}

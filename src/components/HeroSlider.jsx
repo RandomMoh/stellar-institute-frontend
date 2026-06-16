@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThreeBackground from './ThreeBackground';
 import './HeroSlider.css';
 
 const slides = [
@@ -49,7 +50,8 @@ export default function HeroSlider() {
   const slide = slides[current];
 
   return (
-    <section className="hero-slider" id="hero-slider">
+    <section className="hero-slider" id="hero-slider" style={{ position: 'relative' }}>
+      <ThreeBackground />
       <AnimatePresence mode="wait">
         <motion.div
           key={current}

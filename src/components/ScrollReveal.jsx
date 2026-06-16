@@ -1,44 +1,55 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ScrollReveal = React.memo(function ScrollReveal({ children, direction = 'up', delay = 0, className = '' }) {
   const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
+    if (!ref.current) return;
+
+    const el = ref.current;
+    
+    // Initial states based on direction
+    let startState = { opacity: 0 };
+    switch (direction) {
+      case 'up': startState.y = 40; break;
+      case 'down': startState.y = -40; break;
+      case 'left': startState.x = -40; break;
+      case 'right': startState.x = 40; break;
+      case 'scale': startState.scale = 0.9; break;
+    }
+
+    gsap.fromTo(
+      el,
+      startState,
+      {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        delay: delay,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          toggleActions: 'play none none none'
         }
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      }
     );
 
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const variants = {
-    up: { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } },
-    down: { hidden: { opacity: 0, y: -40 }, visible: { opacity: 1, y: 0 } },
-    left: { hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0 } },
-    right: { hidden: { opacity: 0, x: 40 }, visible: { opacity: 1, x: 0 } },
-    scale: { hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1 } },
-  };
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.trigger === el && t.kill());
+    };
+  }, [direction, delay]);
 
   return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial="hidden"
-      animate={isVisible ? 'visible' : 'hidden'}
-      variants={variants[direction]}
-      transition={{ duration: 0.6, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
+    <div ref={ref} className={className} style={{ willChange: 'transform, opacity' }}>
       {children}
-    </motion.div>
+    </div>
   );
 });
 

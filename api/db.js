@@ -1,4 +1,5 @@
 import { neon } from '@neondatabase/serverless';
+import bcrypt from 'bcryptjs';
 
 let sql;
 
@@ -37,4 +38,22 @@ export async function ensureTables() {
       name VARCHAR(150)
     )
   `;
+
+  await db`
+    CREATE TABLE IF NOT EXISTS website_images (
+      id SERIAL PRIMARY KEY,
+      placeholder_key VARCHAR(100) NOT NULL UNIQUE,
+      image_url TEXT NOT NULL,
+      updated_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
+  const existingAdmin = await db`SELECT id FROM admin_users WHERE username = 'admin'`;
+  if (existingAdmin.length === 0) {
+    const hashed = await bcrypt.hash('Stellar@2026', 12);
+    await db`
+      INSERT INTO admin_users (username, password, name)
+      VALUES ('admin', ${hashed}, 'Admin')
+    `;
+  }
 }

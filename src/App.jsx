@@ -13,6 +13,8 @@ import ComingSoon from './pages/ComingSoon';
 import StellarAdmin from './pages/StellarAdmin';
 import CursorTrail from './components/CursorTrail';
 import AnnouncementPopup from './components/AnnouncementPopup';
+import PageTransition from './components/PageTransition';
+import { WebsiteImagesProvider } from './components/WebsiteImagesProvider';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -39,17 +41,19 @@ function AppLayout() {
     <>
       <Navbar />
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/academy" element={<Academy />} />
-          <Route path="/skilled-institute" element={<SkilledInstitute />} />
-          <Route path="/school" element={<School />} />
-          <Route path="/college" element={<College />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/coming-soon" element={<ComingSoon />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <PageTransition>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/academy" element={<Academy />} />
+            <Route path="/skilled-institute" element={<SkilledInstitute />} />
+            <Route path="/school" element={<School />} />
+            <Route path="/college" element={<College />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/coming-soon" element={<ComingSoon />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </PageTransition>
       </main>
       <Footer />
       <AnnouncementPopup />
@@ -59,14 +63,18 @@ function AppLayout() {
 
 function App() {
   return (
-    <Router>
-      <CursorTrail />
-      <ScrollToTop />
-      <Routes>
-        <Route path="/stellar-admin" element={<StellarAdmin />} />
-        <Route path="*" element={<AppLayout />} />
-      </Routes>
-    </Router>
+    <WebsiteImagesProvider>
+      <Router>
+        <CursorTrail />
+        <ScrollToTop />
+        <PageTransition>
+          <Routes>
+            <Route path="/stellar-admin" element={<StellarAdmin />} />
+            <Route path="*" element={<AppLayout />} />
+          </Routes>
+        </PageTransition>
+      </Router>
+    </WebsiteImagesProvider>
   );
 }
 
