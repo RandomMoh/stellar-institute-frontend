@@ -1,19 +1,22 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import React, { useEffect, useState, useCallback } from 'react';
+import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 const CursorTrail = React.memo(function CursorTrail() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
-  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
-  const cursorX = useSpring(0, springConfig);
-  const cursorY = useSpring(0, springConfig);
+  // Use raw motion values for instant tracking (144Hz capable, bypasses React render cycle)
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // Extremely snappy spring for the outer ring
+  const springConfig = { damping: 40, stiffness: 1000, mass: 0.05 };
+  const cursorX = useSpring(mouseX, springConfig);
+  const cursorY = useSpring(mouseY, springConfig);
 
   const updateMousePosition = useCallback((e) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-    cursorX.set(e.clientX - 10);
-    cursorY.set(e.clientY - 10);
-  }, [cursorX, cursorY]);
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+  }, [mouseX, mouseY]);
 
   const handleMouseOver = useCallback((e) => {
     if (
@@ -45,8 +48,8 @@ const CursorTrail = React.memo(function CursorTrail() {
         className="cursor-dot"
         style={{
           position: 'fixed',
-          top: 0,
-          left: 0,
+          top: -10, // Offset for center (width 20 / 2)
+          left: -10,
           width: 20,
           height: 20,
           borderRadius: '50%',
@@ -58,22 +61,24 @@ const CursorTrail = React.memo(function CursorTrail() {
         }}
         animate={{
           scale: isHovering ? 2.5 : 1,
-          backgroundColor: isHovering ? 'rgba(14, 165, 233, 0.2)' : 'rgba(14, 165, 233, 0.5)',
+          backgroundColor: isHovering ? 'rgba(14, 165, 233, 0.1)' : 'rgba(14, 165, 233, 0.5)',
           border: isHovering ? '1px solid var(--primary)' : 'none'
         }}
         transition={{ duration: 0.15 }}
       />
-      <div 
+      <motion.div 
         style={{
           position: 'fixed',
-          top: mousePosition.y - 4,
-          left: mousePosition.x - 4,
+          top: -4, // Offset for center (width 8 / 2)
+          left: -4,
           width: 8,
           height: 8,
           borderRadius: '50%',
           backgroundColor: 'var(--primary)',
           pointerEvents: 'none',
           zIndex: 10000,
+          x: mouseX,
+          y: mouseY,
         }}
       />
     </>
