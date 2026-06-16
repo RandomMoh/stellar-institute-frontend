@@ -62,7 +62,7 @@ export default function HeroSlider() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="hero-slide-bg" style={{ position: 'absolute', inset: 0, zIndex: -2, width: '100%', height: '100%' }}>
+          <div className="hero-slide-bg" style={{ position: 'absolute', inset: 0, zIndex: 1, width: '100%', height: '100%' }}>
             <ImagePlaceholder label={`Hero Slide ${current + 1}`} />
           </div>
           <div className="hero-slide-overlay" />
