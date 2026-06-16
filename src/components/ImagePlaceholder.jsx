@@ -20,7 +20,7 @@ export default function ImagePlaceholder({ label = 'Image Here', placeholderKey,
         src={customImage} 
         alt={label} 
         className={className} 
-        style={{ width: '100%', height: '100%', objectFit: 'contain', ...style }} 
+        style={{ width: '100%', height: '100%', objectFit: 'cover', ...style }} 
       />
     );
   }
