@@ -4,7 +4,7 @@ import './StellarAdmin.css';
 
 const API = '/api';
 const emptyAnn = {
-  title: '', body: '', type: 'both', priority: 'normal',
+  title: '', body: '', type: 'popup', priority: 'normal',
   link_url: '', link_text: '', image_url: '',
   is_active: true, start_date: '', end_date: ''
 };
@@ -320,12 +320,12 @@ export default function StellarAdmin() {
                             <span className="toggle-thumb" />
                           </button>
                         </td>
-                        <td className="td-actions">
-                          <button onClick={() => openEditAnn(a)} className="action-btn action-edit" title="Edit">
-                            Edit
+                        <td className="td-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                          <button onClick={() => openEditAnn(a)} className="action-btn action-edit" title="Edit" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px' }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                           </button>
-                          <button onClick={() => setDeleteTarget(a)} className="action-btn action-delete" title="Delete">
-                            Del
+                          <button onClick={() => setDeleteTarget(a)} className="action-btn action-delete" title="Delete" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px' }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                           </button>
                         </td>
                       </tr>
@@ -361,9 +361,13 @@ export default function StellarAdmin() {
                     </div>
                     <div className="image-card-info">
                       <div className="image-card-key" title={img.placeholder_key}>{img.placeholder_key}</div>
-                      <div style={{ display: 'flex', gap: '4px' }}>
-                        <button onClick={() => openEditImg(img)} className="btn btn-secondary" style={{ padding: '4px 8px', fontSize: '11px' }}>Replace</button>
-                        <button onClick={() => handleDeleteImg(img.id)} className="btn btn-secondary" style={{ padding: '4px 8px', fontSize: '11px', color: '#ff4d4f', borderColor: 'transparent' }}>Delete</button>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <button onClick={() => openEditImg(img)} className="action-btn action-edit" title="Replace" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px' }}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                        </button>
+                        <button onClick={() => handleDeleteImg(img.id)} className="action-btn action-delete" title="Delete" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px' }}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -395,9 +399,7 @@ export default function StellarAdmin() {
                 <div className="admin-field">
                   <label>Type</label>
                   <select value={annForm.type} onChange={e => setAnnForm({ ...annForm, type: e.target.value })}>
-                    <option value="both">Both</option>
-                    <option value="popup">Popup Only</option>
-                    <option value="ticker">Ticker Only</option>
+                    <option value="popup">Popup</option>
                   </select>
                 </div>
                 <div className="admin-field">
