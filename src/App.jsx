@@ -56,7 +56,6 @@ function AppLayout() {
         </PageTransition>
       </main>
       <Footer />
-      <AnnouncementPopup />
     </>
   );
 }
@@ -67,6 +66,7 @@ function App() {
       <Router>
         <CursorTrail />
         <ScrollToTop />
+        <AnnouncementPopup />
         <PageTransition>
           <Routes>
             <Route path="/stellar-admin" element={<StellarAdmin />} />
