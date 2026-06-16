@@ -452,8 +452,10 @@ export default function StellarAdmin() {
             <form onSubmit={handleSaveImg} className="admin-modal-form">
               <div className="admin-field">
                 <label>Placeholder Key *</label>
-                <input type="text" value={imgForm.placeholder_key} onChange={e => setImgForm({ ...imgForm, placeholder_key: e.target.value })} required placeholder="e.g. hero-bg, campus-photo" />
-                <p style={{ fontSize: '11px', color: 'var(--admin-muted)', marginTop: '4px' }}>This must exactly match the label used in the frontend code.</p>
+                <input type="text" value={imgForm.placeholder_key} onChange={e => setImgForm({ ...imgForm, placeholder_key: e.target.value })} required placeholder="e.g. Campus Photo, Students Photo" />
+                <p style={{ fontSize: '11px', color: 'var(--admin-muted)', margin: '6px 0 0 0', lineHeight: '1.4' }}>
+                  Type the <strong>exact text</strong> you see inside the placeholder box on the live website (e.g., <strong>Campus Photo</strong> or <strong>Course Image</strong>).
+                </p>
               </div>
               <div className="admin-field">
                 <label>Image (up to 10MB)</label>
