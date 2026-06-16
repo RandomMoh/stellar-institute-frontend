@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { itCourses, beautyCourses } from '../data/courses';
 import './StellarAdmin.css';
 
 const API = '/api';
@@ -467,9 +468,26 @@ export default function StellarAdmin() {
             <form onSubmit={handleSaveImg} className="admin-modal-form">
               <div className="admin-field">
                 <label>Placeholder Key *</label>
-                <input type="text" value={imgForm.placeholder_key} onChange={e => setImgForm({ ...imgForm, placeholder_key: e.target.value })} required placeholder="e.g. Campus Photo, Students Photo" />
+                <input 
+                  type="text" 
+                  value={imgForm.placeholder_key} 
+                  onChange={e => setImgForm({ ...imgForm, placeholder_key: e.target.value })} 
+                  required 
+                  placeholder="e.g. Campus Photo, Students Photo" 
+                  list="placeholder-suggestions"
+                  autoComplete="off"
+                />
+                <datalist id="placeholder-suggestions">
+                  <option value="Hero Slide 1" />
+                  <option value="Hero Slide 2" />
+                  <option value="Hero Slide 3" />
+                  <option value="Campus Photo" />
+                  {[...itCourses, ...beautyCourses].map(c => (
+                    <option key={c.title} value={c.title} />
+                  ))}
+                </datalist>
                 <p style={{ fontSize: '11px', color: 'var(--admin-muted)', margin: '6px 0 0 0', lineHeight: '1.4' }}>
-                  Type the <strong>exact text</strong> you see inside the placeholder box on the live website (e.g., <strong>Campus Photo</strong> or <strong>Course Image</strong>).
+                  Click the box to select from a list of known placeholders (like <strong>Courses</strong> or <strong>Hero Slides</strong>), or type a custom one.
                 </p>
               </div>
               <div className="admin-field">
