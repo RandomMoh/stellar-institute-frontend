@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   try {
     // GET is public (frontend needs images) but only returns safe fields
     if (req.method === 'GET') {
-      const rows = await db`SELECT placeholder_key, image_url FROM website_images`;
+      const rows = await db`SELECT id, placeholder_key, image_url FROM website_images`;
       return res.status(200).json(rows);
     }
 
