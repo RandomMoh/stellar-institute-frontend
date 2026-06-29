@@ -1,20 +1,20 @@
 import { getDb, ensureTables } from './db.js';
 import jwt from 'jsonwebtoken';
+import { setCorsHeaders, setSecurityHeaders, getJwtSecret } from './security.js';
 
 function verifyToken(req) {
   const auth = req.headers.authorization;
   if (!auth || !auth.startsWith('Bearer ')) return null;
   try {
-    return jwt.verify(auth.slice(7), process.env.JWT_SECRET || 'stellar-cms-secret-key-2026');
+    return jwt.verify(auth.slice(7), getJwtSecret());
   } catch {
     return null;
   }
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  setCorsHeaders(res, req);
+  setSecurityHeaders(res);
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 

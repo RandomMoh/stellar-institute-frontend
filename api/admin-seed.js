@@ -1,18 +1,41 @@
 import { getDb, ensureTables } from './db.js';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { setCorsHeaders, setSecurityHeaders, getJwtSecret } from './security.js';
+
+// This endpoint now REQUIRES a valid admin JWT token.
+// Only an existing admin can create new admin users.
+function verifyToken(req) {
+  const auth = req.headers.authorization;
+  if (!auth || !auth.startsWith('Bearer ')) return null;
+  try {
+    return jwt.verify(auth.slice(7), getJwtSecret());
+  } catch {
+    return null;
+  }
+}
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  setCorsHeaders(res, req);
+  setSecurityHeaders(res);
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { secret, username, password, name } = req.body;
+  // REQUIRE admin authentication — no more static secret
+  const admin = verifyToken(req);
+  if (!admin) {
+    return res.status(401).json({ error: 'Unauthorized. Only existing admins can create new admin users.' });
+  }
 
-  if (secret !== (process.env.SEED_SECRET || 'stellar-seed-2026')) {
-    return res.status(403).json({ error: 'Invalid seed secret' });
+  const { username, password, name } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Username and password are required' });
+  }
+
+  if (password.length < 8) {
+    return res.status(400).json({ error: 'Password must be at least 8 characters' });
   }
 
   try {
@@ -35,6 +58,6 @@ export default async function handler(req, res) {
     return res.status(201).json({ success: true, user: rows[0] });
   } catch (err) {
     console.error('Seed error:', err);
-    return res.status(500).json({ error: 'Failed to seed admin user' });
+    return res.status(500).json({ error: 'Failed to create admin user' });
   }
 }

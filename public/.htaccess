@@ -1,3 +1,25 @@
+# ── Security Headers ──────────────────────────────────────────────
+<IfModule mod_headers.c>
+  # Prevent clickjacking — nobody can embed your site in an iframe
+  Header always set X-Frame-Options "DENY"
+
+  # Prevent MIME-type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Enable browser XSS filter
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Control referrer information
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Lock down device permissions
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+  # Enforce HTTPS (enable once SSL is configured on cPanel)
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ── React SPA Routing + API Proxy ────────────────────────────────
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
@@ -11,3 +33,17 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^ index.html [QSA,L]
 </IfModule>
+
+# ── Disable Directory Browsing ───────────────────────────────────
+Options -Indexes
+
+# ── Block access to hidden files (.env, .git, etc.) ─────────────
+<FilesMatch "^\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

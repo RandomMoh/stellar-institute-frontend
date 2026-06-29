@@ -1,20 +1,20 @@
 import { getDb, ensureTables } from './db.js';
 import jwt from 'jsonwebtoken';
+import { setCorsHeaders, setSecurityHeaders, getJwtSecret } from './security.js';
 
 function verifyToken(req) {
   const auth = req.headers.authorization;
   if (!auth || !auth.startsWith('Bearer ')) return null;
   try {
-    return jwt.verify(auth.slice(7), process.env.JWT_SECRET || 'stellar-cms-secret-key-2026');
+    return jwt.verify(auth.slice(7), getJwtSecret());
   } catch {
     return null;
   }
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  setCorsHeaders(res, req, { isPublic: req.method === 'GET' });
+  setSecurityHeaders(res);
 
   if (req.method === 'OPTIONS') return res.status(200).end();
 
@@ -22,11 +22,13 @@ export default async function handler(req, res) {
   const db = getDb();
 
   try {
+    // GET is public (frontend needs images) but only returns safe fields
     if (req.method === 'GET') {
-      const rows = await db`SELECT * FROM website_images`;
+      const rows = await db`SELECT placeholder_key, image_url FROM website_images`;
       return res.status(200).json(rows);
     }
 
+    // POST and DELETE require admin auth
     if (req.method === 'POST') {
       const user = verifyToken(req);
       if (!user) return res.status(401).json({ error: 'Unauthorized' });

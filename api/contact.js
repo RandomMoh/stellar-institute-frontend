@@ -1,14 +1,14 @@
 import nodemailer from 'nodemailer';
+import { setCorsHeaders, setSecurityHeaders, rateLimit, isValidEmail, getClientIp } from './security.js';
 
 function escapeHtml(str) {
   if (!str) return '';
-  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  setCorsHeaders(res, req, { isPublic: true });
+  setSecurityHeaders(res);
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -18,16 +18,32 @@ export default async function handler(req, res) {
     return res.status(405).json({ success: false, error: 'Method not allowed' });
   }
 
-  const rawBody = req.body;
-  const name = escapeHtml(rawBody.name);
-  const email = escapeHtml(rawBody.email);
-  const phone = escapeHtml(rawBody.phone);
-  const subject = rawBody.subject;
-  const message = escapeHtml(rawBody.message);
+  // Rate limit: 3 contact submissions per IP per 10 minutes
+  const ip = getClientIp(req);
+  const { limited, retryAfter } = rateLimit(`contact:${ip}`, { maxAttempts: 3, windowMs: 10 * 60 * 1000 });
+  if (limited) {
+    res.setHeader('Retry-After', retryAfter);
+    return res.status(429).json({ success: false, error: `Too many submissions. Please try again in ${retryAfter} seconds.` });
+  }
 
+  const rawBody = req.body;
+
+  // Validate required fields
   if (!rawBody.name || !rawBody.email || !rawBody.subject || !rawBody.message) {
     return res.status(400).json({ success: false, error: 'Missing required fields' });
   }
+
+  // Validate email format
+  if (!isValidEmail(rawBody.email)) {
+    return res.status(400).json({ success: false, error: 'Invalid email address' });
+  }
+
+  // Sanitize ALL fields including subject
+  const name = escapeHtml(rawBody.name);
+  const email = escapeHtml(rawBody.email);
+  const phone = escapeHtml(rawBody.phone);
+  const subject = escapeHtml(rawBody.subject);
+  const message = escapeHtml(rawBody.message);
 
   const subjectMap = {
     admission: 'Admission Inquiry',
@@ -104,7 +120,7 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: `"Stellar Academy" <${process.env.SMTP_USER}>`,
       to: process.env.CONTACT_EMAIL || 'info@stellarinstitute.pk',
-      replyTo: `"${name}" <${email}>`,
+      replyTo: `"${name}" <${rawBody.email}>`,
       subject: `New Website Inquiry: ${subjectLabel}`,
       html: htmlBody,
     });

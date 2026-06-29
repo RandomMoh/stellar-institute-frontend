@@ -1,14 +1,22 @@
 import { getDb, ensureTables } from './db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { setCorsHeaders, setSecurityHeaders, rateLimit, getJwtSecret, getClientIp } from './security.js';
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  setCorsHeaders(res, req);
+  setSecurityHeaders(res);
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  // Rate limit: 5 login attempts per IP per 15 minutes
+  const ip = getClientIp(req);
+  const { limited, retryAfter } = rateLimit(`login:${ip}`, { maxAttempts: 5, windowMs: 15 * 60 * 1000 });
+  if (limited) {
+    res.setHeader('Retry-After', retryAfter);
+    return res.status(429).json({ error: `Too many login attempts. Try again in ${retryAfter} seconds.` });
+  }
 
   const { username, password } = req.body;
 
@@ -35,7 +43,7 @@ export default async function handler(req, res) {
 
     const token = jwt.sign(
       { id: user.id, username: user.username, name: user.name },
-      process.env.JWT_SECRET || 'stellar-cms-secret-key-2026',
+      getJwtSecret(),
       { expiresIn: '8h' }
     );
 

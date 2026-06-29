@@ -50,7 +50,12 @@ export async function ensureTables() {
 
   const existingAdmin = await db`SELECT id FROM admin_users WHERE username = 'admin'`;
   if (existingAdmin.length === 0) {
-    const hashed = await bcrypt.hash('Stellar@2026', 12);
+    const defaultPass = process.env.ADMIN_DEFAULT_PASS;
+    if (!defaultPass) {
+      console.warn('WARNING: ADMIN_DEFAULT_PASS env var not set. Skipping admin user seed.');
+      return;
+    }
+    const hashed = await bcrypt.hash(defaultPass, 12);
     await db`
       INSERT INTO admin_users (username, password, name)
       VALUES ('admin', ${hashed}, 'Admin')
