@@ -598,6 +598,10 @@
   height: 200px;
   position: relative;
   overflow: hidden;
+  padding: 8px; /* Inner bezel padding */
+  border-bottom: 1px solid rgba(10, 37, 64, 0.08);
+  background-color: #F7F6F3; /* Warm bone background */
+  border-radius: 20px 20px 0 0; /* Match outer card radius */
 }
 
 .course-card-img img {
@@ -605,10 +609,12 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
+  border-radius: 12px; /* Inner image radius */
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
 .course-card-v2:hover .course-card-img img {
-  transform: scale(1.08);
+  transform: scale(1.04); /* Reduced scale slightly for bezel */
 }
 
 .course-badge {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { testimonials } from '../data/courses';
@@ -37,6 +37,26 @@ export default function Home() {
   const { itCourses, beautyCourses, loading } = useCourses();
   const [activeInstitute, setActiveInstitute] = useState(0);
   const featuredCourses = [...itCourses.slice(0, 3), ...beautyCourses.slice(0, 3)];
+
+  const scrollWrapRef = useRef(null);
+
+  useEffect(() => {
+    const wrap = scrollWrapRef.current;
+    if (!wrap) return;
+
+    const handleWheel = (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        wrap.scrollBy({
+          left: e.deltaY > 0 ? 300 : -300,
+          behavior: 'smooth'
+        });
+      }
+    };
+
+    wrap.addEventListener('wheel', handleWheel, { passive: false });
+    return () => wrap.removeEventListener('wheel', handleWheel);
+  }, []);
 
   return (
     <div className="lms-home">
@@ -233,7 +253,7 @@ export default function Home() {
             </motion.p>
           </div>
 
-          <div className="courses-scroll-wrap">
+          <div className="courses-scroll-wrap" ref={scrollWrapRef}>
             <div className="courses-scroll">
               {loading ? (
                 <div style={{ textAlign: 'center', padding: '40px', width: '100%', color: 'var(--text-muted)' }}>
