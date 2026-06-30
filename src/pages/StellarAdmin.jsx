@@ -194,7 +194,7 @@ export default function StellarAdmin() {
     setShowImgForm(true);
   };
 
-  const handleImageUploadBase64 = (e, formSetter, currentForm) => {
+  const handleImageUploadBase64 = (e, formSetter, currentForm, field = 'image_url') => {
     const file = e.target.files[0];
     if (!file) return;
     if (file.size > 10 * 1024 * 1024) {
@@ -213,7 +213,7 @@ export default function StellarAdmin() {
         canvas.width = w;
         canvas.height = h;
         canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-        formSetter({ ...currentForm, image_url: canvas.toDataURL('image/jpeg', 0.85) });
+        formSetter({ ...currentForm, [field]: canvas.toDataURL('image/jpeg', 0.85) });
       };
       img.src = event.target.result;
     };
@@ -242,14 +242,13 @@ export default function StellarAdmin() {
     }
   };
 
-  const handleDeleteCourse = async () => {
-    if (!deleteTarget) return;
+  const handleDeleteCourse = async (id) => {
+    if (!window.confirm('Are you sure you want to delete this course?')) return;
     try {
       const r = await fetch(`${API}/courses`, {
-        method: 'DELETE', headers: headers(), body: JSON.stringify({ id: deleteTarget })
+        method: 'DELETE', headers: headers(), body: JSON.stringify({ id })
       });
       if (r.ok) {
-        setDeleteTarget(null);
         fetchData();
       }
     } catch {}
@@ -555,30 +554,44 @@ export default function StellarAdmin() {
 
       {/* --- COURSES TAB --- */}
       {!loading && activeTab === 'courses' && (
-        <div className="admin-content-section">
-          <div className="admin-section-header">
+        <div className="course-manager-wrapper">
+          <div className="course-manager-header">
             <div>
               <h3>Course Manager</h3>
-              <p style={{ color: 'var(--admin-muted)', fontSize: '13px', margin: '4px 0 0 0' }}>Manage courses and their images. They will immediately reflect on the website.</p>
+              <p>Manage IT and Beauty courses. Changes instantly reflect on the main website.</p>
             </div>
-            <button className="admin-btn-primary" onClick={() => { setEditingCourse(null); setCourseForm(emptyCourse); setShowCourseForm(true); }}>
-              + Add Course
+            <button className="vercel-btn-primary" onClick={() => { setEditingCourse(null); setCourseForm(emptyCourse); setShowCourseForm(true); }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add Course
             </button>
           </div>
 
-          <div className="admin-grid">
+          <div className="course-grid">
             {courses.length === 0 ? (
-              <div className="admin-empty">No courses found.</div>
+              <div className="admin-empty" style={{ gridColumn: '1 / -1', padding: '60px 20px', background: '#fff', border: '1px solid var(--admin-border)', borderRadius: '8px' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px', display: 'inline-block' }}><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                <p style={{ margin: 0, color: '#666', fontSize: '15px' }}>No courses found. Add your first course.</p>
+              </div>
             ) : (
               courses.map(c => (
-                <div key={c.id} className="admin-card">
-                  <div className="admin-card-img-preview" style={{ backgroundImage: `url(${c.image_url || ''})`, height: '120px', backgroundColor: '#e2e8f0' }}></div>
-                  <div className="admin-card-body">
-                    <h4>{c.title}</h4>
-                    <p style={{ fontSize: '12px', color: '#64748b' }}>{c.category === 'it' ? 'IT' : 'Beauty'} • {c.duration}</p>
-                    <div className="admin-card-actions">
-                      <button onClick={() => { setEditingCourse(c); setCourseForm(c); setShowCourseForm(true); }}>Edit</button>
-                      <button className="danger" onClick={() => setDeleteTarget(c.id)}>Delete</button>
+                <div key={c.id} className="course-card">
+                  <div className="course-card-img">
+                    <span className="course-category-badge">{c.category === 'it' ? 'IT' : 'Beauty'}</span>
+                    {c.image_url ? (
+                      <img src={c.image_url} alt={c.title} />
+                    ) : (
+                      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#aaa', fontSize: '13px' }}>No Image</div>
+                    )}
+                  </div>
+                  <div className="course-card-content">
+                    <h4 className="course-card-title">{c.title}</h4>
+                    <div className="course-card-meta">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                      {c.duration || 'Duration not set'}
+                    </div>
+                    <div className="course-card-actions">
+                      <button className="vercel-btn-secondary" style={{ flex: 1 }} onClick={() => { setEditingCourse(c); setCourseForm(c); setShowCourseForm(true); }}>Edit</button>
+                      <button className="vercel-btn-danger" style={{ flex: 1 }} onClick={() => handleDeleteCourse(c.id)}>Delete</button>
                     </div>
                   </div>
                 </div>
@@ -590,45 +603,73 @@ export default function StellarAdmin() {
 
       {/* --- COURSE MODAL --- */}
       {showCourseForm && (
-        <div className="admin-modal-overlay">
-          <div className="admin-modal" style={{ maxWidth: '600px' }}>
-            <div className="admin-modal-header">
-              <h3>{editingCourse ? 'Edit Course' : 'Add Course'}</h3>
-              <button className="admin-close-btn" onClick={() => setShowCourseForm(false)}>✕</button>
+        <div className="vercel-modal-overlay" onClick={() => setShowCourseForm(false)}>
+          <div className="vercel-modal" onClick={e => e.stopPropagation()}>
+            <div className="vercel-modal-header">
+              <h3>{editingCourse ? 'Edit Course' : 'Create New Course'}</h3>
+              <button type="button" className="vercel-modal-close" onClick={() => setShowCourseForm(false)}>✕</button>
             </div>
-            <form onSubmit={handleSaveCourse} className="admin-modal-form">
-              <div className="admin-field">
-                <label>Category</label>
-                <select value={courseForm.category} onChange={e => setCourseForm({...courseForm, category: e.target.value})} required>
-                  <option value="it">IT Courses</option>
-                  <option value="beauty">Beauty Courses</option>
-                </select>
-              </div>
-              <div className="admin-field">
-                <label>Course Title</label>
-                <input type="text" value={courseForm.title} onChange={e => setCourseForm({...courseForm, title: e.target.value})} required />
-              </div>
-              <div className="admin-field">
-                <label>Duration</label>
-                <input type="text" value={courseForm.duration} onChange={e => setCourseForm({...courseForm, duration: e.target.value})} placeholder="e.g. 3 Months" />
-              </div>
-              
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                <div className="admin-field">
-                  <label>Square Image (Home/Grid)</label>
-                  {courseForm.image_url && <img src={courseForm.image_url} alt="Preview" style={{ width: '100%', height: '100px', objectFit: 'cover', borderRadius: '4px', marginBottom: '8px' }} />}
-                  <input type="file" accept="image/*" onChange={(e) => handleImageUploadBase64(e, setCourseForm, courseForm, 'image_url')} />
+            <form onSubmit={handleSaveCourse} style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+              <div className="vercel-modal-body">
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '20px' }}>
+                  <div className="vercel-field-group">
+                    <label className="vercel-label">Category</label>
+                    <select className="vercel-select" value={courseForm.category} onChange={e => setCourseForm({...courseForm, category: e.target.value})} required>
+                      <option value="it">IT Course</option>
+                      <option value="beauty">Beauty Course</option>
+                    </select>
+                  </div>
+                  <div className="vercel-field-group">
+                    <label className="vercel-label">Duration</label>
+                    <input className="vercel-input" type="text" value={courseForm.duration} onChange={e => setCourseForm({...courseForm, duration: e.target.value})} placeholder="e.g. 3 Months" />
+                  </div>
                 </div>
-                <div className="admin-field">
-                  <label>Banner Image (Programs Page)</label>
-                  {courseForm.banner_url && <img src={courseForm.banner_url} alt="Preview" style={{ width: '100%', height: '100px', objectFit: 'cover', borderRadius: '4px', marginBottom: '8px' }} />}
-                  <input type="file" accept="image/*" onChange={(e) => handleImageUploadBase64(e, setCourseForm, courseForm, 'banner_url')} />
+                
+                <div className="vercel-field-group">
+                  <label className="vercel-label">Course Title</label>
+                  <input className="vercel-input" type="text" value={courseForm.title} onChange={e => setCourseForm({...courseForm, title: e.target.value})} placeholder="e.g. Graphic Design Masterclass" required />
+                </div>
+                
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '8px' }}>
+                  <div className="vercel-field-group">
+                    <label className="vercel-label">Square Image (Home/Grid)</label>
+                    <label className="vercel-image-upload-area">
+                      {courseForm.image_url ? (
+                        <img src={courseForm.image_url} alt="Preview" className="vercel-image-preview" />
+                      ) : (
+                        <div style={{ height: '140px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#888', gap: '8px', marginBottom: '12px', border: '1px solid #eaeaea', borderRadius: '6px' }}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                          <span style={{ fontSize: '13px' }}>Click to upload</span>
+                        </div>
+                      )}
+                      <div className="vercel-btn-secondary" style={{ width: '100%', padding: '6px', textAlign: 'center', display: 'block' }}>{courseForm.image_url ? 'Change Image' : 'Select File'}</div>
+                      <input type="file" accept="image/*" onChange={(e) => handleImageUploadBase64(e, setCourseForm, courseForm, 'image_url')} style={{ display: 'none' }} />
+                    </label>
+                  </div>
+
+                  <div className="vercel-field-group">
+                    <label className="vercel-label">Banner Image (Programs Page)</label>
+                    <label className="vercel-image-upload-area">
+                      {courseForm.banner_url ? (
+                        <img src={courseForm.banner_url} alt="Preview" className="vercel-image-preview" />
+                      ) : (
+                        <div style={{ height: '140px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#888', gap: '8px', marginBottom: '12px', border: '1px solid #eaeaea', borderRadius: '6px' }}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                          <span style={{ fontSize: '13px' }}>Click to upload</span>
+                        </div>
+                      )}
+                      <div className="vercel-btn-secondary" style={{ width: '100%', padding: '6px', textAlign: 'center', display: 'block' }}>{courseForm.banner_url ? 'Change Image' : 'Select File'}</div>
+                      <input type="file" accept="image/*" onChange={(e) => handleImageUploadBase64(e, setCourseForm, courseForm, 'banner_url')} style={{ display: 'none' }} />
+                    </label>
+                  </div>
                 </div>
               </div>
 
-              <div className="admin-modal-actions">
-                <button type="button" className="admin-btn-secondary" onClick={() => setShowCourseForm(false)}>Cancel</button>
-                <button type="submit" className="admin-btn-primary">Save Course</button>
+              <div className="vercel-modal-footer">
+                <button type="button" className="vercel-btn-secondary" onClick={() => setShowCourseForm(false)}>Cancel</button>
+                <button type="submit" className="vercel-btn-primary">
+                  {editingCourse ? 'Save Changes' : 'Create Course'}
+                </button>
               </div>
             </form>
           </div>
