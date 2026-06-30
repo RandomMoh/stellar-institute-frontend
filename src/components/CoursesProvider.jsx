@@ -8,7 +8,7 @@ export function CoursesProvider({ children }) {
 
   const fetchCourses = async () => {
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || '';
+      const apiUrl = import.meta.env.VITE_API_URL || '/api';
       const response = await fetch(`${apiUrl}/courses`);
       if (response.ok) {
         const data = await response.json();
