@@ -1,0 +1,66 @@
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Load environment variables (for local testing; cPanel manages its own env vars)
+dotenv.config();
+
+const app = express();
+app.use(express.json());
+app.use(cors()); // Configure this more strictly based on your needs
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ─── API Routes (Bridging Vercel serverless to Express) ─────────────────────
+
+// Helper to wrap Vercel handlers for Express
+const wrapHandler = (handler) => async (req, res) => {
+  // Vercel serverless functions often expect standard HTTP req/res, 
+  // which Express req/res largely matches. 
+  // If your handlers rely on specific Vercel helpers (like req.query being parsed),
+  // Express handles that natively.
+  try {
+    await handler(req, res);
+  } catch (error) {
+    console.error('API Error:', error);
+    if (!res.headersSent) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+};
+
+// Import all API handlers
+import adminLoginHandler from './api/admin-login.js';
+import adminSeedHandler from './api/admin-seed.js';
+import adminAnnouncementsHandler from './api/admin-announcements.js';
+import adminImagesHandler from './api/admin-images.js';
+import announcementsHandler from './api/announcements.js';
+import contactHandler from './api/contact.js';
+
+// Map endpoints
+app.all('/api/admin-login', wrapHandler(adminLoginHandler));
+app.all('/api/admin-seed', wrapHandler(adminSeedHandler));
+app.all('/api/admin-announcements', wrapHandler(adminAnnouncementsHandler));
+app.all('/api/admin-images', wrapHandler(adminImagesHandler));
+app.all('/api/announcements', wrapHandler(announcementsHandler));
+app.all('/api/contact', wrapHandler(contactHandler));
+
+// ─── Serve React Static Files ───────────────────────────────────────────────
+
+// In production, cPanel's Apache/LiteSpeed will typically serve static files directly 
+// from public_html (where the dist folder contents live). 
+// However, if the Node.js app is set up to handle all requests, we serve dist here.
+app.use(express.static(path.join(__dirname, 'dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+// ─── Start Server ───────────────────────────────────────────────────────────
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
