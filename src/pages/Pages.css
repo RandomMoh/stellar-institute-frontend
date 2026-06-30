@@ -730,10 +730,11 @@
 }
 
 /* Double Bezel for Images */
+/* Double Bezel for Images */
 .course-image-placeholder {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3; /* Taller image format */
+  aspect-ratio: 3/2; /* Classic 3:2 ratio - between 16:9 and 4:3 */
   padding: 8px; /* Inner bezel padding */
   border: 1px solid #EAEAEA; /* Outer bezel border */
   border-radius: 12px;
