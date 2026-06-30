@@ -1,16 +1,19 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Academy from './pages/Academy';
-import SkilledInstitute from './pages/SkilledInstitute';
-import School from './pages/School';
-import College from './pages/College';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import ComingSoon from './pages/ComingSoon';
-import StellarAdmin from './pages/StellarAdmin';
+
+// Lazy load pages for better performance (code splitting)
+const Home = React.lazy(() => import('./pages/Home'));
+const Academy = React.lazy(() => import('./pages/Academy'));
+const SkilledInstitute = React.lazy(() => import('./pages/SkilledInstitute'));
+const School = React.lazy(() => import('./pages/School'));
+const College = React.lazy(() => import('./pages/College'));
+const About = React.lazy(() => import('./pages/About'));
+const Contact = React.lazy(() => import('./pages/Contact'));
+const ComingSoon = React.lazy(() => import('./pages/ComingSoon'));
+const StellarAdmin = React.lazy(() => import('./pages/StellarAdmin'));
+
 import CursorTrail from './components/CursorTrail';
 import AnnouncementPopup from './components/AnnouncementPopup';
 import PageTransition from './components/PageTransition';
@@ -43,17 +46,19 @@ function AppLayout() {
       <Navbar />
       <main>
         <PageTransition>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/academy" element={<Academy />} />
-            <Route path="/skilled-institute" element={<SkilledInstitute />} />
-            <Route path="/school" element={<School />} />
-            <Route path="/college" element={<College />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/coming-soon" element={<ComingSoon />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><div className="loading-spinner"></div></div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/academy" element={<Academy />} />
+              <Route path="/skilled-institute" element={<SkilledInstitute />} />
+              <Route path="/school" element={<School />} />
+              <Route path="/college" element={<College />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/coming-soon" element={<ComingSoon />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </PageTransition>
       </main>
       <Footer />
@@ -81,10 +86,12 @@ function App() {
         <ScrollToTop />
         <AnnouncementPopup />
         <PageTransition>
-          <Routes>
-            <Route path="/stellar-admin" element={<StellarAdmin />} />
-            <Route path="*" element={<AppLayout />} />
-          </Routes>
+          <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><div className="loading-spinner"></div></div>}>
+            <Routes>
+              <Route path="/stellar-admin" element={<StellarAdmin />} />
+              <Route path="*" element={<AppLayout />} />
+            </Routes>
+          </Suspense>
         </PageTransition>
       </Router>
     </WebsiteImagesProvider>

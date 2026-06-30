@@ -11,7 +11,7 @@ import './ImagePlaceholder.css';
  *   - className: optional extra class
  *   - style: optional inline style overrides
  */
-export default function ImagePlaceholder({ label = 'Image Here', placeholderKey, className = '', style = {} }) {
+export default function ImagePlaceholder({ label = 'Image Here', placeholderKey, className = '', style = {}, priority = false }) {
   const customImage = useWebsiteImage(placeholderKey || label);
   const { loaded } = useWebsiteImages();
 
@@ -23,6 +23,8 @@ export default function ImagePlaceholder({ label = 'Image Here', placeholderKey,
         src={customImage} 
         alt={label} 
         className={className} 
+        loading={priority ? 'eager' : 'lazy'}
+        fetchpriority={priority ? 'high' : 'auto'}
         style={{ width: '100%', height: '100%', objectFit: 'cover', ...style }} 
       />
     );

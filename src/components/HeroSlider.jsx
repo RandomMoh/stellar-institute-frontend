@@ -1,7 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import ThreeBackground from './ThreeBackground';
+
+const ThreeBackground = React.lazy(() => import('./ThreeBackground'));
+
 import ImagePlaceholder from './ImagePlaceholder';
 import { useWebsiteImages } from './WebsiteImagesProvider';
 import './HeroSlider.css';
@@ -55,7 +57,9 @@ export default function HeroSlider() {
 
   return (
     <section className="hero-slider" id="hero-slider" style={{ position: 'relative' }}>
-      <ThreeBackground />
+      <Suspense fallback={null}>
+        <ThreeBackground />
+      </Suspense>
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -66,7 +70,7 @@ export default function HeroSlider() {
           transition={{ duration: 0.8 }}
         >
           <div className="hero-slide-bg" style={{ position: 'absolute', inset: 0, zIndex: 1, width: '100%', height: '100%' }}>
-            <ImagePlaceholder label={`Hero Slide ${current + 1}`} />
+            <ImagePlaceholder label={`Hero Slide ${current + 1}`} priority={current === 0} />
           </div>
           <div className="hero-slide-overlay" />
           
