@@ -705,6 +705,96 @@
   font-family: var(--font-main);
 }
 
+/* Skilled Institute Basic Courses Grid */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.lms-course-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.course-image-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 12px; /* Smooth borders around the image box */
+  overflow: hidden;
+  margin-bottom: 16px; /* Spacing from below */
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Slight shadow to make it smooth */
+}
+
+.course-image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.course-category {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--primary);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.course-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.course-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.course-meta {
+  margin-top: auto;
+  margin-bottom: 16px;
+}
+
+.course-duration {
+  font-size: 14px;
+  color: #666;
+  background: #f8f9fa;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.course-footer {
+  margin-top: auto;
+}
+
+.course-enroll {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.course-enroll:hover {
+  opacity: 0.9;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .about-grid, .contact-grid {
