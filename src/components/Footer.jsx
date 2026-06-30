@@ -38,6 +38,7 @@ export default function Footer() {
               <li><Link to="/skilled-institute">Skilled Institute</Link></li>
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/privacy-policy">Privacy Policy</Link></li>
             </ul>
           </div>
 

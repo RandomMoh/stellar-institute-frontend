@@ -42,6 +42,10 @@ export default function StellarAdmin() {
   const [editingCourse, setEditingCourse] = useState(null);
   const [courseForm, setCourseForm] = useState(emptyCourse);
 
+  // Pages state
+  const [privacyPolicy, setPrivacyPolicy] = useState('');
+  const [savingPolicy, setSavingPolicy] = useState(false);
+
   const headers = useCallback(() => ({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`
@@ -51,16 +55,22 @@ export default function StellarAdmin() {
     if (!token) return;
     setLoading(true);
     try {
-      const [rAnns, rImgs, rCourses] = await Promise.all([
+      const [rAnns, rImgs, rCourses, rPages] = await Promise.all([
         fetch(`${API}/admin-announcements`, { headers: headers() }),
         fetch(`${API}/admin-images`, { headers: headers() }),
-        fetch(`${API}/courses`, { headers: headers() })
+        fetch(`${API}/courses`, { headers: headers() }),
+        fetch(`${API}/pages?slug=privacy-policy`)
       ]);
+      
       if (rAnns.status === 401 || rCourses.status === 401) { logout(); return; }
       
       if (rAnns.ok) setAnns(await rAnns.json());
       if (rImgs.ok) setWebsiteImages(await rImgs.json());
       if (rCourses.ok) setCourses(await rCourses.json());
+      if (rPages.ok) {
+        const pData = await rPages.json();
+        setPrivacyPolicy(pData.content || '');
+      }
     } catch {}
     setLoading(false);
   }, [token, headers]);
@@ -157,6 +167,27 @@ export default function StellarAdmin() {
     });
     setEditingAnn(a);
     setShowAnnForm(true);
+  };
+
+  // --- API calls for Pages ---
+  const savePrivacyPolicy = async () => {
+    setSavingPolicy(true);
+    try {
+      const res = await fetch(`${API}/admin-pages`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ slug: 'privacy-policy', content: privacyPolicy }),
+      });
+      if (!res.ok) throw new Error('Failed to save policy');
+      alert('Privacy Policy saved successfully!');
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      setSavingPolicy(false);
+    }
   };
 
   // --- IMAGES LOGIC ---
@@ -289,6 +320,7 @@ export default function StellarAdmin() {
             <button className={`admin-tab-btn ${activeTab === 'announcements' ? 'active' : ''}`} onClick={() => setActiveTab('announcements')}>Announcements</button>
             <button className={`admin-tab-btn ${activeTab === 'images' ? 'active' : ''}`} onClick={() => setActiveTab('images')}>Website Images</button>
             <button className={`admin-tab-btn ${activeTab === 'courses' ? 'active' : ''}`} onClick={() => setActiveTab('courses')}>Course Manager</button>
+            <button className={`admin-tab-btn ${activeTab === 'pages' ? 'active' : ''}`} onClick={() => setActiveTab('pages')}>Pages</button>
           </div>
         </div>
         <div className="admin-topbar-right">
@@ -690,6 +722,40 @@ export default function StellarAdmin() {
             <div className="admin-modal-actions">
               <button onClick={() => setDeleteTarget(null)} className="btn btn-secondary">Cancel</button>
               <button onClick={() => handleDeleteAnn(deleteTarget.id)} className="admin-delete-confirm-btn">Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* --- PAGES TAB --- */}
+      {!loading && activeTab === 'pages' && (
+        <div className="vercel-container fade-in">
+          <div className="vercel-header">
+            <div>
+              <h2 className="vercel-title">Website Pages</h2>
+              <p className="vercel-subtitle">Manage static content like Privacy Policy.</p>
+            </div>
+            <button 
+              onClick={savePrivacyPolicy} 
+              className="vercel-btn-primary"
+              disabled={savingPolicy}
+            >
+              {savingPolicy ? 'Saving...' : 'Publish Privacy Policy'}
+            </button>
+          </div>
+
+          <div className="vercel-card">
+            <div className="vercel-card-body">
+              <div className="vercel-field">
+                <label className="vercel-label">Privacy Policy Content (HTML / Text)</label>
+                <textarea 
+                  className="vercel-input" 
+                  value={privacyPolicy} 
+                  onChange={(e) => setPrivacyPolicy(e.target.value)} 
+                  placeholder="<p>Your privacy policy goes here...</p>" 
+                  style={{ minHeight: '400px', fontFamily: 'monospace', fontSize: '13px' }}
+                />
+              </div>
             </div>
           </div>
         </div>

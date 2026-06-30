@@ -60,6 +60,14 @@ export async function ensureTables() {
     )
   `;
 
+  await db`
+    CREATE TABLE IF NOT EXISTS site_pages (
+      slug VARCHAR(100) PRIMARY KEY,
+      content TEXT,
+      updated_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
   const existingAdmin = await db`SELECT id FROM admin_users WHERE username = 'admin'`;
   if (existingAdmin.length === 0) {
     const defaultPass = process.env.ADMIN_DEFAULT_PASS;

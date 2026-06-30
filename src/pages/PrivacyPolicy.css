@@ -1,0 +1,39 @@
+.page-content-container {
+  padding: 120px 0 80px;
+  background-color: var(--surface-default);
+  min-height: 100vh;
+}
+
+.page-content-box {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 900px;
+  margin: 40px auto 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.rich-text-content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.rich-text-content h1,
+.rich-text-content h2,
+.rich-text-content h3 {
+  color: var(--text-primary);
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.rich-text-content p {
+  margin-bottom: 24px;
+}
+
+.empty-policy-state {
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-style: italic;
+}

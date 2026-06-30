@@ -13,6 +13,7 @@ const About = React.lazy(() => import('./pages/About'));
 const Contact = React.lazy(() => import('./pages/Contact'));
 const ComingSoon = React.lazy(() => import('./pages/ComingSoon'));
 const StellarAdmin = React.lazy(() => import('./pages/StellarAdmin'));
+const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
 
 import CursorTrail from './components/CursorTrail';
 import AnnouncementPopup from './components/AnnouncementPopup';
@@ -57,6 +58,7 @@ function AppLayout() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/coming-soon" element={<ComingSoon />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
