@@ -91,9 +91,11 @@ export default function SkilledInstitute() {
                 {filteredCourses.map((course, i) => (
                   <motion.div 
                     key={course.id} 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
+                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    viewport={{ once: true, amount: 0.1 }}
+                    transition={{ delay: (i % 6) * 0.05, duration: 0.5, type: 'spring' }}
                     className="lms-course-card" 
                     style={{ height: '100%' }}
                   >

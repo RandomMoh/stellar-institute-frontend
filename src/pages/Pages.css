@@ -733,17 +733,17 @@
 .course-image-placeholder {
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9;
+  aspect-ratio: 4/3; /* Taller image format */
   padding: 8px; /* Inner bezel padding */
   border: 1px solid #EAEAEA; /* Outer bezel border */
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #F7F6F3; /* Warm bone background */
   overflow: hidden;
   margin-bottom: 24px;
 }
 
 .course-image-placeholder img {
-  border-radius: 4px; /* Inner image radius */
+  border-radius: 8px; /* Inner image radius */
   border: 1px solid rgba(0,0,0,0.04) !important;
 }
 
@@ -800,22 +800,24 @@
 
 .course-enroll {
   display: inline-block;
-  background-color: #111111;
+  background: var(--primary);
   color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 12px 20px;
+  border-radius: 8px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
-  transition: transform 200ms ease, background-color 200ms ease;
+  transition: all 0.3s ease;
   width: 100%;
   text-align: center;
+  border: 1px solid transparent;
 }
 
 .course-enroll:hover {
-  background-color: #333333;
-  transform: scale(0.98);
+  background: var(--primary-dark);
   color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(10, 37, 64, 0.15);
 }
 
 /* Responsive */
