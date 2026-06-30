@@ -15,7 +15,9 @@ export default function ImagePlaceholder({ label = 'Image Here', placeholderKey,
   const customImage = useWebsiteImage(placeholderKey || label);
   const { loaded } = useWebsiteImages();
 
-  if (!loaded) return null; // Wait for API to resolve before showing fallback
+  // Remove the strict !loaded check so we render the placeholder block immediately
+  // while waiting for the customImage to resolve.
+  // if (!loaded) return null; 
 
   if (customImage) {
     return (

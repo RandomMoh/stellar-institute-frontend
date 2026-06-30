@@ -9,9 +9,9 @@ const LoadingScreen = ({ onLoadingComplete }) => {
     const timer = setTimeout(() => {
       setIsVisible(false);
       if (onLoadingComplete) {
-        setTimeout(onLoadingComplete, 1200); // Give time for the exit animation
+        setTimeout(onLoadingComplete, 400); // Give time for the exit animation
       }
-    }, 2200);
+    }, 200);
 
     return () => clearTimeout(timer);
   }, [onLoadingComplete]);
