@@ -11,7 +11,8 @@ export default function AnnouncementTicker() {
   const [announcements, setAnnouncements] = useState([]);
 
   useEffect(() => {
-    fetch('/api/announcements')
+    const API = import.meta.env.VITE_API_URL || '/api';
+    fetch(`${API}/announcements`)
       .then(r => r.json())
       .then(data => {
         const tickerItems = data.filter(a => a.type === 'ticker' || a.type === 'both');

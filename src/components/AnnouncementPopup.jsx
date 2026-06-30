@@ -9,7 +9,8 @@ export default function AnnouncementPopup() {
     // Check if already dismissed this session
     const dismissed = JSON.parse(sessionStorage.getItem('dismissed-popups') || '[]');
 
-    fetch('/api/announcements')
+    const API = import.meta.env.VITE_API_URL || '/api';
+    fetch(`${API}/announcements`)
       .then(r => r.json())
       .then(data => {
         // Get popup/both type announcements that haven't been dismissed

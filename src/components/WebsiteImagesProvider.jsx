@@ -7,7 +7,8 @@ export function WebsiteImagesProvider({ children }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    fetch('/api/admin-images')
+    const API = import.meta.env.VITE_API_URL || '/api';
+    fetch(`${API}/admin-images`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {
