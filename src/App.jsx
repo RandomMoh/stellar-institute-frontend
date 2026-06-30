@@ -18,6 +18,7 @@ import CursorTrail from './components/CursorTrail';
 import AnnouncementPopup from './components/AnnouncementPopup';
 import PageTransition from './components/PageTransition';
 import { WebsiteImagesProvider } from './components/WebsiteImagesProvider';
+import { CoursesProvider } from './components/CoursesProvider';
 import LoadingScreen from './components/LoadingScreen';
 
 function ScrollToTop() {
@@ -80,20 +81,22 @@ function App() {
 
   return (
     <WebsiteImagesProvider>
-      <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
-      <Router>
-        <CursorTrail />
-        <ScrollToTop />
-        <AnnouncementPopup />
-        <PageTransition>
-          <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><div className="loading-spinner"></div></div>}>
-            <Routes>
-              <Route path="/stellar-admin" element={<StellarAdmin />} />
-              <Route path="*" element={<AppLayout />} />
-            </Routes>
-          </Suspense>
-        </PageTransition>
-      </Router>
+      <CoursesProvider>
+        <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
+        <Router>
+          <CursorTrail />
+          <ScrollToTop />
+          <AnnouncementPopup />
+          <PageTransition>
+            <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><div className="loading-spinner"></div></div>}>
+              <Routes>
+                <Route path="/stellar-admin" element={<StellarAdmin />} />
+                <Route path="*" element={<AppLayout />} />
+              </Routes>
+            </Suspense>
+          </PageTransition>
+        </Router>
+      </CoursesProvider>
     </WebsiteImagesProvider>
   );
 }

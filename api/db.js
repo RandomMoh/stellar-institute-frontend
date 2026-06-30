@@ -48,6 +48,18 @@ export async function ensureTables() {
     )
   `;
 
+  await db`
+    CREATE TABLE IF NOT EXISTS courses (
+      id SERIAL PRIMARY KEY,
+      category VARCHAR(50) NOT NULL,
+      title VARCHAR(255) NOT NULL,
+      duration VARCHAR(100),
+      image_url TEXT,
+      banner_url TEXT,
+      created_at TIMESTAMP DEFAULT NOW()
+    )
+  `;
+
   const existingAdmin = await db`SELECT id FROM admin_users WHERE username = 'admin'`;
   if (existingAdmin.length === 0) {
     const defaultPass = process.env.ADMIN_DEFAULT_PASS;

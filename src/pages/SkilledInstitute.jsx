@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { itCourses, beautyCourses } from '../data/courses';
+import { useCourses } from '../components/CoursesProvider';
 import FloatingShapes from '../components/FloatingShapes';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import './Pages.css';
@@ -9,10 +9,11 @@ import './Pages.css';
 export default function SkilledInstitute() {
   const [filter, setFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const { itCourses, beautyCourses, loading } = useCourses();
 
   const allCourses = useMemo(() => {
     return [...itCourses.map(c => ({...c, category: 'it'})), ...beautyCourses.map(c => ({...c, category: 'beauty'}))];
-  }, []);
+  }, [itCourses, beautyCourses]);
 
   const filteredCourses = useMemo(() => {
     return allCourses.filter(course => {
@@ -82,7 +83,7 @@ export default function SkilledInstitute() {
 
           <div className="skilled-content" style={{ flex: 1 }}>
             <div className="content-header">
-              <h2>Showing {filteredCourses.length} {filteredCourses.length === 1 ? 'Course' : 'Courses'}</h2>
+              <h2>{loading ? 'Loading...' : `Showing ${filteredCourses.length} ${filteredCourses.length === 1 ? 'Course' : 'Courses'}`}</h2>
             </div>
 
             {filteredCourses.length > 0 ? (
@@ -97,9 +98,9 @@ export default function SkilledInstitute() {
                     style={{ height: '100%' }}
                   >
                     <div className="course-image-placeholder">
-                      {course.bannerImage || course.image ? (
+                      {course.banner_url || course.image_url ? (
                         <img 
-                          src={course.bannerImage || course.image} 
+                          src={course.banner_url || course.image_url} 
                           alt={course.title}
                           loading="lazy"
                           style={{

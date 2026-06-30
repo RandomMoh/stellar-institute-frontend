@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { itCourses, beautyCourses, testimonials } from '../data/courses';
+import { testimonials } from '../data/courses';
+import { useCourses } from '../components/CoursesProvider';
 import HeroSlider from '../components/HeroSlider';
 import StatsCounter from '../components/StatsCounter';
 import ScrollReveal from '../components/ScrollReveal';
@@ -33,6 +34,7 @@ const institutes = [
 ];
 
 export default function Home() {
+  const { itCourses, beautyCourses, loading } = useCourses();
   const [activeInstitute, setActiveInstitute] = useState(0);
   const featuredCourses = [...itCourses.slice(0, 3), ...beautyCourses.slice(0, 3)];
 
@@ -233,25 +235,31 @@ export default function Home() {
 
           <div className="courses-scroll-wrap">
             <div className="courses-scroll">
-              {featuredCourses.map((course, i) => (
-                <ScrollReveal key={course.id} delay={i * 0.06}>
-                  <div className="course-card-v2">
-                    <div className="course-card-img">
-                      {course.image ? (
-                        <img src={course.image} alt={course.title} loading="lazy" />
-                      ) : (
-                        <ImagePlaceholder label="Course Image" />
-                      )}
-                      <span className="course-badge">{i < 3 ? 'IT' : 'Beauty'}</span>
+              {loading ? (
+                <div style={{ textAlign: 'center', padding: '40px', width: '100%', color: 'var(--text-muted)' }}>
+                  Loading courses...
+                </div>
+              ) : (
+                featuredCourses.map((course, i) => (
+                  <ScrollReveal key={course.id || i} delay={i * 0.06}>
+                    <div className="course-card-v2">
+                      <div className="course-card-img">
+                        {course.image_url ? (
+                          <img src={course.image_url} alt={course.title} loading="lazy" />
+                        ) : (
+                          <ImagePlaceholder label="Course Image" />
+                        )}
+                        <span className="course-badge">{i < 3 ? 'IT' : 'Beauty'}</span>
+                      </div>
+                      <div className="course-card-body">
+                        <h4>{course.title}</h4>
+                        <span className="course-dur">{course.duration}</span>
+                        <Link to="/contact" className="course-card-link">Enroll →</Link>
+                      </div>
                     </div>
-                    <div className="course-card-body">
-                      <h4>{course.title}</h4>
-                      <span className="course-dur">{course.duration}</span>
-                      <Link to="/contact" className="course-card-link">Enroll →</Link>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              ))}
+                  </ScrollReveal>
+                ))
+              )}
             </div>
           </div>
 
