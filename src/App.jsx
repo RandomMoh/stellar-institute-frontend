@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -15,6 +15,7 @@ import CursorTrail from './components/CursorTrail';
 import AnnouncementPopup from './components/AnnouncementPopup';
 import PageTransition from './components/PageTransition';
 import { WebsiteImagesProvider } from './components/WebsiteImagesProvider';
+import LoadingScreen from './components/LoadingScreen';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -61,8 +62,20 @@ function AppLayout() {
 }
 
 function App() {
+  // Loading screen logic - locks scroll while loading
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isLoading]);
+
   return (
     <WebsiteImagesProvider>
+      <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
       <Router>
         <CursorTrail />
         <ScrollToTop />
