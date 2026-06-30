@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 import FloatingShapes from '../components/FloatingShapes';
 import ScrollReveal from '../components/ScrollReveal';
+import { useWebsiteImages } from '../components/WebsiteImagesProvider';
 import './Pages.css';
 
 export default function About() {
+  const { getImage } = useWebsiteImages();
+  const aboutImage = getImage('Institute about photo');
+
   return (
     <>
       <section className="page-hero relative" style={{ overflow: 'hidden' }}>
@@ -38,9 +42,19 @@ export default function About() {
               </div>
             </ScrollReveal>
             <ScrollReveal direction="right">
-              <div className="about-visual">
-                <h3>Stellar Institute</h3>
-                <p>Lahore, Pakistan · Est. 2023</p>
+              <div 
+                className="about-visual"
+                style={aboutImage ? { 
+                  backgroundImage: `url(${aboutImage})`, 
+                  backgroundSize: 'cover', 
+                  backgroundPosition: 'center' 
+                } : {}}
+              >
+                {aboutImage && <div className="about-visual-overlay"></div>}
+                <div style={{ position: 'relative', zIndex: 2 }}>
+                  <h3 style={aboutImage ? { color: 'white' } : {}}>Stellar Institute</h3>
+                  <p style={aboutImage ? { color: 'rgba(255,255,255,0.9)' } : {}}>Lahore, Pakistan · Est. 2023</p>
+                </div>
               </div>
             </ScrollReveal>
           </div>
