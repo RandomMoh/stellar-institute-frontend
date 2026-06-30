@@ -97,9 +97,9 @@ export default function SkilledInstitute() {
                     style={{ height: '100%' }}
                   >
                     <div className="course-image-placeholder">
-                      {course.image ? (
+                      {course.bannerImage || course.image ? (
                         <img 
-                          src={course.image} 
+                          src={course.bannerImage || course.image} 
                           alt={course.title}
                           loading="lazy"
                           style={{

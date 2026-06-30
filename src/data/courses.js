@@ -3,79 +3,92 @@ export const itCourses = [
     id: 'it1',
     title: 'Full Stack Web Development',
     duration: '3 Months',
-    image: null
+    image: '/images_courses/full stack development-1.jpg',
+    bannerImage: '/images_courses/full stack development-1.jpg'
   },
   {
     id: 'it2',
     title: 'Digital Marketing Mastery',
     duration: '2 Months',
-    image: null
+    image: '/images_courses/Digital Marketing Mastery-1.jpg',
+    bannerImage: '/images_courses/Digital Marketing Mastery.jpg'
   },
   {
     id: 'it3',
     title: 'E-Commerce & Dropshipping',
     duration: '2 Months',
-    image: null
+    image: '/images_courses/E-Commerce & Dropshipping-1.jpg',
+    bannerImage: '/images_courses/E-Commerce & Dropshipping.jpg'
   },
   {
     id: 'it4',
     title: 'Google SketchUp 3D & Rendering',
     duration: '2 Months',
-    image: null
+    image: '/images_courses/Google SketchUp 3D & Rendering.jpg',
+    bannerImage: '/images_courses/Google SketchUp 3D & Rendering.jpg'
   },
   {
     id: 'it5',
     title: 'Autocad 2D & 3D Drafting',
     duration: '2 Months',
-    image: null
+    image: '/images_courses/Autocad 2D & 3D Drafting.jpg',
+    bannerImage: '/images_courses/Autocad 2D & 3D Drafting.jpg'
   },
   {
     id: 'it6',
     title: 'Videography Skills',
     duration: '1 Month',
-    image: null
+    image: '/images_courses/Videography Skills.jpg',
+    bannerImage: '/images_courses/Videography Skills.jpg'
   },
   {
     id: 'it7',
     title: 'Professional Language & Communication',
     duration: '3 Months',
-    image: null
+    image: '/images_courses/Professional Language & Communication.jpg',
+    bannerImage: '/images_courses/Professional Language & Communication.jpg'
   },
   {
     id: 'it8',
     title: 'Account & Finance Skills',
     duration: '2 Months',
-    image: null
+    image: '/images_courses/Account & Finance Skills.jpg',
+    bannerImage: '/images_courses/Account & Finance Skills.jpg'
   },
   {
     id: 'it9',
     title: 'Business Management Skills',
     duration: '3 Months',
-    image: null
+    image: '/images_courses/Business Management Skills.jpg',
+    bannerImage: '/images_courses/Business Management Skills.jpg'
   },
   {
     id: 'it10',
     title: 'Computer Office Skills',
     duration: '1 Month',
-    image: null
+    image: '/images_courses/Computer Office Skills.jpg',
+    bannerImage: '/images_courses/Computer Office Skills.jpg'
   },
   {
     id: 'it11',
     title: 'Advanced Multimedia Skills',
     duration: '2 Months',
-    image: null
+    image: '/images_courses/Advanced Multimedia Skills.jpg',
+    bannerImage: '/images_courses/Advanced Multimedia Skills.jpg'
   },
   {
     id: 'it12',
     title: 'Art & Design Mastery',
     duration: '2 Months',
-    image: null
+    image: '/images_courses/Art & Design Mastery.jpg',
+    bannerImage: '/images_courses/Art & Design Mastery.jpg'
   },
   {
     id: 'it13',
     title: 'Photography Skills',
     duration: '1 Month',
-    image: null
+    image: '/images_courses/Photography Skills.jpg',
+    bannerImage: '/images_courses/Photography Skills.jpg'
   }
 ];
 
@@ -84,61 +97,71 @@ export const beautyCourses = [
     id: 'b1',
     title: 'Advanced Beautician & Cosmetology',
     duration: '3 Months',
-    image: null
+    image: '/images_courses/Advanced Beautician & Cosmetology-1.jpg',
+    bannerImage: '/images_courses/Advanced Beautician & Cosmetology.jpg'
   },
   {
     id: 'b2',
     title: 'Hair Coloring & Treatment',
     duration: '1 Month',
-    image: null
+    image: '/images_courses/Hair Coloring & Treatment-1.jpg',
+    bannerImage: '/images_courses/Hair Coloring & Treatment.jpg'
   },
   {
     id: 'b3',
     title: 'Skin Care',
     duration: '1 Month',
-    image: null
+    image: '/images_courses/Skin Care-1.jpg',
+    bannerImage: '/images_courses/Skin Care.jpg'
   },
   {
     id: 'b4',
     title: 'Make-Up: Basic to Pro',
     duration: '2 Months',
-    image: null
+    image: '/images_courses/Make-Up_ Basic to Pro.jpg',
+    bannerImage: '/images_courses/Make-Up_ Basic to Pro.jpg'
   },
   {
     id: 'b5',
     title: 'Acrylic Nail Art',
     duration: '1 Month',
-    image: null
+    image: '/images_courses/Acrylic Nail Art.jpg',
+    bannerImage: '/images_courses/Acrylic Nail Art.jpg'
   },
   {
     id: 'b6',
     title: 'Hair Cutting',
     duration: '1 Month',
-    image: null
+    image: '/images_courses/Hair Cutting.jpg',
+    bannerImage: '/images_courses/Hair Cutting.jpg'
   },
   {
     id: 'b7',
     title: 'Salon Management & Client Dealing',
     duration: '1 Month',
-    image: null
+    image: '/images_courses/Salon Management & Client Dealing.jpg',
+    bannerImage: '/images_courses/Salon Management & Client Dealing.jpg'
   },
   {
     id: 'b8',
     title: 'Eyelash Extension',
     duration: '1 Month',
-    image: null
+    image: '/images_courses/Eyelash Extension.jpg',
+    bannerImage: '/images_courses/Eyelash Extension.jpg'
   },
   {
     id: 'b9',
     title: 'Beautician-Basic to Advance',
     duration: '2 Months',
-    image: null
+    image: '/images_courses/Beautician-Basic to Advance.jpg',
+    bannerImage: '/images_courses/Beautician-Basic to Advance.jpg'
   },
   {
     id: 'b10',
     title: 'Hair Styling',
     duration: '1 Month',
-    image: null
+    image: '/images_courses/Hair Styling.jpg',
+    bannerImage: '/images_courses/Hair Styling.jpg'
   }
 ];
 
