@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { itCourses, beautyCourses } from '../data/courses';
 import './StellarAdmin.css';
 
-const API = '/api';
+const API = import.meta.env.VITE_API_URL || '/api';
 const emptyAnn = {
   title: '', body: '', type: 'popup', priority: 'normal',
   link_url: '', link_text: '', image_url: '',
