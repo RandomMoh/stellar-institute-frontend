@@ -13,7 +13,8 @@
 }
 
 .footer-logo-img {
-  max-height: 100px;
+  max-height: 120px;
+  max-width: 100%;
   width: auto;
   margin-bottom: 24px;
   filter: brightness(0) invert(1);

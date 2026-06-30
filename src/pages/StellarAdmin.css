@@ -57,7 +57,9 @@
 }
 
 .admin-logo {
-  height: 48px;
+  max-height: 80px;
+  max-width: 100%;
+  width: auto;
   margin-bottom: 20px;
 }
 
@@ -197,7 +199,9 @@
 }
 
 .admin-topbar-logo {
-  height: 28px;
+  max-height: 45px;
+  max-width: 250px;
+  width: auto;
 }
 
 .admin-topbar-title {
