@@ -7,7 +7,8 @@ export default function PrivacyPolicy() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/pages?slug=privacy-policy')
+    const API = import.meta.env.VITE_API_URL || '/api';
+    fetch(`${API}/pages?slug=privacy-policy`)
       .then((res) => {
         if (!res.ok) throw new Error('Not found');
         return res.json();

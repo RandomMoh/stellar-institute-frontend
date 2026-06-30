@@ -89,14 +89,20 @@ function App() {
           <CursorTrail />
           <ScrollToTop />
           <AnnouncementPopup />
-          <PageTransition>
-            <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><div className="loading-spinner"></div></div>}>
-              <Routes>
-                <Route path="/stellar-admin" element={<StellarAdmin />} />
-                <Route path="*" element={<AppLayout />} />
-              </Routes>
-            </Suspense>
-          </PageTransition>
+          <Routes>
+            <Route path="/stellar-admin" element={
+              <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><div className="loading-spinner"></div></div>}>
+                <StellarAdmin />
+              </Suspense>
+            } />
+            <Route path="*" element={
+              <PageTransition>
+                <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><div className="loading-spinner"></div></div>}>
+                  <AppLayout />
+                </Suspense>
+              </PageTransition>
+            } />
+          </Routes>
         </Router>
       </CoursesProvider>
     </WebsiteImagesProvider>
