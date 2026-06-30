@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import FloatingShapes from '../components/FloatingShapes';
 import ScrollReveal from '../components/ScrollReveal';
-import { useWebsiteImages } from '../components/WebsiteImagesProvider';
+import { useWebsiteImage } from '../components/WebsiteImagesProvider';
 import './Pages.css';
 
 export default function About() {
-  const { getImage } = useWebsiteImages();
-  const aboutImage = getImage('Institute about photo');
+  const aboutImage = useWebsiteImage('Institute about photo');
 
   return (
     <>
