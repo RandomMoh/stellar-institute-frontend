@@ -35,6 +35,13 @@ export default function StellarAdmin() {
   const [showImgForm, setShowImgForm] = useState(false);
   const [imgForm, setImgForm] = useState(emptyImg);
 
+  // Courses State
+  const emptyCourse = { category: 'it', title: '', duration: '', image_url: '', banner_url: '' };
+  const [courses, setCourses] = useState([]);
+  const [showCourseForm, setShowCourseForm] = useState(false);
+  const [editingCourse, setEditingCourse] = useState(null);
+  const [courseForm, setCourseForm] = useState(emptyCourse);
+
   const headers = useCallback(() => ({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`
@@ -44,14 +51,16 @@ export default function StellarAdmin() {
     if (!token) return;
     setLoading(true);
     try {
-      const [rAnns, rImgs] = await Promise.all([
+      const [rAnns, rImgs, rCourses] = await Promise.all([
         fetch(`${API}/admin-announcements`, { headers: headers() }),
-        fetch(`${API}/admin-images`, { headers: headers() })
+        fetch(`${API}/admin-images`, { headers: headers() }),
+        fetch(`${API}/courses`, { headers: headers() })
       ]);
-      if (rAnns.status === 401) { logout(); return; }
+      if (rAnns.status === 401 || rCourses.status === 401) { logout(); return; }
       
       if (rAnns.ok) setAnns(await rAnns.json());
       if (rImgs.ok) setWebsiteImages(await rImgs.json());
+      if (rCourses.ok) setCourses(await rCourses.json());
     } catch {}
     setLoading(false);
   }, [token, headers]);
@@ -211,6 +220,41 @@ export default function StellarAdmin() {
     reader.readAsDataURL(file);
   };
 
+  // --- COURSES LOGIC ---
+  const handleSaveCourse = async (e) => {
+    e.preventDefault();
+    const method = editingCourse ? 'PUT' : 'POST';
+    const payload = editingCourse ? { ...courseForm, id: editingCourse.id } : courseForm;
+    try {
+      const r = await fetch(`${API}/courses`, {
+        method, headers: headers(), body: JSON.stringify(payload)
+      });
+      if (r.ok) {
+        setShowCourseForm(false);
+        setEditingCourse(null);
+        setCourseForm(emptyCourse);
+        fetchData();
+      } else {
+        alert('Failed to save course');
+      }
+    } catch {
+      alert('Error saving course');
+    }
+  };
+
+  const handleDeleteCourse = async () => {
+    if (!deleteTarget) return;
+    try {
+      const r = await fetch(`${API}/courses`, {
+        method: 'DELETE', headers: headers(), body: JSON.stringify({ id: deleteTarget })
+      });
+      if (r.ok) {
+        setDeleteTarget(null);
+        fetchData();
+      }
+    } catch {}
+  };
+
   if (!token) return (
     <div className="admin-login-wrapper">
       <div className="admin-login-card">
@@ -245,6 +289,7 @@ export default function StellarAdmin() {
           <div className="admin-tabs">
             <button className={`admin-tab-btn ${activeTab === 'announcements' ? 'active' : ''}`} onClick={() => setActiveTab('announcements')}>Announcements</button>
             <button className={`admin-tab-btn ${activeTab === 'images' ? 'active' : ''}`} onClick={() => setActiveTab('images')}>Website Images</button>
+            <button className={`admin-tab-btn ${activeTab === 'courses' ? 'active' : ''}`} onClick={() => setActiveTab('courses')}>Course Manager</button>
           </div>
         </div>
         <div className="admin-topbar-right">
@@ -502,6 +547,88 @@ export default function StellarAdmin() {
               <div className="admin-modal-actions">
                 <button type="button" onClick={() => setShowImgForm(false)} className="btn btn-secondary">Cancel</button>
                 <button type="submit" className="btn btn-primary">Save Image</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* --- COURSES TAB --- */}
+      {!loading && activeTab === 'courses' && (
+        <div className="admin-content-section">
+          <div className="admin-section-header">
+            <div>
+              <h3>Course Manager</h3>
+              <p style={{ color: 'var(--admin-muted)', fontSize: '13px', margin: '4px 0 0 0' }}>Manage courses and their images. They will immediately reflect on the website.</p>
+            </div>
+            <button className="admin-btn-primary" onClick={() => { setEditingCourse(null); setCourseForm(emptyCourse); setShowCourseForm(true); }}>
+              + Add Course
+            </button>
+          </div>
+
+          <div className="admin-grid">
+            {courses.length === 0 ? (
+              <div className="admin-empty">No courses found.</div>
+            ) : (
+              courses.map(c => (
+                <div key={c.id} className="admin-card">
+                  <div className="admin-card-img-preview" style={{ backgroundImage: `url(${c.image_url || ''})`, height: '120px', backgroundColor: '#e2e8f0' }}></div>
+                  <div className="admin-card-body">
+                    <h4>{c.title}</h4>
+                    <p style={{ fontSize: '12px', color: '#64748b' }}>{c.category === 'it' ? 'IT' : 'Beauty'} • {c.duration}</p>
+                    <div className="admin-card-actions">
+                      <button onClick={() => { setEditingCourse(c); setCourseForm(c); setShowCourseForm(true); }}>Edit</button>
+                      <button className="danger" onClick={() => setDeleteTarget(c.id)}>Delete</button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* --- COURSE MODAL --- */}
+      {showCourseForm && (
+        <div className="admin-modal-overlay">
+          <div className="admin-modal" style={{ maxWidth: '600px' }}>
+            <div className="admin-modal-header">
+              <h3>{editingCourse ? 'Edit Course' : 'Add Course'}</h3>
+              <button className="admin-close-btn" onClick={() => setShowCourseForm(false)}>✕</button>
+            </div>
+            <form onSubmit={handleSaveCourse} className="admin-modal-form">
+              <div className="admin-field">
+                <label>Category</label>
+                <select value={courseForm.category} onChange={e => setCourseForm({...courseForm, category: e.target.value})} required>
+                  <option value="it">IT Courses</option>
+                  <option value="beauty">Beauty Courses</option>
+                </select>
+              </div>
+              <div className="admin-field">
+                <label>Course Title</label>
+                <input type="text" value={courseForm.title} onChange={e => setCourseForm({...courseForm, title: e.target.value})} required />
+              </div>
+              <div className="admin-field">
+                <label>Duration</label>
+                <input type="text" value={courseForm.duration} onChange={e => setCourseForm({...courseForm, duration: e.target.value})} placeholder="e.g. 3 Months" />
+              </div>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div className="admin-field">
+                  <label>Square Image (Home/Grid)</label>
+                  {courseForm.image_url && <img src={courseForm.image_url} alt="Preview" style={{ width: '100%', height: '100px', objectFit: 'cover', borderRadius: '4px', marginBottom: '8px' }} />}
+                  <input type="file" accept="image/*" onChange={(e) => handleImageUploadBase64(e, setCourseForm, courseForm, 'image_url')} />
+                </div>
+                <div className="admin-field">
+                  <label>Banner Image (Programs Page)</label>
+                  {courseForm.banner_url && <img src={courseForm.banner_url} alt="Preview" style={{ width: '100%', height: '100px', objectFit: 'cover', borderRadius: '4px', marginBottom: '8px' }} />}
+                  <input type="file" accept="image/*" onChange={(e) => handleImageUploadBase64(e, setCourseForm, courseForm, 'banner_url')} />
+                </div>
+              </div>
+
+              <div className="admin-modal-actions">
+                <button type="button" className="admin-btn-secondary" onClick={() => setShowCourseForm(false)}>Cancel</button>
+                <button type="submit" className="admin-btn-primary">Save Course</button>
               </div>
             </form>
           </div>

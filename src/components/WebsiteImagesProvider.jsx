@@ -31,8 +31,9 @@ export function WebsiteImagesProvider({ children }) {
 }
 
 export function useWebsiteImage(placeholderKey) {
-  const { images } = useContext(WebsiteImagesContext);
-  return images[placeholderKey] || null;
+  const context = useContext(WebsiteImagesContext);
+  if (!context || !context.images) return null;
+  return context.images[placeholderKey] || null;
 }
 
 export function useWebsiteImages() {
