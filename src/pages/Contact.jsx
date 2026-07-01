@@ -22,8 +22,8 @@ export default function Contact() {
     setErrorMsg('');
 
     try {
-      const API = import.meta.env.VITE_API_URL || '/api';
-      const res = await fetch(`${API}/contact`, {
+      // Explicitly hit the cPanel backend for emails (bypasses Vercel API)
+      const res = await fetch(`https://stellarinstitute.pk/api/contact.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

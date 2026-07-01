@@ -55,57 +55,145 @@ $subjectMap = [
 $subjectLabel = $subjectMap[$subject] ?? $subject;
 
 // ── Stellar Institute's receiving email ──
-$to = "mohsinddop2309@gmail.com"; // Temporarily set for testing as requested
+$to = "info@stellarinstitute.pk"; // Local cPanel email for direct delivery
 
 // Build the email
 $emailSubject = "New Website Inquiry: $subjectLabel";
 
 $emailBody = "
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f7fa; padding: 20px; }
-        .email-card { background: #fff; max-width: 600px; margin: 0 auto; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .email-header { background: linear-gradient(135deg, #0ea5e9, #0284c7); padding: 24px; color: #fff; }
-        .email-header h2 { margin: 0; font-size: 20px; }
-        .email-body { padding: 24px; }
-        .field { margin-bottom: 16px; }
-        .field-label { font-size: 12px; text-transform: uppercase; color: #999; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 4px; }
-        .field-value { font-size: 15px; color: #333; }
-        .message-box { background: #f8fafc; border-left: 4px solid #0ea5e9; padding: 16px; border-radius: 4px; margin-top: 8px; }
-        .email-footer { text-align: center; padding: 16px; color: #aaa; font-size: 12px; border-top: 1px solid #eee; }
+        /* Force light mode styles to prevent webmail clients from applying dark mode inversions */
+        :root {
+            color-scheme: light;
+        }
+        body { 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            background-color: #f3f4f6; 
+            margin: 0; 
+            padding: 40px 20px; 
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            background-color: #ffffff; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+        }
+        .header { 
+            background-color: #1e3a8a; /* Deep professional blue */
+            padding: 30px; 
+            text-align: center; 
+            border-bottom: 4px solid #3b82f6;
+        }
+        .header h1 { 
+            margin: 0; 
+            color: #ffffff; 
+            font-size: 24px; 
+            font-weight: 600; 
+            letter-spacing: 0.5px;
+        }
+        .content { 
+            padding: 40px 30px; 
+            background-color: #ffffff;
+        }
+        .intro {
+            color: #4b5563;
+            font-size: 16px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .field-group { 
+            margin-bottom: 24px; 
+        }
+        .label { 
+            display: block;
+            font-size: 12px; 
+            text-transform: uppercase; 
+            color: #6b7280; 
+            font-weight: 700; 
+            letter-spacing: 0.8px; 
+            margin-bottom: 6px; 
+        }
+        .value { 
+            font-size: 16px; 
+            color: #111827; 
+            background-color: #f9fafb;
+            padding: 12px 16px;
+            border-radius: 6px;
+            border: 1px solid #e5e7eb;
+            word-break: break-word;
+        }
+        .value a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .message-box { 
+            font-size: 15px; 
+            color: #1f2937; 
+            background-color: #f0f9ff; 
+            padding: 20px; 
+            border-radius: 8px; 
+            border-left: 4px solid #3b82f6; 
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+        .footer { 
+            background-color: #f9fafb; 
+            text-align: center; 
+            padding: 24px; 
+            color: #9ca3af; 
+            font-size: 13px; 
+            border-top: 1px solid #e5e7eb; 
+        }
+        .footer p {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
-    <div class='email-card'>
-        <div class='email-header'>
-            <h2>📩 New Website Inquiry</h2>
+    <div class='container'>
+        <div class='header'>
+            <h1>New Website Inquiry</h1>
         </div>
-        <div class='email-body'>
-            <div class='field'>
-                <div class='field-label'>Full Name</div>
-                <div class='field-value'>$name</div>
+        <div class='content'>
+            <p class='intro'>You have received a new message from the <strong>Stellar Institute</strong> website contact form.</p>
+            
+            <div class='field-group'>
+                <span class='label'>Full Name</span>
+                <div class='value'>$name</div>
             </div>
-            <div class='field'>
-                <div class='field-label'>Email Address</div>
-                <div class='field-value'><a href='mailto:$email'>$email</a></div>
+            
+            <div class='field-group'>
+                <span class='label'>Email Address</span>
+                <div class='value'><a href='mailto:$email'>$email</a></div>
             </div>
-            <div class='field'>
-                <div class='field-label'>Phone Number</div>
-                <div class='field-value'>$phone</div>
+            
+            <div class='field-group'>
+                <span class='label'>Phone Number</span>
+                <div class='value'>$phone</div>
             </div>
-            <div class='field'>
-                <div class='field-label'>Subject</div>
-                <div class='field-value'>$subjectLabel</div>
+            
+            <div class='field-group'>
+                <span class='label'>Subject</span>
+                <div class='value'><strong>$subjectLabel</strong></div>
             </div>
-            <div class='field'>
-                <div class='field-label'>Message</div>
+            
+            <div class='field-group'>
+                <span class='label'>Message</span>
                 <div class='message-box'>$message</div>
             </div>
         </div>
-        <div class='email-footer'>
-            Sent from Stellar Academy Website Contact Form
+        <div class='footer'>
+            <p>This is an automated email from the Stellar Institute website.</p>
+            <p>&copy; " . date('Y') . " Stellar Institute. All rights reserved.</p>
         </div>
     </div>
 </body>
@@ -119,11 +207,13 @@ $headers .= "From: Stellar Academy <noreply@stellarinstitute.pk>\r\n";
 $headers .= "Reply-To: $name <$email>\r\n";
 
 // Send the email
-$sent = mail($to, $emailSubject, $emailBody, $headers);
+$sent = mail($to, $emailSubject, $emailBody, $headers, "-fnoreply@stellarinstitute.pk");
 
 if ($sent) {
     echo json_encode(['success' => true, 'message' => 'Email sent successfully']);
 } else {
+    $error = error_get_last();
     http_response_code(500);
-    echo json_encode(['success' => false, 'error' => 'Failed to send email. Please try again later.']);
+    echo json_encode(['success' => false, 'error' => 'Failed to send email. Please try again later.', 'debug' => $error]);
 }
+
