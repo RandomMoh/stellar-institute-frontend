@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import React, { useEffect, useState, Suspense } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -104,6 +105,7 @@ function App() {
             } />
           </Routes>
         </Router>
+        <SpeedInsights />
       </CoursesProvider>
     </WebsiteImagesProvider>
   );
