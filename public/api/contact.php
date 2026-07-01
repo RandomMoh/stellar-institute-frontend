@@ -55,7 +55,7 @@ $subjectMap = [
 $subjectLabel = $subjectMap[$subject] ?? $subject;
 
 // ── Stellar Institute's receiving email ──
-$to = "info@stellarinstitute.pk";
+$to = "mohsinddop2309@gmail.com"; // Temporarily set for testing as requested
 
 // Build the email
 $emailSubject = "New Website Inquiry: $subjectLabel";
