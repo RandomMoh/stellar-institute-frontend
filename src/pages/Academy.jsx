@@ -31,19 +31,19 @@ export default function Academy() {
             marginTop: '60px',
             textAlign: 'left'
           }}>
-            <div className="stat-card" style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+            <div className="stat-card">
               <h3 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '8px' }}>9th – 12th</h3>
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', margin: 0 }}>Classes Covered</p>
             </div>
-            <div className="stat-card" style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+            <div className="stat-card">
               <h3 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '8px' }}>Boys & Girls</h3>
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', margin: 0 }}>Separate Sections</p>
             </div>
-            <div className="stat-card" style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+            <div className="stat-card">
               <h3 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '8px' }}>Weekly</h3>
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', margin: 0 }}>Test Sessions</p>
             </div>
-            <div className="stat-card" style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+            <div className="stat-card">
               <h3 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '8px' }}>Board-Aligned</h3>
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', margin: 0 }}>Curriculum</p>
             </div>
