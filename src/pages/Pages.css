@@ -974,3 +974,87 @@
     gap: 32px;
   }
 }
+
+/* ----------------------------------------------------- */
+/* Video Lightbox Styles
+/* ----------------------------------------------------- */
+.video-lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.video-lightbox-content {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: lightboxFadeIn 0.3s ease-out;
+}
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.video-lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.2s ease;
+}
+
+.video-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.video-lightbox-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+/* On mobile, make the wrapper taller so Google Drive UI doesn't squish the video */
+@media (max-width: 768px) {
+  .video-lightbox-overlay {
+    padding: 0;
+  }
+  .video-lightbox-content {
+    border-radius: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .video-lightbox-iframe-wrapper {
+    aspect-ratio: auto;
+    height: 80vh;
+    width: 100%;
+  }
+}
+
