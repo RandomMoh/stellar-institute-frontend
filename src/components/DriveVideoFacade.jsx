@@ -68,27 +68,16 @@ const DriveVideoFacade = ({ videoId, title }) => {
               </svg>
             </button>
             <div className="video-lightbox-iframe-wrapper">
-              <iframe 
-                src={iframeUrl} 
-                title={title || 'Student Video Review'}
-                allow="autoplay; fullscreen"
-                allowFullScreen 
-                className="facade-iframe"
-                frameBorder="0"
-              ></iframe>
-              {/* Security Overlay: Blocks clicks on the top Google Drive buttons */}
-              <div 
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '60px',
-                  background: 'transparent',
-                  zIndex: 10
-                }}
-                title="External links disabled"
-              ></div>
+              <video 
+                src={`https://drive.usercontent.google.com/download?id=${videoId}&export=download`}
+                crossOrigin="anonymous"
+                controls
+                autoPlay
+                controlsList="nodownload"
+                style={{ width: '100%', height: '100%', objectFit: 'contain', backgroundColor: '#000' }}
+              >
+                Your browser does not support the video tag.
+              </video>
             </div>
           </div>
         </div>,
