@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import { useCourses } from '../components/CoursesProvider';
 import FloatingShapes from '../components/FloatingShapes';
 import ImagePlaceholder from '../components/ImagePlaceholder';
+import ScrollReveal from '../components/ScrollReveal';
+import DriveVideoFacade from '../components/DriveVideoFacade';
+import { instituteReviews } from '../data/reviews';
 import './Pages.css';
 
 export default function SkilledInstitute() {
@@ -138,6 +141,30 @@ export default function SkilledInstitute() {
             )}
           </div>
 
+        </div>
+      </section>
+
+      {/* SECTION: STUDENT REVIEWS */}
+      <section className="reviews-section" style={{ background: 'var(--primary-50)' }}>
+        <div className="container">
+          <div className="section-header" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+            <div className="section-label">Institute Student Experiences</div>
+            <h2 className="section-title">See What They Achieved</h2>
+            <p className="section-subtitle">
+              Real stories and feedback from students who leveled up their technical and creative skills with us.
+            </p>
+          </div>
+          
+          <div className="reviews-grid">
+            {instituteReviews.map((review, index) => (
+              <ScrollReveal key={review.id} delay={index * 0.1}>
+                <div className="review-card-container">
+                  <DriveVideoFacade videoId={review.id} title={review.title} />
+                  <h3 className="review-card-title">{review.title}</h3>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
     </>

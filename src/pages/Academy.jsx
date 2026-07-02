@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import FloatingShapes from '../components/FloatingShapes';
 import ScrollReveal from '../components/ScrollReveal';
+import DriveVideoFacade from '../components/DriveVideoFacade';
+import { academyReviews } from '../data/reviews';
 import './Pages.css';
 
 export default function Academy() {
@@ -194,7 +196,31 @@ export default function Academy() {
         </div>
       </section>
 
-      {/* SECTION 4: CTA */}
+      {/* SECTION 4: STUDENT REVIEWS */}
+      <section className="reviews-section">
+        <div className="container">
+          <div className="section-header" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+            <div className="section-label">Academy Student Success</div>
+            <h2 className="section-title">Hear From Our Students</h2>
+            <p className="section-subtitle">
+              Don't just take our word for it. See what our students have to say about their experience preparing for their board exams.
+            </p>
+          </div>
+          
+          <div className="reviews-grid">
+            {academyReviews.map((review, index) => (
+              <ScrollReveal key={review.id} delay={index * 0.1}>
+                <div className="review-card-container">
+                  <DriveVideoFacade videoId={review.id} title={review.title} />
+                  <h3 className="review-card-title">{review.title}</h3>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 5: CTA */}
       <section className="cta-section" style={{ background: 'var(--primary-dark)', padding: '80px 0', textAlign: 'center', color: 'white' }}>
         <div className="container">
           <ScrollReveal>
