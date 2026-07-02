@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-const DriveVideoFacade = ({ videoId, title }) => {
+const DriveVideoFacade = ({ videoId, title, videoPath }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
 
@@ -11,9 +11,6 @@ const DriveVideoFacade = ({ videoId, title }) => {
     const thumbUrl = `https://drive.google.com/thumbnail?id=${videoId}&sz=w1280-h720`;
     setThumbnailUrl(thumbUrl);
   }, [videoId]);
-
-  // The Google Drive preview iframe URL
-  const iframeUrl = `https://drive.google.com/file/d/${videoId}/preview?autoplay=1`;
 
   const handlePlay = () => setIsPlaying(true);
   const handleClose = () => setIsPlaying(false);
@@ -69,7 +66,7 @@ const DriveVideoFacade = ({ videoId, title }) => {
             </button>
             <div className="video-lightbox-iframe-wrapper">
               <video 
-                src={`https://drive.usercontent.google.com/download?id=${videoId}&export=download`}
+                src={videoPath || `https://drive.usercontent.google.com/download?id=${videoId}&export=download`}
                 crossOrigin="anonymous"
                 controls
                 autoPlay

@@ -159,7 +159,7 @@ export default function SkilledInstitute() {
             {instituteReviews.map((review, index) => (
               <ScrollReveal key={review.id} delay={index * 0.1}>
                 <div className="review-card-container">
-                  <DriveVideoFacade videoId={review.id} title={review.title} />
+                  <DriveVideoFacade videoId={review.id} title={review.title} videoPath={review.videoPath} />
                   <h3 className="review-card-title">{review.title}</h3>
                 </div>
               </ScrollReveal>
