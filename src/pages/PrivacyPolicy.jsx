@@ -1,45 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Pages.css';
 import './PrivacyPolicy.css';
+import { privacyPolicyHtml } from '../data/privacyPolicyHtml';
 
 export default function PrivacyPolicy() {
-  const [content, setContent] = useState('');
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const API = import.meta.env.VITE_API_URL || '/api';
-    fetch(`${API}/pages?slug=privacy-policy`)
-      .then((res) => {
-        if (!res.ok) throw new Error('Not found');
-        return res.json();
-      })
-      .then((data) => {
-        setContent(data.content || '');
-        setLoading(false);
-      })
-      .catch(() => {
-        setContent('');
-        setLoading(false);
-      });
-  }, []);
-
   return (
     <div className="page-container page-content-container">
       <div className="container">
         <h1 className="page-title text-center">Privacy Policy</h1>
-        <div className="page-content-box">
-          {loading ? (
-            <p className="text-center">Loading Privacy Policy...</p>
-          ) : content ? (
-            <div 
-              className="rich-text-content" 
-              dangerouslySetInnerHTML={{ __html: content }} 
-            />
-          ) : (
-            <div className="empty-policy-state text-center">
-              <p>The Privacy Policy is currently being updated. Please check back later.</p>
-            </div>
-          )}
+        <div className="page-content-box" style={{ padding: '0', overflow: 'hidden' }}>
+          <div
+            className="rich-text-content google-doc-container"
+            dangerouslySetInnerHTML={{ __html: privacyPolicyHtml }}
+            style={{ 
+              maxWidth: '100%', 
+              overflowX: 'auto',
+              backgroundColor: '#fff',
+              color: '#000',
+              padding: '20px'
+            }}
+          />
         </div>
       </div>
     </div>
