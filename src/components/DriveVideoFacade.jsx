@@ -6,11 +6,11 @@ const DriveVideoFacade = ({ videoId, title }) => {
   // sz=w800 grabs a reasonably sized thumbnail without being too heavy
   const thumbnailUrl = `https://drive.google.com/thumbnail?id=${videoId}&sz=w800`;
   
-  // Autoplay=1 starts the video instantly when the facade is clicked
-  const iframeUrl = `https://drive.google.com/file/d/${videoId}/preview?autoplay=1`;
+  // Raw streaming URL bypassing the Drive UI (works for files under 100MB)
+  const videoStreamUrl = `https://drive.usercontent.google.com/download?id=${videoId}&export=download`;
 
   return (
-    <div className="drive-video-facade" onClick={() => setIsLoaded(true)}>
+    <div className="drive-video-facade" onClick={() => !isLoaded && setIsLoaded(true)}>
       {!isLoaded ? (
         <>
           <img 
@@ -28,14 +28,18 @@ const DriveVideoFacade = ({ videoId, title }) => {
           </div>
         </>
       ) : (
-        <iframe 
-          src={iframeUrl} 
-          title={title || 'Student Video Review'}
-          allow="autoplay"
-          allowFullScreen 
+        <video 
+          src={videoStreamUrl}
+          autoPlay
+          controls
+          controlsList="nodownload noplaybackrate"
+          disablePictureInPicture
+          onContextMenu={(e) => e.preventDefault()}
           className="facade-iframe"
-          frameBorder="0"
-        ></iframe>
+          style={{ width: '100%', height: '100%', background: '#000', outline: 'none' }}
+        >
+          Your browser does not support the video tag.
+        </video>
       )}
     </div>
   );
