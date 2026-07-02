@@ -7,6 +7,7 @@ import HeroSlider from '../components/HeroSlider';
 import StatsCounter from '../components/StatsCounter';
 import ScrollReveal from '../components/ScrollReveal';
 import ImagePlaceholder from '../components/ImagePlaceholder';
+import LogoMarquee from '../components/LogoMarquee';
 import './Home.css';
 
 const institutes = [
@@ -342,6 +343,9 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ===== LOGO MARQUEE ===== */}
+      <LogoMarquee />
 
       {/* ===== PARTNER / CTA ===== */}
       <section className="partner-cta">
