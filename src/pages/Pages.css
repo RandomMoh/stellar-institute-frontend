@@ -51,7 +51,6 @@
   border: 1px solid var(--accent);
   border-radius: var(--radius-md);
   margin-bottom: 30px;
-  overflow: hidden;
   position: relative;
   z-index: 1;
   transition: all var(--transition-smooth);
@@ -85,6 +84,7 @@
   padding: 28px 32px;
   background-color: var(--bg-color-alt);
   border-bottom: 1px solid #eeeeee;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
