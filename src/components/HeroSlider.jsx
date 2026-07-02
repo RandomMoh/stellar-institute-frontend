@@ -11,15 +11,15 @@ import './HeroSlider.css';
 const slides = [
   {
     tag: 'Welcome To Stellar Institute',
-    heading: 'One Institution.\nThree Paths to Success.',
+    heading: 'Building Tomorrow\'s Leaders, Today.',
     subheading: 'From foundational education to professional skills, Stellar Institute shapes futures at every stage.',
     cta: { text: 'Explore Programs', link: '/skilled-institute' },
     cta2: { text: 'Contact Us', link: '/contact' }
   },
   {
     tag: 'Stellar Academy',
-    heading: 'Where Knowledge\nMeets Character',
-    subheading: 'Quality education from Nursery to FSc nurturing bright minds in a disciplined, future-focused environment.',
+    heading: 'Your Path to Top Grades\nStarts Here.',
+    subheading: 'Preparing students for board exams with the guidance and discipline needed to score the highest grades.',
     cta: { text: 'View Programs', link: '/academy' },
     cta2: { text: 'Register Now', link: '/contact' }
   },

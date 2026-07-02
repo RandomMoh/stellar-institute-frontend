@@ -74,9 +74,9 @@ export default function Home() {
             <ScrollReveal direction="left">
               <div className="welcome-text">
                 <span className="welcome-tag">Welcome To</span>
-                <h2 className="welcome-heading">Stellar Institute</h2>
+                <h2 className="welcome-heading">Stellar</h2>
                 <p className="welcome-motto" style={{ fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '30px' }}>
-                  At Stellar Institute, we believe every student deserves the right environment to learn, grow, and succeed. From quality school education to professional skill-based courses, we provide a complete learning pathway, one that builds knowledge, character, and real-world readiness.
+                  At Stellar, we believe every student deserves the right environment to learn, grow, and succeed. From quality school education and academy coaching to college-level programs and professional skill-based courses, we provide a complete learning pathway one that builds knowledge, character, and real-world readiness.
                 </p>
                 <Link to="/about" className="btn btn-primary">Read More</Link>
               </div>
@@ -174,14 +174,14 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Why Choose Stellar Institute
+              Why Choose Stellar
             </motion.h2>
           </div>
 
           <div className="zigzag-grid">
             {[
               { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.657 2.686 3 6 3s6-1.343 6-3v-5"/></svg>, title: 'Expert Faculty', desc: 'Learn from qualified, experienced teachers who are dedicated to your academic and professional growth.' },
-              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>, title: 'Modern Labs', desc: 'Hands-on learning with up-to-date technology and equipment built for practical, real-world skill development.' },
+              { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>, title: 'Board Exam Preparation', desc: 'Focused coaching and structured guidance to help students achieve top grades in their board exams.' },
               { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>, title: 'Certifications', desc: 'Earn recognized certifications that strengthen your profile and open doors to better career opportunities.' },
               { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5C6 4 6 2 12 2s6 2 7.5 2a2.5 2.5 0 0 1 0 5H18"/><path d="M18 9v1a6 6 0 0 1-12 0V9"/><path d="M12 16v6"/><path d="M8 22h8"/></svg>, title: 'Disciplined Environment', desc: 'A safe, structured, and focused atmosphere where students can learn with confidence and clarity.' },
               { icon: <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>, title: 'Separate Classes', desc: 'A comfortable and respectful learning environment designed to maximize concentration and academic performance.' },
@@ -220,7 +220,7 @@ export default function Home() {
             <StatsCounter value={500} suffix="+" label="Students Enrolled" />
             <StatsCounter value={23} suffix="+" label="Courses Offered" />
             <StatsCounter value={50} suffix="+" label="Expert Faculty" />
-            <StatsCounter value={3} suffix="" label="Institutes" />
+            <StatsCounter value={4} suffix="" label="Institutes" />
           </div>
         </div>
       </section>
