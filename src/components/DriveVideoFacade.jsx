@@ -6,8 +6,8 @@ const DriveVideoFacade = ({ videoId, title }) => {
   // sz=w800 grabs a reasonably sized thumbnail without being too heavy
   const thumbnailUrl = `https://drive.google.com/thumbnail?id=${videoId}&sz=w800`;
   
-  // Raw streaming URL bypassing the Drive UI (works for files under 100MB)
-  const videoStreamUrl = `https://drive.usercontent.google.com/download?id=${videoId}&export=download`;
+  // Autoplay=1 starts the video instantly when the facade is clicked (if supported)
+  const iframeUrl = `https://drive.google.com/file/d/${videoId}/preview?autoplay=1`;
 
   return (
     <div className="drive-video-facade" onClick={() => !isLoaded && setIsLoaded(true)}>
@@ -28,18 +28,29 @@ const DriveVideoFacade = ({ videoId, title }) => {
           </div>
         </>
       ) : (
-        <video 
-          src={videoStreamUrl}
-          autoPlay
-          controls
-          controlsList="nodownload noplaybackrate"
-          disablePictureInPicture
-          onContextMenu={(e) => e.preventDefault()}
-          className="facade-iframe"
-          style={{ width: '100%', height: '100%', background: '#000', outline: 'none' }}
-        >
-          Your browser does not support the video tag.
-        </video>
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <iframe 
+            src={iframeUrl} 
+            title={title || 'Student Video Review'}
+            allow="autoplay"
+            allowFullScreen 
+            className="facade-iframe"
+            frameBorder="0"
+          ></iframe>
+          {/* Security Overlay: Blocks clicks on the top-right Google Drive Pop-out & Settings buttons */}
+          <div 
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '60px',
+              background: 'transparent',
+              zIndex: 10
+            }}
+            title="External links disabled"
+          ></div>
+        </div>
       )}
     </div>
   );
