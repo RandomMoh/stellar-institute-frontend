@@ -158,36 +158,36 @@ export default function Academy() {
             </p>
           </div>
           
-          <div className="zigzag-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
+          <div className="test-sessions-grid">
             <ScrollReveal delay={0.1}>
-              <div className="feature-card" style={{ padding: '30px', background: 'var(--bg-color-alt)', borderRadius: '16px', height: '100%', border: '1px solid rgba(0,0,0,0.05)' }}>
-                <div style={{ color: 'var(--primary-color)', fontWeight: 'bold', marginBottom: '10px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>WEEKLY</div>
-                <h3 style={{ fontSize: '1.4rem', marginBottom: '15px' }}>Class Tests</h3>
-                <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>Short, subject-wise tests after every unit to reinforce what's just been taught.</p>
+              <div className="test-session-card">
+                <div className="ts-badge">WEEKLY</div>
+                <h3>Class Tests</h3>
+                <p>Short, subject-wise tests after every unit to reinforce what's just been taught.</p>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.2}>
-              <div className="feature-card" style={{ padding: '30px', background: 'var(--bg-color-alt)', borderRadius: '16px', height: '100%', border: '1px solid rgba(0,0,0,0.05)' }}>
-                <div style={{ color: 'var(--primary-color)', fontWeight: 'bold', marginBottom: '10px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>MONTHLY</div>
-                <h3 style={{ fontSize: '1.4rem', marginBottom: '15px' }}>Progress Assessments</h3>
-                <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>Full-syllabus-to-date tests with detailed performance reports shared with parents.</p>
+              <div className="test-session-card">
+                <div className="ts-badge">MONTHLY</div>
+                <h3>Progress Assessments</h3>
+                <p>Full-syllabus-to-date tests with detailed performance reports shared with parents.</p>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.3}>
-              <div className="feature-card" style={{ padding: '30px', background: 'var(--bg-color-alt)', borderRadius: '16px', height: '100%', border: '1px solid rgba(0,0,0,0.05)' }}>
-                <div style={{ color: 'var(--primary-color)', fontWeight: 'bold', marginBottom: '10px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>PRE-BOARD</div>
-                <h3 style={{ fontSize: '1.4rem', marginBottom: '15px' }}>Mock Board Exams</h3>
-                <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>Full-length papers under timed, exam-hall conditions before the actual boards.</p>
+              <div className="test-session-card">
+                <div className="ts-badge">PRE-BOARD</div>
+                <h3>Mock Board Exams</h3>
+                <p>Full-length papers under timed, exam-hall conditions before the actual boards.</p>
               </div>
             </ScrollReveal>
 
             <ScrollReveal delay={0.4}>
-              <div className="feature-card" style={{ padding: '30px', background: 'var(--bg-color-alt)', borderRadius: '16px', height: '100%', border: '1px solid rgba(0,0,0,0.05)' }}>
-                <div style={{ color: 'var(--primary-color)', fontWeight: 'bold', marginBottom: '10px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>ONGOING</div>
-                <h3 style={{ fontSize: '1.4rem', marginBottom: '15px' }}>Performance Tracking</h3>
-                <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>Individual student trend reports, so improvement or a dip is caught early.</p>
+              <div className="test-session-card">
+                <div className="ts-badge">ONGOING</div>
+                <h3>Performance Tracking</h3>
+                <p>Individual student trend reports, so improvement or a dip is caught early.</p>
               </div>
             </ScrollReveal>
           </div>
