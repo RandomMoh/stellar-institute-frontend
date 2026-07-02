@@ -2,139 +2,208 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import FloatingShapes from '../components/FloatingShapes';
 import ScrollReveal from '../components/ScrollReveal';
-import { academyPrograms } from '../data/courses';
 import './Pages.css';
 
 export default function Academy() {
   return (
     <>
+      {/* SECTION 1: HERO */}
       <section className="page-hero relative" style={{ overflow: 'hidden' }}>
         <FloatingShapes />
         <div className="page-hero-content container relative z-10">
-          <div className="section-label" style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '15px' }}>Welcome to Stellar Academy</div>
-          <h1 style={{ marginBottom: '20px' }}>Learn Today.<br/><span>Lead Tomorrow.</span></h1>
-          <p>A disciplined, future-focused academic environment where students from Grade 5 to Intermediate build knowledge, confidence, and character.</p>
+          <div className="section-label" style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '15px' }}>
+            Stellar Academy — Matric · Intermediate · O & A Levels
+          </div>
+          <h1 style={{ marginBottom: '20px' }}>
+            Where Hard Work Turns Into<br/><span>Top Grades</span>
+          </h1>
+          <p>
+            Focused board exam preparation, disciplined test sessions, and mentorship built to help every student reach their highest grades without losing sight of who they're becoming.
+          </p>
           <div style={{ marginTop: '30px' }}>
-            <Link to="/contact" className="btn btn-primary">Apply for Admission</Link>
+            <Link to="/contact" className="btn btn-primary">Secure Admission</Link>
+          </div>
+          
+          <div className="hero-stats-grid" style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+            gap: '20px', 
+            marginTop: '60px',
+            textAlign: 'left'
+          }}>
+            <div className="stat-card" style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+              <h3 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '8px' }}>9th – 12th</h3>
+              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', margin: 0 }}>Classes Covered</p>
+            </div>
+            <div className="stat-card" style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+              <h3 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '8px' }}>Boys & Girls</h3>
+              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', margin: 0 }}>Separate Sections</p>
+            </div>
+            <div className="stat-card" style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+              <h3 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '8px' }}>Weekly</h3>
+              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', margin: 0 }}>Test Sessions</p>
+            </div>
+            <div className="stat-card" style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+              <h3 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '8px' }}>Board-Aligned</h3>
+              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', margin: 0 }}>Curriculum</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section" style={{ backgroundColor: 'var(--bg-color-alt)', padding: '80px 0' }}>
-        <div className="container">
-          <ScrollReveal>
-            <div className="section-header" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-              <div className="section-label">About Us</div>
-              <h2 className="section-title" style={{ marginBottom: '20px' }}>Shaping Bright Minds Since Day One</h2>
-              <p style={{ fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--text-muted)', marginBottom: '30px' }}>
-                At Stellar Academy, we believe education is more than textbooks and exams. We provide a structured, nurturing environment where every student receives individual attention, strong academic preparation, and the values needed to succeed in life. From Middle School to Intermediate, our programs are designed to build a solid foundation for every stage of your child's future.
-              </p>
-              <Link to="/about" className="btn btn-secondary">Learn More</Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      <section className="programs-section">
+      {/* SECTION 2: TRACKS */}
+      <section className="programs-section" style={{ padding: '80px 0', background: 'var(--bg-color-alt)' }}>
         <div className="container">
           <ScrollReveal>
             <div className="section-header">
-              <div className="section-label">Academic Programs</div>
-              <h2 className="section-title">Our <span>Programs</span></h2>
+              <h2 className="section-title">A Track for Every Board Exam Ahead</h2>
               <p className="section-subtitle">
-                Three levels of academic excellence designed to prepare students for board examinations and higher education.
+                From Matric to Intermediate and beyond, every class is built around the exams that matter most, with teaching paced to the board's own timeline.
               </p>
             </div>
           </ScrollReveal>
 
-          {academyPrograms.map((program, i) => (
-            <ScrollReveal key={program.id} delay={i * 0.1}>
-              <div className="program-card">
-                <div className="program-card-header">
-                  <h2>{program.title}</h2>
-                  <span className="grades">{program.grades}</span>
-                </div>
-                <div className="program-card-body">
-                  <p>{program.description}</p>
-                  <div className="program-details-grid">
-                    <div className="program-detail-block">
-                      <h4>Subjects</h4>
-                      <ul>
-                        {program.subjects.map((s, j) => (
-                          <li key={j}>{s}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="program-detail-block">
-                      <h4>Highlights</h4>
-                      <div className="highlight-tags">
-                        {program.highlights.map((h, j) => (
-                          <span key={j} className="highlight-tag">{h}</span>
-                        ))}
-                      </div>
+          <ScrollReveal delay={0.1}>
+            <div className="program-card" style={{ marginBottom: '30px' }}>
+              <div className="program-card-header">
+                <h2>Matric</h2>
+                <span className="grades">9th – 10th</span>
+              </div>
+              <div className="program-card-body">
+                <p>Science & Arts groups, taught to the board syllabus with continuous assessment.</p>
+                <div className="program-details-grid">
+                  <div className="program-detail-block">
+                    <h4>Streams</h4>
+                    <ul>
+                      <li>Science Group</li>
+                      <li>Arts / General Group</li>
+                    </ul>
+                  </div>
+                  <div className="program-detail-block">
+                    <h4>Highlights</h4>
+                    <div className="highlight-tags">
+                      <span className="highlight-tag">Subject-wise weak-area coaching</span>
                     </div>
                   </div>
                 </div>
               </div>
-            </ScrollReveal>
-          ))}
+            </div>
+          </ScrollReveal>
 
-          <div style={{ textAlign: 'center', marginTop: 48 }}>
-            <Link to="/contact" className="btn btn-primary btn-lg">Apply for Admission →</Link>
-          </div>
+          <ScrollReveal delay={0.2}>
+            <div className="program-card" style={{ marginBottom: '30px' }}>
+              <div className="program-card-header">
+                <h2>Intermediate (FSc / ICS / Commerce)</h2>
+                <span className="grades">11th – 12th</span>
+              </div>
+              <div className="program-card-body">
+                <p>Pre-Medical, Pre-Engineering, ICS, and Commerce streams with entry-test relevant coaching.</p>
+                <div className="program-details-grid">
+                  <div className="program-detail-block">
+                    <h4>Streams</h4>
+                    <ul>
+                      <li>Pre-Medical & Pre-Engineering</li>
+                      <li>ICS</li>
+                      <li>Commerce / I.Com</li>
+                    </ul>
+                  </div>
+                  <div className="program-detail-block">
+                    <h4>Highlights</h4>
+                    <div className="highlight-tags">
+                      <span className="highlight-tag">Entry-test relevant coaching</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.3}>
+            <div className="program-card" style={{ marginBottom: '30px' }}>
+              <div className="program-card-header">
+                <h2>Cambridge O & A Levels</h2>
+                <span className="grades">O / A LEVEL</span>
+              </div>
+              <div className="program-card-body">
+                <p>Subject-specific support aligned with Cambridge assessment objectives and past-paper practice.</p>
+                <div className="program-details-grid">
+                  <div className="program-detail-block">
+                    <h4>Streams</h4>
+                    <ul>
+                      <li>O Level core & elective subjects</li>
+                      <li>A Level (Sciences, Commerce, Humanities)</li>
+                    </ul>
+                  </div>
+                  <div className="program-detail-block">
+                    <h4>Highlights</h4>
+                    <div className="highlight-tags">
+                      <span className="highlight-tag">Past-paper-based practice</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
+      {/* SECTION 3: TEST SESSIONS */}
       <section className="section" style={{ padding: '80px 0' }}>
         <div className="container">
-          <div className="section-header">
-            <div className="section-label">Our Strengths</div>
-            <h2 className="section-title">Why Parents & Students<br/>Trust Stellar Academy</h2>
+          <div className="section-header" style={{ maxWidth: '800px', margin: '0 auto 50px auto', textAlign: 'center' }}>
+            <div className="section-label">Test Sessions & Performance Tracking</div>
+            <h2 className="section-title">Consistent Testing. Visible Progress.</h2>
+            <p className="section-subtitle">
+              Regular, structured assessments, so no student's weak spot goes unnoticed until it's too late.
+            </p>
           </div>
-          <div className="zigzag-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-            {[
-              { title: 'Qualified & Dedicated Teachers', desc: "Our faculty brings subject expertise and genuine care for every student's progress and well-being." },
-              { title: 'Result-Oriented Preparation', desc: 'From past paper practice to regular test series, our academic system is built around real results.' },
-              { title: 'Individual Student Attention', desc: 'Small class sizes and personal monitoring ensure no student is left behind.' },
-              { title: 'Separate Classes for Boys & Girls', desc: 'A focused and respectful learning environment designed for better concentration and comfort.' },
-              { title: 'Safe & Disciplined Environment', desc: 'A campus culture built on respect, discipline, and positive academic habits.' },
-              { title: 'Regular Assessments & Progress Reports', desc: 'Weekly tests and monthly performance tracking keep students and parents informed at every step.' }
-            ].map((item, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="program-card" style={{ height: '100%', padding: '30px' }}>
-                  <h3 style={{ fontSize: '1.2rem', marginBottom: '15px', color: 'var(--primary)' }}>{item.title}</h3>
-                  <p style={{ color: 'var(--text-muted)', lineHeight: '1.6' }}>{item.desc}</p>
-                </div>
-              </ScrollReveal>
-            ))}
+          
+          <div className="zigzag-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
+            <ScrollReveal delay={0.1}>
+              <div className="feature-card" style={{ padding: '30px', background: 'var(--bg-color-alt)', borderRadius: '16px', height: '100%', border: '1px solid rgba(0,0,0,0.05)' }}>
+                <div style={{ color: 'var(--primary-color)', fontWeight: 'bold', marginBottom: '10px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>WEEKLY</div>
+                <h3 style={{ fontSize: '1.4rem', marginBottom: '15px' }}>Class Tests</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>Short, subject-wise tests after every unit to reinforce what's just been taught.</p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2}>
+              <div className="feature-card" style={{ padding: '30px', background: 'var(--bg-color-alt)', borderRadius: '16px', height: '100%', border: '1px solid rgba(0,0,0,0.05)' }}>
+                <div style={{ color: 'var(--primary-color)', fontWeight: 'bold', marginBottom: '10px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>MONTHLY</div>
+                <h3 style={{ fontSize: '1.4rem', marginBottom: '15px' }}>Progress Assessments</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>Full-syllabus-to-date tests with detailed performance reports shared with parents.</p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.3}>
+              <div className="feature-card" style={{ padding: '30px', background: 'var(--bg-color-alt)', borderRadius: '16px', height: '100%', border: '1px solid rgba(0,0,0,0.05)' }}>
+                <div style={{ color: 'var(--primary-color)', fontWeight: 'bold', marginBottom: '10px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>PRE-BOARD</div>
+                <h3 style={{ fontSize: '1.4rem', marginBottom: '15px' }}>Mock Board Exams</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>Full-length papers under timed, exam-hall conditions before the actual boards.</p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.4}>
+              <div className="feature-card" style={{ padding: '30px', background: 'var(--bg-color-alt)', borderRadius: '16px', height: '100%', border: '1px solid rgba(0,0,0,0.05)' }}>
+                <div style={{ color: 'var(--primary-color)', fontWeight: 'bold', marginBottom: '10px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>ONGOING</div>
+                <h3 style={{ fontSize: '1.4rem', marginBottom: '15px' }}>Performance Tracking</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>Individual student trend reports, so improvement or a dip is caught early.</p>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      <section className="section" style={{ backgroundColor: 'var(--bg-color-alt)', padding: '80px 0' }}>
+      {/* SECTION 4: CTA */}
+      <section className="cta-section" style={{ background: 'var(--primary-dark)', padding: '80px 0', textAlign: 'center', color: 'white' }}>
         <div className="container">
-          <div className="section-header">
-            <div className="section-label">How to Enroll</div>
-            <h2 className="section-title">Simple Steps to Get Started</h2>
-          </div>
-          <div className="admissions-steps" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px', marginTop: '40px' }}>
-            {[
-              { step: 'Step 1 — Apply', desc: 'Fill out the admission form online or visit our campus at 1-Montgomery Road, Lahore.' },
-              { step: 'Step 2 — Assessment', desc: 'Students appear for a short entry assessment to help us place them in the right class level.' },
-              { step: 'Step 3 — Confirmation', desc: 'Receive your admission confirmation and fee details from our admissions team.' },
-              { step: 'Step 4 — Start Learning', desc: 'Join your class and begin your journey toward academic excellence.' }
-            ].map((item, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div style={{ padding: '30px', backgroundColor: '#fff', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', textAlign: 'center', height: '100%' }}>
-                  <div style={{ width: '50px', height: '50px', backgroundColor: 'var(--primary)', color: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', fontWeight: 'bold', margin: '0 auto 20px' }}>
-                    {i + 1}
-                  </div>
-                  <h4 style={{ marginBottom: '15px' }}>{item.step}</h4>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>{item.desc}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+          <ScrollReveal>
+            <h2 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Ready to Start Your Board Exam Prep?</h2>
+            <p style={{ fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto 40px auto', opacity: 0.9, lineHeight: 1.6 }}>
+              Seats for the upcoming session are limited. Talk to our academic counsellor and find the right class for your child.
+            </p>
+            <Link to="/contact" className="btn btn-primary btn-lg" style={{ background: 'white', color: 'var(--primary-dark)' }}>Secure admission</Link>
+          </ScrollReveal>
         </div>
       </section>
     </>

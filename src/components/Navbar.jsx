@@ -37,40 +37,10 @@ export default function Navbar() {
 
           <div className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
             <Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Home</Link>
-            
-            <div className="nav-dropdown">
-              <span className={`nav-link ${location.pathname.match(/\/(academy|skilled-institute|school|college)/) ? 'active' : ''}`}>
-                Institutes ▾
-              </span>
-              <div className="dropdown-menu">
-                <Link to="/academy" onClick={() => setMobileMenuOpen(false)}>Stellar Academy</Link>
-                <div className="nested-dropdown">
-                  <Link to="/skilled-institute" onClick={() => setMobileMenuOpen(false)}>Skilled Institute ▾</Link>
-                  <div className="nested-dropdown-menu">
-                    <div className="nested-dropdown-sub">
-                      <span className="nested-category">IT Courses ▾</span>
-                      <div className="nested-dropdown-deep">
-                        {itCourses.map(c => (
-                          <Link key={c.id} to="/contact" onClick={() => setMobileMenuOpen(false)}>{c.title}</Link>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="nested-dropdown-sub">
-                      <span className="nested-category">Female Beauty Courses ▾</span>
-                      <div className="nested-dropdown-deep">
-                        {beautyCourses.map(c => (
-                          <Link key={c.id} to="/contact" onClick={() => setMobileMenuOpen(false)}>{c.title}</Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <Link to="/coming-soon" onClick={() => setMobileMenuOpen(false)}>Stellar School</Link>
-                <Link to="/coming-soon" onClick={() => setMobileMenuOpen(false)}>Stellar College</Link>
-              </div>
-            </div>
-
-            <Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>About Us</Link>
+            <Link to="/academy" className={location.pathname === '/academy' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Academy</Link>
+            <Link to="/skilled-institute" className={location.pathname === '/skilled-institute' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Institute</Link>
+            <Link to="/contact" className={location.pathname === '/admissions' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Admissions</Link>
+            <Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>About</Link>
             <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             
             <div className="nav-mobile-btn">
