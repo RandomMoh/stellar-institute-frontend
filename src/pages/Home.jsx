@@ -305,19 +305,38 @@ export default function Home() {
             </motion.h2>
           </div>
 
-          <div className="testimonials-stagger">
-            {testimonials.slice(0, 3).map((t, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div className={`test-card ${i === 1 ? 'test-card-raised' : ''}`}>
-                  <div className="test-quote">"</div>
-                  <p>{t.quote}</p>
-                  <div className="test-author">
-                    <h5>{t.name}</h5>
-                    <span>{t.role}</span>
+          <div style={{ marginBottom: '60px' }}>
+            <h3 style={{ textAlign: 'center', marginBottom: '30px', fontSize: '2rem', color: 'var(--primary-dark)' }}>Stellar Academy</h3>
+            <div className="testimonials-stagger">
+              {/* Added placeholders for Stellar Academy video testimonials */}
+              {[1, 2, 3].map((i) => (
+                <ScrollReveal key={'acad-'+i} delay={i * 0.1}>
+                  <div className="test-card video-test-card" style={{ padding: '0', overflow: 'hidden', height: '350px', background: '#000', borderRadius: '16px', position: 'relative' }}>
+                    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: 'white' }}>
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="white" style={{ opacity: 0.8, marginBottom: '10px' }}><path d="M8 5v14l11-7z"/></svg>
+                      <span style={{ fontSize: '1rem', fontWeight: 600 }}>Video Placeholder {i}</span>
+                    </div>
                   </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 style={{ textAlign: 'center', marginBottom: '30px', fontSize: '2rem', color: 'var(--primary-dark)' }}>Stellar Skilled Institute</h3>
+            <div className="testimonials-stagger">
+              {/* Added placeholders for Stellar Skilled Institute video testimonials */}
+              {[1, 2, 3].map((i) => (
+                <ScrollReveal key={'skill-'+i} delay={i * 0.1}>
+                  <div className="test-card video-test-card" style={{ padding: '0', overflow: 'hidden', height: '350px', background: '#000', borderRadius: '16px', position: 'relative' }}>
+                    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', color: 'white' }}>
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="white" style={{ opacity: 0.8, marginBottom: '10px' }}><path d="M8 5v14l11-7z"/></svg>
+                      <span style={{ fontSize: '1rem', fontWeight: 600 }}>Video Placeholder {i}</span>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
