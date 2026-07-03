@@ -21,14 +21,14 @@ const slides = [
     heading: 'Your Path to Top Grades\nStarts Here.',
     subheading: 'Preparing students for board exams with the guidance and discipline needed to score the highest grades.',
     cta: { text: 'View Programs', link: '/academy' },
-    cta2: { text: 'Register Now', link: '/contact' }
+    cta2: { text: 'Register Now', link: '/admission' }
   },
   {
     tag: 'Stellar Skilled Institute',
     heading: 'Learn Skills. Build a Career.\nStart earning.',
     subheading: 'Master Graphic Design, Digital Marketing, Web Development, and more, and unlock real earning opportunities with international clients.',
     cta: { text: 'Browse Courses', link: '/skilled-institute' },
-    cta2: { text: 'Enroll Now', link: '/contact' }
+    cta2: { text: 'Enroll Now', link: '/admission' }
   }
 ];
 
