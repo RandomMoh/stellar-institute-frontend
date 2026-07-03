@@ -128,8 +128,8 @@ export default function Admission() {
                       <option value="5th - 8th Classes">5th - 8th Classes</option>
                       <option value="9th Class">9th Class</option>
                       <option value="10th Class">10th Class</option>
-                      <option value="First Year">First Year</option>
-                      <option value="Second Year">Second Year</option>
+                      <option value="First Year - I">First Year - I</option>
+                      <option value="Second Year - II">Second Year - II</option>
                       <option value="IT Courses">IT Courses</option>
                       <option value="Beauty Courses">Beauty Courses</option>
                     </select>
@@ -170,7 +170,7 @@ export default function Admission() {
                   </div>
                 )}
 
-                {(formData.classCourse === 'First Year' || formData.classCourse === 'Second Year') && (
+                {(formData.classCourse === 'First Year - I' || formData.classCourse === 'Second Year - II') && (
                   <div className="form-group">
                     <label htmlFor="specificCourse">Select Program / Type <span style={{ color: 'red' }}>*</span></label>
                     <select id="specificCourse" name="specificCourse" value={formData.specificCourse} onChange={handleChange} required>
@@ -180,8 +180,6 @@ export default function Admission() {
                       <option value="ICS">ICS</option>
                       <option value="I.Com">I.Com</option>
                       <option value="F.A">F.A</option>
-                      <option value="Type I">Type I</option>
-                      <option value="Type II">Type II</option>
                     </select>
                   </div>
                 )}
