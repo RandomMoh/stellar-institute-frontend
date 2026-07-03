@@ -88,26 +88,26 @@ export default function Admission() {
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '30px' }}>
             {/* Step 1 */}
-            <div style={{ backgroundColor: '#ffffff', padding: '32px', borderRadius: '16px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}>
-              <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--primary)', marginBottom: '12px', letterSpacing: '0.05em' }}>01</div>
+            <div className="process-card">
+              <div className="process-number">01</div>
               <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Submit the Form</h3>
               <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>Fill out the application form below with your child's details.</p>
             </div>
             {/* Step 2 */}
-            <div style={{ backgroundColor: '#ffffff', padding: '32px', borderRadius: '16px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}>
-              <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--primary)', marginBottom: '12px', letterSpacing: '0.05em' }}>02</div>
+            <div className="process-card">
+              <div className="process-number">02</div>
               <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Counsellor Call</h3>
               <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>Our academic counsellor calls within 24–48 hours to discuss the right class.</p>
             </div>
             {/* Step 3 */}
-            <div style={{ backgroundColor: '#ffffff', padding: '32px', borderRadius: '16px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}>
-              <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--primary)', marginBottom: '12px', letterSpacing: '0.05em' }}>03</div>
+            <div className="process-card">
+              <div className="process-number">03</div>
               <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Assessment / Interview</h3>
               <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>A short, friendly assessment to confirm placement (where applicable).</p>
             </div>
             {/* Step 4 */}
-            <div style={{ backgroundColor: '#ffffff', padding: '32px', borderRadius: '16px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}>
-              <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--primary)', marginBottom: '12px', letterSpacing: '0.05em' }}>04</div>
+            <div className="process-card">
+              <div className="process-number">04</div>
               <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Confirm & Enroll</h3>
               <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>Complete documentation and fee submission to secure the seat.</p>
             </div>
