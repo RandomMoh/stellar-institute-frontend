@@ -1109,3 +1109,42 @@
 .process-card:hover .process-number {
   transform: scale(1.1) translateX(2px);
 }
+
+/* Admission Benefit Items */
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.benefit-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 10px rgba(10, 37, 64, 0.15);
+}
+
+.benefit-item:hover .benefit-icon {
+  transform: scale(1.15) rotate(10deg);
+  box-shadow: 0 6px 14px rgba(10, 37, 64, 0.25);
+}
+
+.benefit-text {
+  font-size: 16px;
+  color: #1e293b;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.benefit-item:hover .benefit-text {
+  color: var(--primary);
+}

@@ -137,30 +137,30 @@ export default function Admission() {
                 Share a few details below and our admissions team will get in touch to guide you through the rest — class placement, fee structure, and available seats.
               </p>
               
-              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                  <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#ecfdf5', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <li className="benefit-item">
+                  <div className="benefit-icon">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   </div>
-                  <span style={{ fontSize: '16px', color: '#1e293b', fontWeight: '500' }}>No admission fee to apply</span>
+                  <span className="benefit-text">No admission fee to apply</span>
                 </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                  <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#ecfdf5', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <li className="benefit-item">
+                  <div className="benefit-icon">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   </div>
-                  <span style={{ fontSize: '16px', color: '#1e293b', fontWeight: '500' }}>Free initial counselling session</span>
+                  <span className="benefit-text">Free initial counselling session</span>
                 </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                  <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#ecfdf5', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <li className="benefit-item">
+                  <div className="benefit-icon">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   </div>
-                  <span style={{ fontSize: '16px', color: '#1e293b', fontWeight: '500' }}>Guidance on the right class or stream</span>
+                  <span className="benefit-text">Guidance on the right class or stream</span>
                 </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                  <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: '#ecfdf5', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <li className="benefit-item">
+                  <div className="benefit-icon">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   </div>
-                  <span style={{ fontSize: '16px', color: '#1e293b', fontWeight: '500' }}>Response within 24–48 hours</span>
+                  <span className="benefit-text">Response within 24–48 hours</span>
                 </li>
               </ul>
             </div>
