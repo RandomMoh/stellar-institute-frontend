@@ -177,7 +177,9 @@ export default function Admission() {
                       <option value="">Select Option</option>
                       <option value="FSc Pre-Medical">FSc Pre-Medical</option>
                       <option value="FSc Pre-Engineering">FSc Pre-Engineering</option>
-                      <option value="ICS">ICS</option>
+                      <option value="ICS (Mathematics, Computer Science, and Physics)">ICS (Mathematics, Computer Science, and Physics)</option>
+                      <option value="ICS (Mathematics, Computer Science, and Statistics)">ICS (Mathematics, Computer Science, and Statistics)</option>
+                      <option value="ICS (Mathematics, Computer Science, and Economics)">ICS (Mathematics, Computer Science, and Economics)</option>
                       <option value="I.Com">I.Com</option>
                       <option value="F.A">F.A</option>
                     </select>
