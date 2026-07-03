@@ -196,12 +196,12 @@ export default function Admission() {
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px' }}>
                       <div className="form-group" style={{ marginBottom: 0 }}>
-                        <label htmlFor="parentName">Parent/Guardian Name</label>
-                        <input type="text" id="parentName" name="parentName" placeholder="Parent's name" value={formData.parentName} onChange={handleChange} />
+                        <label htmlFor="parentName">Parent/Guardian Name <span style={{ color: '#ef4444' }}>*</span></label>
+                        <input type="text" id="parentName" name="parentName" placeholder="Parent's name" value={formData.parentName} onChange={handleChange} required />
                       </div>
                       <div className="form-group" style={{ marginBottom: 0 }}>
-                        <label htmlFor="parentMobile">Parent Mobile</label>
-                        <input type="tel" id="parentMobile" name="parentMobile" placeholder="+92-300-0000000" value={formData.parentMobile} onChange={handleChange} />
+                        <label htmlFor="parentMobile">Parent Mobile <span style={{ color: '#ef4444' }}>*</span></label>
+                        <input type="tel" id="parentMobile" name="parentMobile" placeholder="+92-300-0000000" value={formData.parentMobile} onChange={handleChange} required />
                       </div>
                     </div>
 
