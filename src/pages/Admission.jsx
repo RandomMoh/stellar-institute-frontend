@@ -1,0 +1,162 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import FloatingShapes from '../components/FloatingShapes';
+import ScrollReveal from '../components/ScrollReveal';
+import './Pages.css';
+
+export default function Admission() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    mobileNumber: '',
+    parentName: '',
+    parentMobile: '',
+    email: '',
+    classCourse: '',
+    board: '',
+    message: ''
+  });
+  const [status, setStatus] = useState('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+    setErrorMsg('');
+
+    try {
+      const res = await fetch(`https://stellarinstitute.pk/api/admission.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setStatus('success');
+        setFormData({ 
+          fullName: '', mobileNumber: '', parentName: '', 
+          parentMobile: '', email: '', classCourse: '', board: '', message: '' 
+        });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setErrorMsg(data.error || 'Something went wrong. Please try again.');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch (err) {
+      setStatus('error');
+      setErrorMsg('Network error. Please check your connection and try again.');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
+
+  return (
+    <>
+      <section className="page-hero relative" style={{ overflow: 'hidden' }}>
+        <FloatingShapes />
+        <div className="page-hero-content container relative z-10">
+          <h1>Admission</h1>
+          <div className="breadcrumb">
+            <Link to="/">Home</Link> <span>/</span> <span>Admission</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="programs-section" style={{ padding: '80px 0' }}>
+        <div className="container">
+          <div className="contact-grid" style={{ gridTemplateColumns: '1fr', maxWidth: '800px', margin: '0 auto' }}>
+            <ScrollReveal>
+              <form className="contact-form" onSubmit={handleSubmit}>
+                <h2 style={{ textAlign: 'center', marginBottom: '30px' }}>Admission Application Form</h2>
+
+                {status === 'success' && (
+                  <div className="form-alert form-alert-success">
+                    Admission form submitted successfully. We will contact you soon!
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div className="form-alert form-alert-error">
+                    {errorMsg}
+                  </div>
+                )}
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                  <div className="form-group">
+                    <label htmlFor="fullName">Full Name <span style={{ color: 'red' }}>*</span></label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Student's full name" value={formData.fullName} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="mobileNumber">Mobile Number <span style={{ color: 'red' }}>*</span></label>
+                    <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="+92-300-0000000" value={formData.mobileNumber} onChange={handleChange} required />
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                  <div className="form-group">
+                    <label htmlFor="parentName">Parent/Guardian Name</label>
+                    <input type="text" id="parentName" name="parentName" placeholder="Parent's name" value={formData.parentName} onChange={handleChange} />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="parentMobile">Parent/Guardian Mobile Number</label>
+                    <input type="tel" id="parentMobile" name="parentMobile" placeholder="+92-300-0000000" value={formData.parentMobile} onChange={handleChange} />
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                  <div className="form-group">
+                    <label htmlFor="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" value={formData.email} onChange={handleChange} />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="classCourse">Select Class / Course <span style={{ color: 'red' }}>*</span></label>
+                    <select id="classCourse" name="classCourse" value={formData.classCourse} onChange={handleChange} required>
+                      <option value="">Select an option</option>
+                      <option value="5th - 8th Classes">5th - 8th Classes</option>
+                      <option value="9th Class">9th Class</option>
+                      <option value="10th Class">10th Class</option>
+                      <option value="First Year">First Year</option>
+                      <option value="Second Year">Second Year</option>
+                      <option value="IT Courses">IT Courses</option>
+                      <option value="Beauty Courses">Beauty Courses</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="board">Board</label>
+                  <select id="board" name="board" value={formData.board} onChange={handleChange}>
+                    <option value="">Select Board</option>
+                    <option value="Punjab Board">Punjab Board</option>
+                    <option value="Federal Board">Federal Board</option>
+                    <option value="Cambridge/O-Level">Cambridge / O-Level</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="message">Message / Questions (Optional)</label>
+                  <textarea id="message" name="message" placeholder="Any additional information..." value={formData.message} onChange={handleChange} style={{ minHeight: '120px' }} />
+                </div>
+
+                <button 
+                  type="submit" 
+                  className="btn btn-primary btn-lg" 
+                  style={{ width: '100%', opacity: status === 'sending' ? 0.7 : 1, marginTop: '10px' }}
+                  disabled={status === 'sending'}
+                >
+                  {status === 'sending' ? 'Submitting...' : 'Submit Application →'}
+                </button>
+              </form>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

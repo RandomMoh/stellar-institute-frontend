@@ -365,7 +365,7 @@ export default function Home() {
               <span className="welcome-tag">Join Us</span>
               <h2>Become Part of<br />Stellar Institute</h2>
               <div className="partner-actions">
-                <Link to="/contact" className="btn btn-primary">Register Now</Link>
+                <Link to="/admission" className="btn btn-primary">Register Now</Link>
                 <Link to="/about" className="btn btn-secondary">Learn More</Link>
               </div>
             </div>

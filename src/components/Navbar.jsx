@@ -39,17 +39,17 @@ export default function Navbar() {
             <Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Home</Link>
             <Link to="/academy" className={location.pathname === '/academy' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Academy</Link>
             <Link to="/skilled-institute" className={location.pathname === '/skilled-institute' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Institute</Link>
-            <Link to="/contact" className={location.pathname === '/admissions' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Admissions</Link>
+            <Link to="/admission" className={location.pathname === '/admission' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Admissions</Link>
             <Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>About</Link>
             <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             
             <div className="nav-mobile-btn">
-              <Link to="/contact" className="btn btn-primary" onClick={() => setMobileMenuOpen(false)}>Register Now</Link>
+              <Link to="/admission" className="btn btn-primary" onClick={() => setMobileMenuOpen(false)}>Register Now</Link>
             </div>
           </div>
 
           <div className="nav-actions">
-            <Link to="/contact" className="btn btn-primary nav-desktop-btn">Register Now</Link>
+            <Link to="/admission" className="btn btn-primary nav-desktop-btn">Register Now</Link>
             <button className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? '✕' : '☰'}
             </button>
