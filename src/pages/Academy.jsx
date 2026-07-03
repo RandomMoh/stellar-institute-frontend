@@ -66,85 +66,108 @@ export default function Academy() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="program-card" style={{ marginBottom: '30px' }}>
-              <div className="program-card-header">
-                <h2>Matric</h2>
-                <span className="grades">9th – 10th</span>
-              </div>
-              <div className="program-card-body">
-                <p>Science & Arts groups, taught to the board syllabus with continuous assessment.</p>
-                <div className="program-details-grid">
-                  <div className="program-detail-block">
-                    <h4>Streams</h4>
-                    <ul>
-                      <li>Science Group</li>
-                      <li>Arts / General Group</li>
-                    </ul>
-                  </div>
-                  <div className="program-detail-block">
-                    <h4>Highlights</h4>
-                    <div className="highlight-tags">
-                      <span className="highlight-tag">Subject-wise weak-area coaching</span>
+            <Link to="/academy/grades-5-8" style={{ textDecoration: 'none', display: 'block', color: 'inherit' }}>
+              <div className="program-card clickable-card" style={{ marginBottom: '30px' }}>
+                <div className="program-card-header">
+                  <h2>Middle Classes</h2>
+                  <span className="grades">5th – 8th</span>
+                </div>
+                <div className="program-card-body">
+                  <p>Regular testing, hands-on practical work, and a disciplined routine so every child enters Matric confident.</p>
+                  <div className="program-details-grid">
+                    <div className="program-detail-block">
+                      <h4>Highlights</h4>
+                      <ul>
+                        <li>Weekly Class Tests</li>
+                        <li>Hands-On Science Labs</li>
+                      </ul>
+                    </div>
+                    <div className="program-detail-block" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+                      <span className="view-details-link">View Details &rarr;</span>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <div className="program-card" style={{ marginBottom: '30px' }}>
-              <div className="program-card-header">
-                <h2>Intermediate (FSc / ICS / Commerce)</h2>
-                <span className="grades">11th – 12th</span>
-              </div>
-              <div className="program-card-body">
-                <p>Pre-Medical, Pre-Engineering, ICS, and Commerce streams with entry-test relevant coaching.</p>
-                <div className="program-details-grid">
-                  <div className="program-detail-block">
-                    <h4>Streams</h4>
-                    <ul>
-                      <li>Pre-Medical & Pre-Engineering</li>
-                      <li>ICS</li>
-                      <li>Commerce / I.Com</li>
-                    </ul>
-                  </div>
-                  <div className="program-detail-block">
-                    <h4>Highlights</h4>
-                    <div className="highlight-tags">
-                      <span className="highlight-tag">Entry-test relevant coaching</span>
+            <Link to="/academy/matric" style={{ textDecoration: 'none', display: 'block', color: 'inherit' }}>
+              <div className="program-card clickable-card" style={{ marginBottom: '30px' }}>
+                <div className="program-card-header">
+                  <h2>Matric</h2>
+                  <span className="grades">9th – 10th</span>
+                </div>
+                <div className="program-card-body">
+                  <p>Science & Arts groups, taught to the board syllabus with continuous assessment.</p>
+                  <div className="program-details-grid">
+                    <div className="program-detail-block">
+                      <h4>Streams</h4>
+                      <ul>
+                        <li>Science Group</li>
+                        <li>Arts / General Group</li>
+                      </ul>
+                    </div>
+                    <div className="program-detail-block" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+                      <span className="view-details-link">View Details &rarr;</span>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </ScrollReveal>
 
           <ScrollReveal delay={0.3}>
-            <div className="program-card" style={{ marginBottom: '30px' }}>
-              <div className="program-card-header">
-                <h2>Cambridge O & A Levels</h2>
-                <span className="grades">O / A LEVEL</span>
-              </div>
-              <div className="program-card-body">
-                <p>Subject-specific support aligned with Cambridge assessment objectives and past-paper practice.</p>
-                <div className="program-details-grid">
-                  <div className="program-detail-block">
-                    <h4>Streams</h4>
-                    <ul>
-                      <li>O Level core & elective subjects</li>
-                      <li>A Level (Sciences, Commerce, Humanities)</li>
-                    </ul>
-                  </div>
-                  <div className="program-detail-block">
-                    <h4>Highlights</h4>
-                    <div className="highlight-tags">
-                      <span className="highlight-tag">Past-paper-based practice</span>
+            <Link to="/academy/intermediate" style={{ textDecoration: 'none', display: 'block', color: 'inherit' }}>
+              <div className="program-card clickable-card" style={{ marginBottom: '30px' }}>
+                <div className="program-card-header">
+                  <h2>Intermediate (FSc / ICS / Commerce)</h2>
+                  <span className="grades">11th – 12th</span>
+                </div>
+                <div className="program-card-body">
+                  <p>Pre-Medical, Pre-Engineering, ICS, and Commerce streams with entry-test relevant coaching.</p>
+                  <div className="program-details-grid">
+                    <div className="program-detail-block">
+                      <h4>Streams</h4>
+                      <ul>
+                        <li>Pre-Medical & Pre-Engineering</li>
+                        <li>ICS</li>
+                        <li>Commerce / I.Com</li>
+                      </ul>
+                    </div>
+                    <div className="program-detail-block" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+                      <span className="view-details-link">View Details &rarr;</span>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.4}>
+            <Link to="/academy/o-a-levels" style={{ textDecoration: 'none', display: 'block', color: 'inherit' }}>
+              <div className="program-card clickable-card" style={{ marginBottom: '30px' }}>
+                <div className="program-card-header">
+                  <h2>Cambridge O & A Levels</h2>
+                  <span className="grades">O / A LEVEL</span>
+                </div>
+                <div className="program-card-body">
+                  <p>Subject-specific support aligned with Cambridge assessment objectives and past-paper practice.</p>
+                  <div className="program-details-grid">
+                    <div className="program-detail-block">
+                      <h4>Streams</h4>
+                      <ul>
+                        <li>O Level core & elective subjects</li>
+                        <li>A Level (Sciences, Commerce, Humanities)</li>
+                      </ul>
+                    </div>
+                    <div className="program-detail-block" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+                      <span className="view-details-link">View Details &rarr;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </ScrollReveal>
         </div>
       </section>

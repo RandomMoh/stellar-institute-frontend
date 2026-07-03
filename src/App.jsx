@@ -6,6 +6,10 @@ import Footer from './components/Footer';
 // Lazy load pages for better performance (code splitting)
 const Home = React.lazy(() => import('./pages/Home'));
 const Academy = React.lazy(() => import('./pages/Academy'));
+const Grades5to8 = React.lazy(() => import('./pages/academy/Grades5to8'));
+const Matric = React.lazy(() => import('./pages/academy/Matric'));
+const Intermediate = React.lazy(() => import('./pages/academy/Intermediate'));
+const OALevels = React.lazy(() => import('./pages/academy/OALevels'));
 const SkilledInstitute = React.lazy(() => import('./pages/SkilledInstitute'));
 const School = React.lazy(() => import('./pages/School'));
 const College = React.lazy(() => import('./pages/College'));
@@ -53,6 +57,10 @@ function AppLayout() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/academy" element={<Academy />} />
+              <Route path="/academy/grades-5-8" element={<Grades5to8 />} />
+              <Route path="/academy/matric" element={<Matric />} />
+              <Route path="/academy/intermediate" element={<Intermediate />} />
+              <Route path="/academy/o-a-levels" element={<OALevels />} />
               <Route path="/skilled-institute" element={<SkilledInstitute />} />
               <Route path="/school" element={<School />} />
               <Route path="/college" element={<College />} />
