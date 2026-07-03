@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import FloatingShapes from '../components/FloatingShapes';
 import ScrollReveal from '../components/ScrollReveal';
+import { itCourses, beautyCourses } from '../data/courses';
 import './Pages.css';
 
 export default function Admission() {
@@ -12,6 +13,7 @@ export default function Admission() {
     parentMobile: '',
     email: '',
     classCourse: '',
+    specificCourse: '',
     board: '',
     message: ''
   });
@@ -19,7 +21,13 @@ export default function Admission() {
   const [errorMsg, setErrorMsg] = useState('');
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    // If the main course category changes, reset the specific course
+    if (name === 'classCourse') {
+      setFormData({ ...formData, [name]: value, specificCourse: '' });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -40,7 +48,7 @@ export default function Admission() {
         setStatus('success');
         setFormData({ 
           fullName: '', mobileNumber: '', parentName: '', 
-          parentMobile: '', email: '', classCourse: '', board: '', message: '' 
+          parentMobile: '', email: '', classCourse: '', specificCourse: '', board: '', message: '' 
         });
         setTimeout(() => setStatus('idle'), 5000);
       } else {
@@ -127,6 +135,56 @@ export default function Admission() {
                     </select>
                   </div>
                 </div>
+
+                {/* CONDITIONAL SUB-COURSE DROPDOWNS */}
+                {formData.classCourse === 'IT Courses' && (
+                  <div className="form-group">
+                    <label htmlFor="specificCourse">Select IT Course <span style={{ color: 'red' }}>*</span></label>
+                    <select id="specificCourse" name="specificCourse" value={formData.specificCourse} onChange={handleChange} required>
+                      <option value="">Select IT Course</option>
+                      {itCourses.map(c => <option key={c.id} value={c.title}>{c.title}</option>)}
+                    </select>
+                  </div>
+                )}
+
+                {formData.classCourse === 'Beauty Courses' && (
+                  <div className="form-group">
+                    <label htmlFor="specificCourse">Select Beauty Course <span style={{ color: 'red' }}>*</span></label>
+                    <select id="specificCourse" name="specificCourse" value={formData.specificCourse} onChange={handleChange} required>
+                      <option value="">Select Beauty Course</option>
+                      {beautyCourses.map(c => <option key={c.id} value={c.title}>{c.title}</option>)}
+                    </select>
+                  </div>
+                )}
+
+                {formData.classCourse === '5th - 8th Classes' && (
+                  <div className="form-group">
+                    <label htmlFor="specificCourse">Select Class <span style={{ color: 'red' }}>*</span></label>
+                    <select id="specificCourse" name="specificCourse" value={formData.specificCourse} onChange={handleChange} required>
+                      <option value="">Select Class</option>
+                      <option value="5th Class">5th Class</option>
+                      <option value="6th Class">6th Class</option>
+                      <option value="7th Class">7th Class</option>
+                      <option value="8th Class">8th Class</option>
+                    </select>
+                  </div>
+                )}
+
+                {(formData.classCourse === 'First Year' || formData.classCourse === 'Second Year') && (
+                  <div className="form-group">
+                    <label htmlFor="specificCourse">Select Program / Type <span style={{ color: 'red' }}>*</span></label>
+                    <select id="specificCourse" name="specificCourse" value={formData.specificCourse} onChange={handleChange} required>
+                      <option value="">Select Option</option>
+                      <option value="FSc Pre-Medical">FSc Pre-Medical</option>
+                      <option value="FSc Pre-Engineering">FSc Pre-Engineering</option>
+                      <option value="ICS">ICS</option>
+                      <option value="I.Com">I.Com</option>
+                      <option value="F.A">F.A</option>
+                      <option value="Type I">Type I</option>
+                      <option value="Type II">Type II</option>
+                    </select>
+                  </div>
+                )}
 
                 <div className="form-group">
                   <label htmlFor="board">Board</label>

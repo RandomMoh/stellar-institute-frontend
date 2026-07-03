@@ -38,8 +38,12 @@ $parentName       = htmlspecialchars(strip_tags(trim($input['parentName'] ?? 'No
 $parentMobile     = htmlspecialchars(strip_tags(trim($input['parentMobile'] ?? 'Not provided')));
 $email            = isset($input['email']) && !empty($input['email']) ? filter_var(trim($input['email']), FILTER_SANITIZE_EMAIL) : 'Not provided';
 $classCourse      = htmlspecialchars(strip_tags(trim($input['classCourse'])));
+$specificCourse   = htmlspecialchars(strip_tags(trim($input['specificCourse'] ?? '')));
 $board            = htmlspecialchars(strip_tags(trim($input['board'] ?? 'Not specified')));
 $messageContent   = htmlspecialchars(strip_tags(trim($input['message'] ?? 'None')));
+
+// Combine class and specific course if present
+$courseDisplay = $specificCourse ? "$classCourse ($specificCourse)" : $classCourse;
 
 // Optional email validation if provided
 if ($email !== 'Not provided' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
