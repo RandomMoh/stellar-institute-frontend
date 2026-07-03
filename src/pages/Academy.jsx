@@ -251,7 +251,9 @@ export default function Academy() {
             <p style={{ fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto 40px auto', opacity: 0.9, lineHeight: 1.6 }}>
               Seats for the upcoming session are limited. Talk to our academic counsellor and find the right class for your child.
             </p>
-            <Link to="/contact" className="btn btn-primary btn-lg" style={{ background: 'white', color: 'var(--primary-dark)' }}>Secure admission</Link>
+            <div style={{ marginTop: '40px' }}>
+              <Link to="/contact" className="btn btn-white-dynamic btn-lg">Secure admission</Link>
+            </div>
           </ScrollReveal>
         </div>
       </section>

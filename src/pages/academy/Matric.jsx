@@ -134,8 +134,8 @@ export default function Matric() {
               Seats for the upcoming Matric session are limited. Talk to our academic counsellor today.
             </p>
             <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/contact" className="btn btn-primary btn-lg" style={{ background: 'white', color: 'var(--primary-dark)' }}>Book a Free Consultation</Link>
-              <a href="tel:+923000000000" className="btn btn-outline btn-lg" style={{ borderColor: 'white', color: 'white' }}>Call the Academy Desk</a>
+              <Link to="/contact" className="btn btn-white-dynamic btn-lg">Book a Free Consultation</Link>
+              <a href="tel:+923000652124" className="btn btn-outline btn-lg">Call the Academy Desk</a>
             </div>
           </ScrollReveal>
         </div>
