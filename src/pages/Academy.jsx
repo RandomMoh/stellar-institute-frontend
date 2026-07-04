@@ -22,8 +22,8 @@ export default function Academy() {
           <p>
             Focused board exam preparation, disciplined test sessions, and mentorship built to help every student reach their highest grades without losing sight of who they're becoming.
           </p>
-          <div style={{ marginTop: '30px' }}>
-            <Link to="/contact" className="btn btn-primary">Secure Admission</Link>
+          <div className="hero-actions" style={{ marginTop: '30px' }}>
+            <Link to="/admission" className="btn btn-primary">Secure Admission</Link>
           </div>
           
           <div className="hero-stats-grid" style={{ 
@@ -252,7 +252,7 @@ export default function Academy() {
               Seats for the upcoming session are limited. Talk to our academic counsellor and find the right class for your child.
             </p>
             <div style={{ marginTop: '40px' }}>
-              <Link to="/contact" className="btn btn-white-dynamic btn-lg">Secure admission</Link>
+              <Link to="/admission" className="btn btn-white-dynamic btn-lg">Secure admission</Link>
             </div>
           </ScrollReveal>
         </div>
