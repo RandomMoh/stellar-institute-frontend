@@ -34,7 +34,7 @@ export default function Academy() {
             textAlign: 'left'
           }}>
             <div className="stat-card">
-              <h3 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '8px' }}>9th – 12th</h3>
+              <h3 style={{ color: 'white', fontSize: '1.2rem', marginBottom: '8px' }}>5th – 12th</h3>
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', margin: 0 }}>Classes Covered</p>
             </div>
             <div className="stat-card">
