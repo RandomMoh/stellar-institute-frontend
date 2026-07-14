@@ -66,136 +66,38 @@ $emailBody = "
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <style>
-        /* Force light mode styles to prevent webmail clients from applying dark mode inversions */
-        :root {
-            color-scheme: light;
-        }
-        body { 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-            background-color: #f3f4f6; 
-            margin: 0; 
-            padding: 40px 20px; 
-            -webkit-font-smoothing: antialiased;
-        }
-        .container { 
-            max-width: 600px; 
-            margin: 0 auto; 
-            background-color: #ffffff; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-        }
-        .header { 
-            background-color: #1e3a8a; /* Deep professional blue */
-            padding: 30px; 
-            text-align: center; 
-            border-bottom: 4px solid #3b82f6;
-        }
-        .header h1 { 
-            margin: 0; 
-            color: #ffffff; 
-            font-size: 24px; 
-            font-weight: 600; 
-            letter-spacing: 0.5px;
-        }
-        .content { 
-            padding: 40px 30px; 
-            background-color: #ffffff;
-        }
-        .intro {
-            color: #4b5563;
-            font-size: 16px;
-            margin-top: 0;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-        .field-group { 
-            margin-bottom: 24px; 
-        }
-        .label { 
-            display: block;
-            font-size: 12px; 
-            text-transform: uppercase; 
-            color: #6b7280; 
-            font-weight: 700; 
-            letter-spacing: 0.8px; 
-            margin-bottom: 6px; 
-        }
-        .value { 
-            font-size: 16px; 
-            color: #111827; 
-            background-color: #f9fafb;
-            padding: 12px 16px;
-            border-radius: 6px;
-            border: 1px solid #e5e7eb;
-            word-break: break-word;
-        }
-        .value a {
-            color: #2563eb;
-            text-decoration: none;
-        }
-        .message-box { 
-            font-size: 15px; 
-            color: #1f2937; 
-            background-color: #f0f9ff; 
-            padding: 20px; 
-            border-radius: 8px; 
-            border-left: 4px solid #3b82f6; 
-            line-height: 1.6;
-            white-space: pre-wrap;
-        }
-        .footer { 
-            background-color: #f9fafb; 
-            text-align: center; 
-            padding: 24px; 
-            color: #9ca3af; 
-            font-size: 13px; 
-            border-top: 1px solid #e5e7eb; 
-        }
-        .footer p {
-            margin: 0;
-        }
-    </style>
 </head>
-<body>
-    <div class='container'>
-        <div class='header'>
-            <h1>New Website Inquiry</h1>
-        </div>
-        <div class='content'>
-            <p class='intro'>You have received a new message from the <strong>Stellar Institute</strong> website contact form.</p>
-            
-            <div class='field-group'>
-                <span class='label'>Full Name</span>
-                <div class='value'>$name</div>
-            </div>
-            
-            <div class='field-group'>
-                <span class='label'>Email Address</span>
-                <div class='value'><a href='mailto:$email'>$email</a></div>
-            </div>
-            
-            <div class='field-group'>
-                <span class='label'>Phone Number</span>
-                <div class='value'>$phone</div>
-            </div>
-            
-            <div class='field-group'>
-                <span class='label'>Subject</span>
-                <div class='value'><strong>$subjectLabel</strong></div>
-            </div>
-            
-            <div class='field-group'>
-                <span class='label'>Message</span>
-                <div class='message-box'>$message</div>
-            </div>
-        </div>
-        <div class='footer'>
-            <p>This is an automated email from the Stellar Institute website.</p>
-            <p>&copy; " . date('Y') . " Stellar Institute. All rights reserved.</p>
-        </div>
-    </div>
+<body style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #f3f4f6; margin: 0; padding: 40px 20px; -webkit-font-smoothing: antialiased;\">
+    <table width='100%' border='0' cellspacing='0' cellpadding='0' style=\"background-color: #f3f4f6;\">
+        <tr>
+            <td align='center' style=\"padding: 40px 20px;\">
+                <table width='100%' max-width='600' border='0' cellspacing='0' cellpadding='0' style=\"max-width: 600px; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: 0 auto; text-align: left;\">
+                    <tr>
+                        <td style=\"background-color: #1e3a8a; padding: 30px; text-align: center; border-bottom: 4px solid #3b82f6;\">
+                            <h1 style=\"margin: 0; color: #ffffff; font-size: 24px; font-weight: 600; letter-spacing: 0.5px;\">New Website Inquiry</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style=\"padding: 40px 30px; background-color: #ffffff;\">
+                            <p style=\"color: #4b5563; font-size: 16px; margin-top: 0; margin-bottom: 30px; line-height: 1.5;\">You have received a new message from the <strong>Stellar Institute</strong> website contact form.</p>
+                            
+                            <div style=\"margin-bottom: 24px;\"><span style=\"display: block; font-size: 12px; text-transform: uppercase; color: #6b7280; font-weight: 700; letter-spacing: 0.8px; margin-bottom: 6px;\">Full Name</span><div style=\"font-size: 16px; color: #111827; background-color: #f9fafb; padding: 12px 16px; border-radius: 6px; border: 1px solid #e5e7eb; word-break: break-word;\">$name</div></div>
+                            <div style=\"margin-bottom: 24px;\"><span style=\"display: block; font-size: 12px; text-transform: uppercase; color: #6b7280; font-weight: 700; letter-spacing: 0.8px; margin-bottom: 6px;\">Email Address</span><div style=\"font-size: 16px; color: #111827; background-color: #f9fafb; padding: 12px 16px; border-radius: 6px; border: 1px solid #e5e7eb; word-break: break-word;\"><a href='mailto:$email' style=\"color: #2563eb; text-decoration: none;\">$email</a></div></div>
+                            <div style=\"margin-bottom: 24px;\"><span style=\"display: block; font-size: 12px; text-transform: uppercase; color: #6b7280; font-weight: 700; letter-spacing: 0.8px; margin-bottom: 6px;\">Phone Number</span><div style=\"font-size: 16px; color: #111827; background-color: #f9fafb; padding: 12px 16px; border-radius: 6px; border: 1px solid #e5e7eb; word-break: break-word;\">$phone</div></div>
+                            <div style=\"margin-bottom: 24px;\"><span style=\"display: block; font-size: 12px; text-transform: uppercase; color: #6b7280; font-weight: 700; letter-spacing: 0.8px; margin-bottom: 6px;\">Subject</span><div style=\"font-size: 16px; color: #111827; background-color: #f9fafb; padding: 12px 16px; border-radius: 6px; border: 1px solid #e5e7eb; word-break: break-word;\"><strong>$subjectLabel</strong></div></div>
+                            <div style=\"margin-bottom: 24px;\"><span style=\"display: block; font-size: 12px; text-transform: uppercase; color: #6b7280; font-weight: 700; letter-spacing: 0.8px; margin-bottom: 6px;\">Message</span><div style=\"font-size: 15px; color: #1f2937; background-color: #f0f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3b82f6; line-height: 1.6; white-space: pre-wrap;\">$message</div></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style=\"background-color: #f9fafb; text-align: center; padding: 24px; color: #9ca3af; font-size: 13px; border-top: 1px solid #e5e7eb;\">
+                            <p style=\"margin: 0; margin-bottom: 5px;\">This is an automated email from the Stellar Institute website.</p>
+                            <p style=\"margin: 0;\">&copy; " . date('Y') . " Stellar Institute. All rights reserved.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
 ";
