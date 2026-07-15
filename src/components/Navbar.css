@@ -64,14 +64,14 @@
 }
 
 .brand-logo {
-  max-height: 90px;
-  max-width: 350px;
+  max-height: 65px;
+  max-width: 280px;
   width: auto;
   transition: max-height 0.3s ease;
 }
 
 .lms-header-scrolled .brand-logo {
-  max-height: 70px;
+  max-height: 52px;
 }
 
 .nav-links {

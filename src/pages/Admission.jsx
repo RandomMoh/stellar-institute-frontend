@@ -75,46 +75,7 @@ export default function Admission() {
         </div>
       </section>
 
-      <section style={{ padding: '80px 0', backgroundColor: '#f8fafc' }}>
-        <div className="container">
-          <div style={{ maxWidth: '800px', margin: '0 auto 60px', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '36px', fontWeight: '700', color: '#0f172a', marginBottom: '16px', lineHeight: 1.2 }}>
-              Simple process, honest guidance.
-            </h2>
-            <p style={{ fontSize: '18px', color: '#475569', lineHeight: 1.6 }}>
-              Our counsellors are here to help you pick the right class — from Nursery through Intermediate and O/A Level.
-            </p>
-          </div>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '30px' }}>
-            {/* Step 1 */}
-            <div className="process-card">
-              <div className="process-number">01</div>
-              <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Submit the Form</h3>
-              <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>Fill out the application form below with your child's details.</p>
-            </div>
-            {/* Step 2 */}
-            <div className="process-card">
-              <div className="process-number">02</div>
-              <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Counsellor Call</h3>
-              <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>Our academic counsellor calls within 24–48 hours to discuss the right class.</p>
-            </div>
-            {/* Step 3 */}
-            <div className="process-card">
-              <div className="process-number">03</div>
-              <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Assessment / Interview</h3>
-              <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>A short, friendly assessment to confirm placement (where applicable).</p>
-            </div>
-            {/* Step 4 */}
-            <div className="process-card">
-              <div className="process-number">04</div>
-              <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Confirm & Enroll</h3>
-              <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>Complete documentation and fee submission to secure the seat.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* ===== FORM SECTION (moved up) ===== */}
       <section style={{ padding: '100px 0', backgroundColor: '#ffffff' }}>
         <div className="container">
           {/* Split Layout */}
@@ -302,6 +263,47 @@ export default function Admission() {
                   </button>
                 </form>
               </ScrollReveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== PROCESS SECTION (moved below form) ===== */}
+      <section style={{ padding: '80px 0', backgroundColor: '#f8fafc' }}>
+        <div className="container">
+          <div style={{ maxWidth: '800px', margin: '0 auto 60px', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '36px', fontWeight: '700', color: '#0f172a', marginBottom: '16px', lineHeight: 1.2 }}>
+              Simple process, honest guidance.
+            </h2>
+            <p style={{ fontSize: '18px', color: '#475569', lineHeight: 1.6 }}>
+              Our counsellors are here to help you pick the right class — from Nursery through Intermediate and O/A Level.
+            </p>
+          </div>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '30px' }}>
+            {/* Step 1 */}
+            <div className="process-card">
+              <div className="process-number">01</div>
+              <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Submit the Form</h3>
+              <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>Fill out the application form above with your child's details.</p>
+            </div>
+            {/* Step 2 */}
+            <div className="process-card">
+              <div className="process-number">02</div>
+              <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Counsellor Call</h3>
+              <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>Our academic counsellor calls within 24–48 hours to discuss the right class.</p>
+            </div>
+            {/* Step 3 */}
+            <div className="process-card">
+              <div className="process-number">03</div>
+              <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Assessment / Interview</h3>
+              <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>A short, friendly assessment to confirm placement (where applicable).</p>
+            </div>
+            {/* Step 4 */}
+            <div className="process-card">
+              <div className="process-number">04</div>
+              <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#0f172a', marginBottom: '12px' }}>Confirm & Enroll</h3>
+              <p style={{ fontSize: '15px', color: '#475569', lineHeight: 1.6 }}>Complete documentation and fee submission to secure the seat.</p>
             </div>
           </div>
         </div>

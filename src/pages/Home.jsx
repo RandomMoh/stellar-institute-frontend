@@ -65,6 +65,8 @@ export default function Home() {
       {/* ===== HERO SLIDER ===== */}
       <HeroSlider />
 
+      {/* ===== LOGO MARQUEE (Affiliated With) ===== */}
+      <LogoMarquee />
 
       {/* ===== WELCOME / ABOUT ===== */}
       <section className="welcome-section">
@@ -343,9 +345,6 @@ export default function Home() {
         </div>
       </section>
 
-
-      {/* ===== LOGO MARQUEE ===== */}
-      <LogoMarquee />
 
       {/* ===== PARTNER / CTA ===== */}
       <section className="partner-cta">

@@ -48,33 +48,36 @@ const CursorTrail = React.memo(function CursorTrail() {
         className="cursor-dot"
         style={{
           position: 'fixed',
-          top: -10, // Offset for center (width 20 / 2)
-          left: -10,
-          width: 20,
-          height: 20,
+          top: -16, // Offset for center (width 32 / 2)
+          left: -16,
+          width: 32,
+          height: 32,
           borderRadius: '50%',
-          backgroundColor: 'rgba(14, 165, 233, 0.5)',
+          backgroundColor: 'transparent',
+          border: '2px solid rgba(255, 255, 255, 0.9)',
+          boxShadow: '0 0 8px rgba(0, 180, 216, 0.6)',
           pointerEvents: 'none',
           zIndex: 9999,
           x: cursorX,
           y: cursorY,
         }}
         animate={{
-          scale: isHovering ? 2.5 : 1,
-          backgroundColor: isHovering ? 'rgba(14, 165, 233, 0.1)' : 'rgba(14, 165, 233, 0.5)',
-          border: isHovering ? '1px solid var(--primary)' : 'none'
+          scale: isHovering ? 1.8 : 1,
+          borderColor: isHovering ? 'rgba(0, 180, 216, 1)' : 'rgba(255, 255, 255, 0.9)',
+          backgroundColor: isHovering ? 'rgba(0, 180, 216, 0.15)' : 'transparent',
         }}
         transition={{ duration: 0.15 }}
       />
       <motion.div 
         style={{
           position: 'fixed',
-          top: -4, // Offset for center (width 8 / 2)
-          left: -4,
-          width: 8,
-          height: 8,
+          top: -5, // Offset for center (width 10 / 2)
+          left: -5,
+          width: 10,
+          height: 10,
           borderRadius: '50%',
-          backgroundColor: 'var(--primary)',
+          backgroundColor: '#ffffff',
+          boxShadow: '0 0 6px rgba(0, 180, 216, 0.8)',
           pointerEvents: 'none',
           zIndex: 10000,
           x: mouseX,
