@@ -54,8 +54,8 @@ const CursorTrail = React.memo(function CursorTrail() {
           height: 32,
           borderRadius: '50%',
           backgroundColor: 'transparent',
-          border: '2px solid rgba(255, 255, 255, 0.9)',
-          boxShadow: '0 0 8px rgba(0, 180, 216, 0.6)',
+          border: '2px solid rgba(100, 210, 255, 0.9)',
+          boxShadow: '0 0 8px rgba(100, 210, 255, 0.5)',
           pointerEvents: 'none',
           zIndex: 9999,
           x: cursorX,
@@ -63,8 +63,8 @@ const CursorTrail = React.memo(function CursorTrail() {
         }}
         animate={{
           scale: isHovering ? 1.8 : 1,
-          borderColor: isHovering ? 'rgba(0, 180, 216, 1)' : 'rgba(255, 255, 255, 0.9)',
-          backgroundColor: isHovering ? 'rgba(0, 180, 216, 0.15)' : 'transparent',
+          borderColor: isHovering ? 'rgba(100, 210, 255, 1)' : 'rgba(100, 210, 255, 0.9)',
+          backgroundColor: isHovering ? 'rgba(100, 210, 255, 0.15)' : 'transparent',
         }}
         transition={{ duration: 0.15 }}
       />
@@ -76,8 +76,8 @@ const CursorTrail = React.memo(function CursorTrail() {
           width: 10,
           height: 10,
           borderRadius: '50%',
-          backgroundColor: '#ffffff',
-          boxShadow: '0 0 6px rgba(0, 180, 216, 0.8)',
+          backgroundColor: 'rgba(100, 210, 255, 0.95)',
+          boxShadow: '0 0 6px rgba(100, 210, 255, 0.7)',
           pointerEvents: 'none',
           zIndex: 10000,
           x: mouseX,
