@@ -57,7 +57,7 @@ const CursorTrail = React.memo(function CursorTrail() {
           border: '2px solid rgba(100, 210, 255, 0.9)',
           boxShadow: '0 0 8px rgba(100, 210, 255, 0.5)',
           pointerEvents: 'none',
-          zIndex: 9999,
+          zIndex: 999999,
           x: cursorX,
           y: cursorY,
         }}
@@ -79,7 +79,7 @@ const CursorTrail = React.memo(function CursorTrail() {
           backgroundColor: 'rgba(100, 210, 255, 0.95)',
           boxShadow: '0 0 6px rgba(100, 210, 255, 0.7)',
           pointerEvents: 'none',
-          zIndex: 10000,
+          zIndex: 1000000,
           x: mouseX,
           y: mouseY,
         }}

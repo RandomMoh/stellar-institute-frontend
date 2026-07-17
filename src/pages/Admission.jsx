@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FloatingShapes from '../components/FloatingShapes';
 import ScrollReveal from '../components/ScrollReveal';
 import { itCourses, beautyCourses } from '../data/courses';
@@ -19,6 +19,7 @@ export default function Admission() {
   });
   const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,12 +46,7 @@ export default function Admission() {
       const data = await res.json();
 
       if (data.success) {
-        setStatus('success');
-        setFormData({ 
-          fullName: '', mobileNumber: '', parentName: '', 
-          parentMobile: '', email: '', classCourse: '', specificCourse: '', board: '', message: '' 
-        });
-        setTimeout(() => setStatus('idle'), 5000);
+        navigate('/admission/thankyou');
       } else {
         setStatus('error');
         setErrorMsg(data.error || 'Something went wrong. Please try again.');

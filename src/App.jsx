@@ -16,6 +16,7 @@ const College = React.lazy(() => import('./pages/College'));
 const About = React.lazy(() => import('./pages/About'));
 const Contact = React.lazy(() => import('./pages/Contact'));
 const Admission = React.lazy(() => import('./pages/Admission'));
+const AdmissionThankYou = React.lazy(() => import('./pages/AdmissionThankYou'));
 const ComingSoon = React.lazy(() => import('./pages/ComingSoon'));
 const StellarAdmin = React.lazy(() => import('./pages/StellarAdmin'));
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
@@ -66,6 +67,7 @@ function AppLayout() {
               <Route path="/college" element={<College />} />
               <Route path="/about" element={<About />} />
               <Route path="/admission" element={<Admission />} />
+              <Route path="/admission/thankyou" element={<AdmissionThankYou />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/coming-soon" element={<ComingSoon />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
