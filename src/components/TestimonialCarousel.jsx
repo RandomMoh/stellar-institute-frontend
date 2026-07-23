@@ -7,8 +7,9 @@ const STEP = CARD_WIDTH + CARD_GAP;
 
 export default function TestimonialCarousel({ testimonials }) {
   const trackRef = useRef(null);
-  const [offset, setOffset] = useState(0);
+  const cardRefs = useRef([]);
   const [isDragging, setIsDragging] = useState(false);
+  
   const dragStart = useRef(null);
   const dragOffset = useRef(0);
   const rafRef = useRef(null);
@@ -33,13 +34,43 @@ export default function TestimonialCarousel({ testimonials }) {
     const animate = () => {
       if (!running) return;
       currentOffset.current += (targetOffset.current - currentOffset.current) * 0.08;
-      const norm = normalise(currentOffset.current);
-      setOffset(norm);
+      const offset = normalise(currentOffset.current);
+      
+      // Update DOM nodes directly to avoid React re-renders 60fps
+      cardRefs.current.forEach((card, index) => {
+        if (!card) return;
+        
+        const pos = (index * STEP - offset + loopWidth * 10) % (items.length * STEP);
+        const center = ((items.length * STEP) / 2);
+        const relPos = pos - center;
+
+        // Curve: arc the cards
+        const normalised = relPos / (items.length * STEP / 2); // -1 to 1
+        const angle = normalised * 40; // degrees
+        const depth = Math.cos((normalised * Math.PI) / 2) * 200 - 200;
+        const yShift = Math.abs(normalised) * 60;
+        const scale = 1 - Math.abs(normalised) * 0.25;
+        let opacity = 1 - Math.abs(normalised) * 0.7;
+
+        // Only show cards near center
+        const visible = Math.abs(relPos) < (STEP * 4);
+
+        if (visible) {
+          card.style.transform = `translateX(${relPos}px) translateZ(${depth}px) rotateY(${angle}deg) translateY(${yShift}px) scale(${scale})`;
+          card.style.opacity = Math.max(0.1, opacity);
+          card.style.zIndex = Math.round(100 - Math.abs(normalised) * 50);
+          card.style.pointerEvents = 'auto';
+        } else {
+          card.style.opacity = 0;
+          card.style.pointerEvents = 'none';
+        }
+      });
+      
       rafRef.current = requestAnimationFrame(animate);
     };
     rafRef.current = requestAnimationFrame(animate);
     return () => { running = false; cancelAnimationFrame(rafRef.current); };
-  }, [loopWidth]);
+  }, [loopWidth, items.length]);
 
   // Auto-scroll
   useEffect(() => {
@@ -76,31 +107,6 @@ export default function TestimonialCarousel({ testimonials }) {
     targetOffset.current += velRef.current * 80;
   }, []);
 
-  // Compute 3D position for each card based on offset
-  const getCardStyle = (index) => {
-    const pos = (index * STEP - offset + loopWidth * 10) % (items.length * STEP);
-    const center = ((items.length * STEP) / 2);
-    const relPos = pos - center;
-
-    // Curve: arc the cards
-    const normalised = relPos / (items.length * STEP / 2); // -1 to 1
-    const angle = normalised * 40; // degrees
-    const depth = Math.cos((normalised * Math.PI) / 2) * 200 - 200;
-    const yShift = Math.abs(normalised) * 60;
-    const scale = 1 - Math.abs(normalised) * 0.25;
-    const opacity = 1 - Math.abs(normalised) * 0.7;
-
-    // Only show cards near center
-    const visible = Math.abs(relPos) < (STEP * 4);
-
-    return {
-      transform: `translateX(${relPos}px) translateZ(${depth}px) rotateY(${angle}deg) translateY(${yShift}px) scale(${scale})`,
-      opacity: visible ? Math.max(0.1, opacity) : 0,
-      zIndex: Math.round(100 - Math.abs(normalised) * 50),
-      pointerEvents: visible ? 'auto' : 'none',
-    };
-  };
-
   return (
     <div
       className="tc-scene"
@@ -112,7 +118,12 @@ export default function TestimonialCarousel({ testimonials }) {
     >
       <div className="tc-track" ref={trackRef}>
         {items.map((t, i) => (
-          <div key={i} className="tc-card" style={getCardStyle(i)}>
+          <div 
+            key={i} 
+            className="tc-card" 
+            ref={el => cardRefs.current[i] = el}
+            style={{ opacity: 0 }} // Initial state before first frame
+          >
             <div className="tc-card-inner">
               {/* Stars */}
               <div className="tc-stars">{'★★★★★'}</div>
