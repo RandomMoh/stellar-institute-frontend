@@ -9,6 +9,7 @@ import ScrollReveal from '../components/ScrollReveal';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import LogoMarquee from '../components/LogoMarquee';
 import TestimonialCarousel from '../components/TestimonialCarousel';
+import LazyShow from '../components/LazyShow';
 import './Home.css';
 
 const institutes = [
@@ -80,7 +81,9 @@ export default function Home() {
       <HeroSlider />
 
       {/* ===== LOGO MARQUEE (Affiliated With) ===== */}
-      <LogoMarquee />
+      <LazyShow height="120px">
+        <LogoMarquee />
+      </LazyShow>
 
       {/* ===== WELCOME / ABOUT ===== */}
       <section className="welcome-section">
@@ -325,7 +328,9 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <TestimonialCarousel testimonials={testimonialItems} />
+        <LazyShow height="600px">
+          <TestimonialCarousel testimonials={testimonialItems} />
+        </LazyShow>
       </section>
 
       {/* ===== PARTNER / CTA ===== */}
