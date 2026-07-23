@@ -291,7 +291,7 @@ export default function Home() {
                       <div className="course-card-body">
                         <h4>{course.title}</h4>
                         <span className="course-dur">{course.duration}</span>
-                        <Link to="/contact" className="course-card-link">Enroll →</Link>
+                        <Link to="/admission" className="course-card-link">Enroll →</Link>
                       </div>
                     </div>
                   </ScrollReveal>

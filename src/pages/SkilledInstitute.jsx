@@ -127,7 +127,7 @@ export default function SkilledInstitute() {
                         <span className="course-duration">Duration: {course.duration}</span>
                       </div>
                       <div className="course-footer">
-                        <Link to="/contact" className="course-enroll">Enroll Now →</Link>
+                        <Link to="/admission" className="course-enroll">Enroll Now →</Link>
                       </div>
                     </div>
                   </motion.div>
