@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { testimonials } from '../data/courses';
@@ -8,6 +8,8 @@ import StatsCounter from '../components/StatsCounter';
 import ScrollReveal from '../components/ScrollReveal';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import LogoMarquee from '../components/LogoMarquee';
+import CircularGallery from '../components/CircularGallery';
+import { generateTestimonialCard } from '../utils/testimonialCard';
 import './Home.css';
 
 const institutes = [
@@ -40,6 +42,26 @@ export default function Home() {
   const featuredCourses = [...itCourses.slice(0, 3), ...beautyCourses.slice(0, 3)];
 
   const scrollWrapRef = useRef(null);
+
+  // Generate testimonial images once using canvas
+  const testimonialItems = useMemo(() => {
+    const data = [
+      { quote: "The faculty at Stellar Academy is incredible. They don't just teach the syllabus; they ensure we understand the concepts deeply. My board exam scores improved drastically.", name: 'Sarah Ahmed', role: 'Pre-Medical Student' },
+      { quote: "Enrolling in the AutoCAD course at Stellar Skilled Institute was the best decision for my career. The hands-on training and expert guidance helped me land my first job.", name: 'Ali Raza', role: 'AutoCAD Graduate' },
+      { quote: "The environment is disciplined yet very supportive. Regular test sessions prepared me perfectly for my final exams. Highly recommend it to anyone serious about their studies.", name: 'Fatima Khan', role: 'FSc Pre-Engineering' },
+      { quote: "Joining Stellar as a web development student was the best decision I made. The practical training and expert guidance helped me land a great job with a salary of 1 lakh. Incredibly grateful!", name: 'Ali Ahmad', role: 'Web Development Graduate' },
+      { quote: "This institute offers a fantastic range of courses with clear, practical content that's easy to follow. The hands-on approach and excellent support make learning enjoyable and effective.", name: 'Zain Mushtaq', role: 'IT Student' },
+      { quote: "As a designer, joining Stellar was a game-changer. The courses are detailed, up-to-date, and provide real-world skills that have helped me enhance my craft tremendously.", name: 'Muhammad Arham', role: 'Graphic Design Student' },
+      { quote: "The Digital Marketing course gave me the skills to run campaigns for real clients within weeks of graduating. The curriculum is practical and industry-relevant.", name: 'Hina Malik', role: 'Digital Marketing Graduate' },
+      { quote: "Stellar's videography course taught me everything from composition to editing. I now confidently shoot and edit professional videos for clients. Highly recommended!", name: 'Umal Banin', role: 'Videography Student' },
+      { quote: "The ICS program at Stellar prepared me exceptionally well for university. The teachers go above and beyond to make sure every student understands the material deeply.", name: 'Omar Siddiqui', role: 'ICS Student' },
+      { quote: "The language classes helped me improve my communication skills and opened doors to international opportunities. The teaching method was fun and incredibly effective!", name: 'Amina Zahid', role: 'Language & Communication Student' },
+    ];
+    return data.map(t => ({
+      image: generateTestimonialCard(t),
+      text: t.name,
+    }));
+  }, []);
 
   useEffect(() => {
     const wrap = scrollWrapRef.current;
@@ -298,7 +320,7 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <div className="section-label">Testimonials</div>
-            <motion.h2 
+            <motion.h2
               className="section-title"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -306,45 +328,22 @@ export default function Home() {
             >
               Student Reviews
             </motion.h2>
-          </div>
-
-          <div className="testimonials-stagger">
-            {[
-              {
-                text: "The faculty at Stellar Academy is incredible. They don't just teach the syllabus; they ensure we understand the concepts deeply. My board exam scores improved drastically.",
-                author: "Sarah Ahmed",
-                role: "Pre-Medical Student"
-              },
-              {
-                text: "Enrolling in the AutoCAD course at Stellar Skilled Institute was the best decision for my career. The hands-on training and expert guidance helped me land my first job.",
-                author: "Ali Raza",
-                role: "AutoCAD Graduate"
-              },
-              {
-                text: "The environment is disciplined yet very supportive. Regular test sessions prepared me perfectly for my final exams. Highly recommend it to anyone serious about their studies.",
-                author: "Fatima Khan",
-                role: "FSc Pre-Engineering"
-              }
-            ].map((test, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div className={`test-card ${i === 1 ? 'test-card-raised' : ''}`}>
-                  <div className="test-quote">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                    </svg>
-                  </div>
-                  <p>{test.text}</p>
-                  <div className="test-author">
-                    <h5>{test.author}</h5>
-                    <span>{test.role}</span>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
+            <p style={{ color: 'var(--text-muted)', fontSize: '1rem', marginTop: '12px' }}>
+              Drag or scroll to explore — hear from our students across all programs.
+            </p>
           </div>
         </div>
+        <div style={{ height: '520px', position: 'relative', width: '100%' }}>
+          <CircularGallery
+            items={testimonialItems}
+            bend={3}
+            textColor="#2e3192"
+            borderRadius={0.08}
+            scrollSpeed={2}
+            scrollEase={0.03}
+          />
+        </div>
       </section>
-
 
       {/* ===== PARTNER / CTA ===== */}
       <section className="partner-cta">
