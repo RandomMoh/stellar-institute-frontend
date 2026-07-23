@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { testimonials } from '../data/courses';
@@ -8,8 +8,7 @@ import StatsCounter from '../components/StatsCounter';
 import ScrollReveal from '../components/ScrollReveal';
 import ImagePlaceholder from '../components/ImagePlaceholder';
 import LogoMarquee from '../components/LogoMarquee';
-import CircularGallery from '../components/CircularGallery';
-import { generateTestimonialCard } from '../utils/testimonialCard';
+import TestimonialCarousel from '../components/TestimonialCarousel';
 import './Home.css';
 
 const institutes = [
@@ -43,25 +42,18 @@ export default function Home() {
 
   const scrollWrapRef = useRef(null);
 
-  // Generate testimonial images once using canvas
-  const testimonialItems = useMemo(() => {
-    const data = [
-      { quote: "The faculty at Stellar Academy is incredible. They don't just teach the syllabus; they ensure we understand the concepts deeply. My board exam scores improved drastically.", name: 'Sarah Ahmed', role: 'Pre-Medical Student' },
-      { quote: "Enrolling in the AutoCAD course at Stellar Skilled Institute was the best decision for my career. The hands-on training and expert guidance helped me land my first job.", name: 'Ali Raza', role: 'AutoCAD Graduate' },
-      { quote: "The environment is disciplined yet very supportive. Regular test sessions prepared me perfectly for my final exams. Highly recommend it to anyone serious about their studies.", name: 'Fatima Khan', role: 'FSc Pre-Engineering' },
-      { quote: "Joining Stellar as a web development student was the best decision I made. The practical training and expert guidance helped me land a great job with a salary of 1 lakh. Incredibly grateful!", name: 'Ali Ahmad', role: 'Web Development Graduate' },
-      { quote: "This institute offers a fantastic range of courses with clear, practical content that's easy to follow. The hands-on approach and excellent support make learning enjoyable and effective.", name: 'Zain Mushtaq', role: 'IT Student' },
-      { quote: "As a designer, joining Stellar was a game-changer. The courses are detailed, up-to-date, and provide real-world skills that have helped me enhance my craft tremendously.", name: 'Muhammad Arham', role: 'Graphic Design Student' },
-      { quote: "The Digital Marketing course gave me the skills to run campaigns for real clients within weeks of graduating. The curriculum is practical and industry-relevant.", name: 'Hina Malik', role: 'Digital Marketing Graduate' },
-      { quote: "Stellar's videography course taught me everything from composition to editing. I now confidently shoot and edit professional videos for clients. Highly recommended!", name: 'Umal Banin', role: 'Videography Student' },
-      { quote: "The ICS program at Stellar prepared me exceptionally well for university. The teachers go above and beyond to make sure every student understands the material deeply.", name: 'Omar Siddiqui', role: 'ICS Student' },
-      { quote: "The language classes helped me improve my communication skills and opened doors to international opportunities. The teaching method was fun and incredibly effective!", name: 'Amina Zahid', role: 'Language & Communication Student' },
-    ];
-    return data.map(t => ({
-      image: generateTestimonialCard(t),
-      text: t.name,
-    }));
-  }, []);
+  const testimonialItems = [
+    { quote: "The faculty at Stellar Academy is incredible. They don't just teach the syllabus; they ensure we understand the concepts deeply. My board exam scores improved drastically.", name: 'Sarah Ahmed', role: 'Pre-Medical Student' },
+    { quote: "Enrolling in the AutoCAD course at Stellar Skilled Institute was the best decision for my career. The hands-on training and expert guidance helped me land my first job.", name: 'Ali Raza', role: 'AutoCAD Graduate' },
+    { quote: "The environment is disciplined yet very supportive. Regular test sessions prepared me perfectly for my final exams. Highly recommend it to anyone serious about their studies.", name: 'Fatima Khan', role: 'FSc Pre-Engineering' },
+    { quote: "Joining Stellar as a web development student was the best decision I made. The practical training and expert guidance helped me land a great job with a salary of 1 lakh!", name: 'Ali Ahmad', role: 'Web Development Graduate' },
+    { quote: "This institute offers a fantastic range of courses with clear, practical content. The hands-on approach and excellent support make learning enjoyable and effective.", name: 'Zain Mushtaq', role: 'IT Student' },
+    { quote: "As a designer, joining Stellar was a game-changer. The courses are detailed, up-to-date, and provide real-world skills that have helped me enhance my craft.", name: 'Muhammad Arham', role: 'Graphic Design Student' },
+    { quote: "The Digital Marketing course gave me the skills to run campaigns for real clients within weeks of graduating. The curriculum is practical and industry-relevant.", name: 'Hina Malik', role: 'Digital Marketing Graduate' },
+    { quote: "Stellar's videography course taught me everything from composition to editing. I now confidently shoot and edit professional videos for clients. Highly recommended!", name: 'Umal Banin', role: 'Videography Student' },
+    { quote: "The ICS program at Stellar prepared me exceptionally well for university. The teachers go above and beyond to make sure every student understands the material deeply.", name: 'Omar Siddiqui', role: 'ICS Student' },
+    { quote: "The language classes helped me improve my communication skills and opened doors to international opportunities. The teaching method was fun and incredibly effective!", name: 'Amina Zahid', role: 'Language & Communication Student' },
+  ];
 
   useEffect(() => {
     const wrap = scrollWrapRef.current;
@@ -329,20 +321,11 @@ export default function Home() {
               Student Reviews
             </motion.h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '1rem', marginTop: '12px' }}>
-              Drag or scroll to explore — hear from our students across all programs.
+              Drag to explore — hear from our students across all programs.
             </p>
           </div>
         </div>
-        <div style={{ height: '520px', position: 'relative', width: '100%' }}>
-          <CircularGallery
-            items={testimonialItems}
-            bend={3}
-            textColor="#2e3192"
-            borderRadius={0.08}
-            scrollSpeed={2}
-            scrollEase={0.03}
-          />
-        </div>
+        <TestimonialCarousel testimonials={testimonialItems} />
       </section>
 
       {/* ===== PARTNER / CTA ===== */}

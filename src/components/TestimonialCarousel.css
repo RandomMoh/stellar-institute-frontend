@@ -1,0 +1,166 @@
+/* ============================================
+   TESTIMONIAL CAROUSEL — 3D HTML Card Carousel
+   ============================================ */
+
+.tc-scene {
+  width: 100%;
+  height: 480px;
+  perspective: 1200px;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+}
+
+.tc-track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+/* Individual card */
+.tc-card {
+  position: absolute;
+  width: 340px;
+  will-change: transform, opacity;
+  transition: transform 0.05s linear, opacity 0.05s linear;
+}
+
+.tc-card-inner {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 28px 26px;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 12px 40px rgba(46, 49, 146, 0.10),
+    0 0 0 1px rgba(46, 49, 146, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Accent bar at top */
+.tc-card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #2e3192, #00b4d8);
+  border-radius: 20px 20px 0 0;
+}
+
+/* Stars */
+.tc-stars {
+  color: #f59e0b;
+  font-size: 17px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  margin-top: 4px;
+}
+
+/* Large quote mark */
+.tc-quote-icon {
+  font-family: Georgia, serif;
+  font-size: 80px;
+  line-height: 0.6;
+  color: #2e3192;
+  opacity: 0.12;
+  position: absolute;
+  top: 28px;
+  right: 24px;
+  pointer-events: none;
+}
+
+/* Quote text */
+.tc-quote {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0 0 20px;
+  font-style: italic;
+  min-height: 100px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Divider */
+.tc-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin-bottom: 18px;
+}
+
+/* Author row */
+.tc-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Avatar circle */
+.tc-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2e3192, #00b4d8);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.tc-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tc-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.tc-role {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #2e3192;
+}
+
+/* Drag hint */
+.tc-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #94a3b8;
+  pointer-events: none;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .tc-scene {
+    height: 420px;
+  }
+  .tc-card {
+    width: 290px;
+  }
+}
