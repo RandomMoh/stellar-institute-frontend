@@ -3,8 +3,10 @@ import LogoLoop from './LogoLoop';
 import './LogoMarquee.css';
 
 const logoItems = [1, 2, 3, 4, 5, 6].map(num => ({
-  src: `/assets/logos/${num}.png`,
+  src: `/assets/logos/${num}.webp`,
   alt: `Partner Logo ${num}`,
+  width: 1000,
+  height: 1000,
 }));
 
 export default function LogoMarquee() {

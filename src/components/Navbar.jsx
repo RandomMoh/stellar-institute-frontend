@@ -32,7 +32,7 @@ export default function Navbar() {
       <nav className="lms-navbar">
         <div className="container nav-container">
           <Link to="/" className="nav-brand">
-            <img src="/stellar_logo.png" alt="Stellar Institute Logo" className="brand-logo" />
+            <img src="/stellar_logo.png" alt="Stellar Institute Logo" className="brand-logo" width={562} height={165} />
           </Link>
 
           <div className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
