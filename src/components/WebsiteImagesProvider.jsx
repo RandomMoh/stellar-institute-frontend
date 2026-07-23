@@ -26,7 +26,10 @@ function saveCache(images) {
 export function WebsiteImagesProvider({ children }) {
   const cached = loadCache();
   const [images, setImages] = useState(cached || {});
-  const [loaded, setLoaded] = useState(!!cached);
+  // Always mark as loaded immediately — slider should never wait for the API.
+  // If cache exists, images are already populated. If not, placeholder shows
+  // while the fetch completes in the background.
+  const [loaded, setLoaded] = useState(true);
 
   useEffect(() => {
     const API = import.meta.env.VITE_API_URL || '/api';
@@ -40,10 +43,22 @@ export function WebsiteImagesProvider({ children }) {
           });
           setImages(imgMap);
           saveCache(imgMap);
+
+          // Preload the first hero slide image so the browser starts
+          // downloading it immediately before React renders the <img>.
+          const heroKey = Object.keys(imgMap).find(k => k.toLowerCase().includes('hero') && k.includes('1'));
+          const firstUrl = heroKey ? imgMap[heroKey] : Object.values(imgMap)[0];
+          if (firstUrl) {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = firstUrl;
+            link.fetchPriority = 'high';
+            document.head.appendChild(link);
+          }
         }
       })
-      .catch(err => console.error('Failed to load website images:', err))
-      .finally(() => setLoaded(true));
+      .catch(err => console.error('Failed to load website images:', err));
   }, []);
 
   return (
